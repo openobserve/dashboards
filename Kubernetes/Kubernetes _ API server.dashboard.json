@@ -1,0 +1,502 @@
+{
+  "dashboardId": "7092570174922031104nedeQD",
+  "title": "Kubernetes / API server",
+  "description": "",
+  "role": "",
+  "owner": "hello@openobserve.ai",
+  "created": "2023-08-02T18:21:42.252+00:00",
+  "panels": [
+    {
+      "id": "Panel_ID5834210",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Availability (30d) > 99.000%",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "percent-1"
+      },
+      "query": "apiserver_request:availability30d{verb=\"all\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID6065210",
+      "type": "area",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "ErrorBudget (30d) > 99.000%",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "",
+        "unit": "percent-1"
+      },
+      "query": "100 * (apiserver_request:availability30d{verb=\"all\", cluster=\"\"} - 0.990000)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID8687110",
+      "type": "metric",
+      "fields": {
+        "stream": "",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Read Availability (30d)",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "percent-1"
+      },
+      "query": "apiserver_request:availability30d{verb=\"read\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID3016810",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Write Availability (30d)",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "percent-1"
+      },
+      "query": "apiserver_request:availability30d{verb=\"write\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2700010",
+      "type": "area",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Read SLI - Requests",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{code}"
+      },
+      "query": "sum by (code) (code_resource:apiserver_request_total:rate5m{verb=\"read\", cluster=\"\"})",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID441810",
+      "type": "area",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Read SLI - Errors",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{resource}"
+      },
+      "query": "sum by (resource) (code_resource:apiserver_request_total:rate5m{verb=\"read\",code=~\"5..\", cluster=\"\"}) / sum by (resource) (code_resource:apiserver_request_total:rate5m{verb=\"read\", cluster=\"\"})",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID3467410",
+      "type": "area-stacked",
+      "fields": {
+        "stream": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Read SLI - Duration",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{resource}",
+        "unit": "seconds"
+      },
+      "query": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile{verb=\"read\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID1500210",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Write SLI - Requests",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{code}"
+      },
+      "query": "sum by (code) (code_resource:apiserver_request_total:rate5m{verb=\"write\", cluster=\"\"})",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID7667510",
+      "type": "area",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Write SLI - Errors",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{resource}"
+      },
+      "query": "sum by (resource) (code_resource:apiserver_request_total:rate5m{verb=\"write\",code=~\"5..\", cluster=\"\"}) / sum by (resource) (code_resource:apiserver_request_total:rate5m{verb=\"read\", cluster=\"\"})",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID253910",
+      "type": "area-stacked",
+      "fields": {
+        "stream": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Write SLI - Duration",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{resource}",
+        "unit": "seconds"
+      },
+      "query": "cluster_quantile:apiserver_request_slo_duration_seconds:histogram_quantile{verb=\"write\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID1489510",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Work Queue Add Rate",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{name}"
+      },
+      "query": "sum(rate(workqueue_adds_total{job=\"apiserver\", cluster=\"\"}[5m])) by (instance, name)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID9050210",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Work Queue Depth",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{name}"
+      },
+      "query": "sum(rate(workqueue_depth{job=\"apiserver\", cluster=\"\"}[5m])) by (instance, name)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID5026610",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Work Queue Latency",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{name}",
+        "unit": "seconds"
+      },
+      "query": "histogram_quantile(0.99, sum(rate(workqueue_queue_duration_seconds_bucket{job=\"apiserver\", cluster=\"\"}[5m])) by (instance, name, le))",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2397310",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Goroutines",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{job}"
+      },
+      "query": "go_goroutines{job=\"apiserver\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID4655810",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Memory",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{instance}",
+        "unit": "bytes"
+      },
+      "query": "process_resident_memory_bytes{job=\"apiserver\", cluster=\"\"}",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID1003310",
+      "type": "line",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "CPU Usage",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{instance}",
+        "unit": "percent-1"
+      },
+      "query": "rate(process_cpu_seconds_total{job=\"apiserver\", cluster=\"\"}[5m])",
+      "queryType": "promql",
+      "customQuery": true
+    }
+  ],
+  "layouts": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 4,
+      "h": 6,
+      "i": 1,
+      "panelId": "Panel_ID5834210",
+      "static": false
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "w": 8,
+      "h": 6,
+      "i": 2,
+      "panelId": "Panel_ID6065210",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 6,
+      "w": 2,
+      "h": 6,
+      "i": 4,
+      "panelId": "Panel_ID8687110",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 12,
+      "w": 2,
+      "h": 6,
+      "i": 5,
+      "panelId": "Panel_ID3016810",
+      "static": false
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "w": 3,
+      "h": 6,
+      "i": 6,
+      "panelId": "Panel_ID2700010",
+      "static": false
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "w": 3,
+      "h": 6,
+      "i": 7,
+      "panelId": "Panel_ID441810",
+      "static": false
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "w": 4,
+      "h": 6,
+      "i": 8,
+      "panelId": "Panel_ID3467410",
+      "static": false
+    },
+    {
+      "x": 2,
+      "y": 12,
+      "w": 3,
+      "h": 6,
+      "i": 9,
+      "panelId": "Panel_ID1500210",
+      "static": false
+    },
+    {
+      "x": 5,
+      "y": 12,
+      "w": 3,
+      "h": 6,
+      "i": 10,
+      "panelId": "Panel_ID7667510",
+      "static": false
+    },
+    {
+      "x": 8,
+      "y": 12,
+      "w": 4,
+      "h": 6,
+      "i": 11,
+      "panelId": "Panel_ID253910",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 18,
+      "w": 6,
+      "h": 6,
+      "i": 12,
+      "panelId": "Panel_ID1489510",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 18,
+      "w": 6,
+      "h": 6,
+      "i": 13,
+      "panelId": "Panel_ID9050210",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 24,
+      "w": 6,
+      "h": 7,
+      "i": 14,
+      "panelId": "Panel_ID5026610",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 24,
+      "w": 6,
+      "h": 7,
+      "i": 15,
+      "panelId": "Panel_ID2397310",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 31,
+      "w": 6,
+      "h": 7,
+      "i": 16,
+      "panelId": "Panel_ID4655810",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 31,
+      "w": 6,
+      "h": 7,
+      "i": 17,
+      "panelId": "Panel_ID1003310",
+      "static": false
+    }
+  ],
+  "variables": null
+}

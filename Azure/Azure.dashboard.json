@@ -1,0 +1,60 @@
+{
+  "dashboardId": "7091952942223327232D78KBJ",
+  "title": "Azure",
+  "description": "",
+  "role": "",
+  "owner": "hello@openobserve.ai",
+  "created": "2023-08-01T01:29:03.353+00:00",
+  "panels": [
+    {
+      "id": "Panel_ID6589110",
+      "type": "table",
+      "fields": {
+        "stream": "az_metrics",
+        "stream_type": "logs",
+        "x": [
+          {
+            "label": "Metricname",
+            "alias": "x_axis_1",
+            "column": "metricname",
+            "color": null
+          }
+        ],
+        "y": [
+          {
+            "label": "Count",
+            "alias": "y_axis_1",
+            "column": "ingestion_id",
+            "color": "#5960b2",
+            "aggregationFunction": "count"
+          }
+        ],
+        "filter": []
+      },
+      "config": {
+        "title": "Metric types",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": ""
+      },
+      "query": "SELECT metricname as \"x_axis_1\", count(ingestion_id) as \"y_axis_1\"  FROM \"az_metrics\"  GROUP BY x_axis_1 ORDER BY x_axis_1",
+      "queryType": "sql",
+      "customQuery": false
+    }
+  ],
+  "layouts": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 5,
+      "h": 20,
+      "i": 1,
+      "panelId": "Panel_ID6589110",
+      "static": false
+    }
+  ],
+  "variables": {
+    "list": []
+  }
+}

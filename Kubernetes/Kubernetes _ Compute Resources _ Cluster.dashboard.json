@@ -1,0 +1,572 @@
+{
+  "dashboardId": "709186819740152627286PA7M",
+  "title": "Kubernetes / Compute Resources / Cluster",
+  "description": "",
+  "role": "",
+  "owner": "hello@openobserve.ai",
+  "created": "2023-07-31T19:52:18.607+00:00",
+  "panels": [
+    {
+      "id": "Panel_ID8159510",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "CPU Utilisation",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "cluster:node_cpu:ratio_rate5m{cluster=\"$cluster\"}*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID7606710",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "CPU Requests Commitment",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "(sum(namespace_cpu:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"cpu\",cluster=\"$cluster\"}))*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID4396310",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "CPU Limits Commitment",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "(sum(namespace_cpu:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"cpu\",cluster=\"$cluster\"}))*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID9565210",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Memory Utilisation",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "(1 - sum(:node_memory_MemAvailable_bytes:sum{cluster=\"$cluster\"}) / sum(node_memory_MemTotal_bytes{job=\"node-exporter\",cluster=\"$cluster\"}))*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID9435810",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Memory Requests Commitment",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "(sum(namespace_memory:kube_pod_container_resource_requests:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"memory\",cluster=\"$cluster\"}))*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID5750710",
+      "type": "metric",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Memory Limits Commitment",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "custom",
+        "unit_custom": "%"
+      },
+      "query": "(sum(namespace_memory:kube_pod_container_resource_limits:sum{cluster=\"$cluster\"}) / sum(kube_node_status_allocatable{job=\"kube-state-metrics\",resource=\"memory\",cluster=\"$cluster\"}))*100",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID4272010",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "CPU Usage",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "percent-1"
+      },
+      "query": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\"}) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID5511010",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Memory Usage (w/o cache)",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "bytes"
+      },
+      "query": "sum(container_memory_rss{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", container!=\"\"}) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID771610",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Receive bandwidth",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "bps"
+      },
+      "query": "sum(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID6924510",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Transmit Bandwidth",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "bps"
+      },
+      "query": "sum(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2296110",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Average Container Bandwidth by Namespace: Received",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "bps"
+      },
+      "query": "avg(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2428510",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Average Container Bandwidth by Namespace: Transmitted",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}",
+        "unit": "bps"
+      },
+      "query": "avg(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2704410",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Rate of Received Packets",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}"
+      },
+      "query": "sum(irate(container_network_receive_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID8108710",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Rate of Transmitted Packets",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}"
+      },
+      "query": "sum(irate(container_network_transmit_packets_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID992010",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Rate of Received Packets Dropped",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}"
+      },
+      "query": "sum(irate(container_network_receive_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID1443510",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "Rate of Transmitted Packets Dropped",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}"
+      },
+      "query": "sum(irate(container_network_transmit_packets_dropped_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", cluster=\"$cluster\", namespace=~\".+\"}[5m])) by (namespace)",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID7028310",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "IOPS(Reads+Writes)",
+        "description": "",
+        "show_legends": true,
+        "legends_position": "right",
+        "promql_legend": "{namespace}"
+      },
+      "query": "ceil(sum by(namespace) (rate(container_fs_reads_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", cluster=\"$cluster\", namespace!=\"\"}[5m]) + rate(container_fs_writes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[5m])))",
+      "queryType": "promql",
+      "customQuery": true
+    },
+    {
+      "id": "Panel_ID2193110",
+      "type": "area-stacked",
+      "fields": {
+        "stream": ":node_memory_MemAvailable_bytes:sum",
+        "stream_type": "metrics",
+        "x": [],
+        "y": [],
+        "filter": []
+      },
+      "config": {
+        "title": "ThroughPut(Read+Write)",
+        "description": "",
+        "show_legends": true,
+        "legends_position": null,
+        "promql_legend": "",
+        "unit": "bps"
+      },
+      "query": "sum by(namespace) (rate(container_fs_reads_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", cluster=\"$cluster\", namespace!=\"\"}[5m]) + rate(container_fs_writes_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", container!=\"\", cluster=\"$cluster\", namespace!=\"\"}[5m]))",
+      "queryType": "promql",
+      "customQuery": true
+    }
+  ],
+  "layouts": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 1,
+      "panelId": "Panel_ID8159510",
+      "static": false
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 2,
+      "panelId": "Panel_ID7606710",
+      "static": false
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 3,
+      "panelId": "Panel_ID4396310",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 4,
+      "panelId": "Panel_ID9565210",
+      "static": false
+    },
+    {
+      "x": 8,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 5,
+      "panelId": "Panel_ID9435810",
+      "static": false
+    },
+    {
+      "x": 10,
+      "y": 0,
+      "w": 2,
+      "h": 3,
+      "i": 6,
+      "panelId": "Panel_ID5750710",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "w": 6,
+      "h": 6,
+      "i": 7,
+      "panelId": "Panel_ID4272010",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "w": 6,
+      "h": 6,
+      "i": 8,
+      "panelId": "Panel_ID5511010",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 9,
+      "w": 6,
+      "h": 6,
+      "i": 9,
+      "panelId": "Panel_ID771610",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 9,
+      "w": 6,
+      "h": 6,
+      "i": 10,
+      "panelId": "Panel_ID6924510",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 15,
+      "w": 6,
+      "h": 6,
+      "i": 11,
+      "panelId": "Panel_ID2296110",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 15,
+      "w": 6,
+      "h": 6,
+      "i": 12,
+      "panelId": "Panel_ID2428510",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 21,
+      "w": 6,
+      "h": 7,
+      "i": 13,
+      "panelId": "Panel_ID2704410",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 21,
+      "w": 6,
+      "h": 7,
+      "i": 14,
+      "panelId": "Panel_ID8108710",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 28,
+      "w": 6,
+      "h": 6,
+      "i": 15,
+      "panelId": "Panel_ID992010",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 28,
+      "w": 6,
+      "h": 6,
+      "i": 16,
+      "panelId": "Panel_ID1443510",
+      "static": false
+    },
+    {
+      "x": 0,
+      "y": 34,
+      "w": 6,
+      "h": 7,
+      "i": 17,
+      "panelId": "Panel_ID7028310",
+      "static": false
+    },
+    {
+      "x": 6,
+      "y": 34,
+      "w": 6,
+      "h": 7,
+      "i": 18,
+      "panelId": "Panel_ID2193110",
+      "static": false
+    }
+  ],
+  "variables": null
+}
