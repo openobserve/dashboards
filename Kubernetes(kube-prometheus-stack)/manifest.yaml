@@ -1,0 +1,315 @@
+dashboardId: 7091931053371293696JkXZRi
+title: Kubernetes / Compute Resources / Namespace (Workloads)
+description: ''
+role: ''
+owner: hello@openobserve.ai
+created: '2023-08-01T00: 02: 04.643+00: 00'
+panels:
+- id: Panel_ID6072910
+  type: area-stacked
+  fields:
+    stream: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: CPU Usage
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: percent-1
+  query: |
+    sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster="$cluster", namespace="$namespace" }
+    * on(namespace,pod)
+      group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload_type="$type"}
+    ) by (workload, workload_type)
+  queryType: promql
+  customQuery: true
+  layout:
+    x: 0
+    y: 0
+    w: 12
+    h: 6
+    i: 1
+- id: Panel_ID9871010
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Memory Usage
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: bytes
+  query: |
+    sum(
+        container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace", container!="", image!=""}
+      * on(namespace,pod)
+        group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload_type="$type"}
+    ) by (workload, workload_type)
+  queryType: promql
+  customQuery: true
+- id: Panel_ID6749110
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Receive Bandwidth
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: bps
+  query: |
+    (sum(irate(container_network_receive_bytes_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID8029810
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Transmit Bandwidth
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: bps
+  query: |
+    (sum(irate(container_network_transmit_bytes_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID1977210
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: 'Average Container Bandwidth by Workload: Received'
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: bps
+  query: |
+    (avg(irate(container_network_receive_bytes_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID9241810
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: 'Average Container Bandwidth by Workload: Transmitted'
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+    unit: bps
+  query: |
+    (avg(irate(container_network_transmit_bytes_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID1373810
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Rate of Received Packets
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+  query: |
+    (sum(irate(container_network_receive_packets_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID5053410
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Rate of Transmitted Packets
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+  query: |
+    (sum(irate(container_network_transmit_packets_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID6458010
+  type: area-stacked
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Rate of Received Packets Dropped
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+  query: |
+    (sum(irate(container_network_receive_packets_dropped_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+- id: Panel_ID9294910
+  type: line
+  fields:
+    stream: ":node_memory_MemAvailable_bytes:sum"
+    stream_type: metrics
+    x: []
+    y: []
+    filter: []
+  config:
+    title: Rate of Transmitted Packets Dropped
+    description: ''
+    show_legends: true
+    legends_position: right
+    promql_legend: "{workload}"
+  query: |
+    (sum(irate(container_network_transmit_packets_dropped_total{job="kubelet", metrics_path="/metrics/cadvisor", cluster="$cluster", namespace="$namespace"}[5m])
+    * on (namespace,pod)
+    group_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{cluster="$cluster", namespace="$namespace", workload=~".+", workload_type="$type"}) by (workload))
+  queryType: promql
+  customQuery: true
+layouts:
+- x: 0
+  y: 0
+  w: 12
+  h: 6
+  i: 1
+  panelId: Panel_ID6072910
+  static: false
+- x: 0
+  y: 6
+  w: 12
+  h: 6
+  i: 2
+  panelId: Panel_ID9871010
+  static: false
+- x: 0
+  y: 12
+  w: 6
+  h: 6
+  i: 3
+  panelId: Panel_ID6749110
+  static: false
+- x: 6
+  y: 12
+  w: 6
+  h: 6
+  i: 4
+  panelId: Panel_ID8029810
+  static: false
+- x: 0
+  y: 18
+  w: 6
+  h: 5
+  i: 5
+  panelId: Panel_ID1977210
+  static: false
+- x: 6
+  y: 18
+  w: 6
+  h: 5
+  i: 6
+  panelId: Panel_ID9241810
+  static: false
+- x: 0
+  y: 23
+  w: 6
+  h: 6
+  i: 7
+  panelId: Panel_ID1373810
+  static: false
+- x: 6
+  y: 23
+  w: 6
+  h: 6
+  i: 8
+  panelId: Panel_ID5053410
+  static: false
+- x: 0
+  y: 29
+  w: 6
+  h: 6
+  i: 9
+  panelId: Panel_ID6458010
+  static: false
+- x: 6
+  y: 29
+  w: 6
+  h: 6
+  i: 10
+  panelId: Panel_ID9294910
+  static: false
+variables:
+  list:
+  - type: query_values
+    name: namespace
+    label: ''
+    query_data:
+      stream_type: metrics
+      stream: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate
+      field: namespace
+      max_record_size:
+    value: ''
+    options: []
+  - type: query_values
+    name: type
+    label: Workload_type
+    query_data:
+      stream_type: metrics
+      stream: namespace_workload_pod:kube_pod_owner:relabel
+      field: workload_type
+      max_record_size:
+    value: ''
+    options: []
