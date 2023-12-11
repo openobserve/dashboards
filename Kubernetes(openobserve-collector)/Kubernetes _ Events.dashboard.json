@@ -1,1 +1,295 @@
-{"version":2,"dashboardId":"7135569702868361216ua8SLu","title":"Kubernetes / Events","description":"","role":"","owner":"","created":"2023-11-29T10:06:29.560Z","panels":[{"id":"Panel_ID8993010","type":"donut","title":"Severity","description":"","config":{"show_legends":true,"legends_position":"right","base_map":{"type":"osm"},"map_view":{"zoom":1,"lat":0,"lng":0}},"queryType":"sql","queries":[{"query":"SELECT severity as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1 ORDER BY x_axis_1","customQuery":false,"fields":{"stream":"k8s_events","stream_type":"logs","x":[{"label":"Severity","alias":"x_axis_1","column":"severity","color":null}],"y":[{"label":"Timestamp","alias":"y_axis_1","column":"_timestamp","color":"#5960b2","aggregationFunction":"count"}],"z":[],"filter":[]},"config":{"promql_legend":"","layer_type":"scatter","weight_fixed":1}}],"layout":{"x":0,"y":0,"w":4,"h":7,"i":1}},{"id":"Panel_ID9681410","type":"stacked","title":"Severity by namespace","description":"","config":{"show_legends":true,"legends_position":null,"base_map":{"type":"osm"},"map_view":{"zoom":1,"lat":0,"lng":0}},"queryType":"sql","queries":[{"query":"SELECT k8s_namespace_name as \"x_axis_1\", severity as \"x_axis_2\", count(severity) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2","customQuery":false,"fields":{"stream":"k8s_events","stream_type":"logs","x":[{"label":" ","alias":"x_axis_1","column":"k8s_namespace_name","color":null},{"label":"Severity","alias":"x_axis_2","column":"severity","color":null}],"y":[{"label":" ","alias":"y_axis_1","column":"severity","color":"#5960b2","aggregationFunction":"count"}],"z":[],"filter":[]},"config":{"promql_legend":"","layer_type":"scatter","weight_fixed":1}}],"layout":{"x":0,"y":7,"w":12,"h":8,"i":2}},{"id":"Panel_ID64110","type":"stacked","title":"Event reason by namespace","description":"","config":{"show_legends":true,"legends_position":"bottom","base_map":{"type":"osm"},"map_view":{"zoom":1,"lat":0,"lng":0}},"queryType":"sql","queries":[{"query":"SELECT k8s_event_reason as \"x_axis_1\", k8s_namespace_name as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2","customQuery":false,"fields":{"stream":"k8s_events","stream_type":"logs","x":[{"label":" ","alias":"x_axis_1","column":"k8s_event_reason","color":null},{"label":"K8s Namespace Name","alias":"x_axis_2","column":"k8s_namespace_name","color":null}],"y":[{"label":" ","alias":"y_axis_1","column":"_timestamp","color":"#5960b2","aggregationFunction":"count"}],"z":[],"filter":[]},"config":{"promql_legend":"","layer_type":"scatter","weight_fixed":1}}],"layout":{"x":4,"y":0,"w":8,"h":7,"i":4}},{"id":"Panel_ID9456910","type":"table","title":"Raw data","description":"","config":{"show_legends":true,"legends_position":null,"base_map":{"type":"osm"},"map_view":{"zoom":1,"lat":0,"lng":0}},"queryType":"sql","queries":[{"query":"SELECT histogram(_timestamp) as \"x_axis_1\", k8s_namespace_name as \"x_axis_3\", k8s_object_name as \"x_axis_4\", severity as \"x_axis_5\", k8s_event_reason as \"x_axis_6\", body as \"x_axis_7\", max(k8s_event_count) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7 ORDER BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7","customQuery":false,"fields":{"stream":"k8s_events","stream_type":"logs","x":[{"label":"Timestamp","alias":"x_axis_1","column":"_timestamp","color":null,"aggregationFunction":"histogram"},{"label":"Namespace","alias":"x_axis_3","column":"k8s_namespace_name","color":null},{"label":"Object","alias":"x_axis_4","column":"k8s_object_name","color":null},{"label":"Severity","alias":"x_axis_5","column":"severity","color":null},{"label":"Reason","alias":"x_axis_6","column":"k8s_event_reason","color":null},{"label":"Body","alias":"x_axis_7","column":"body","color":null}],"y":[{"label":"Count","alias":"y_axis_1","column":"k8s_event_count","color":"#5960b2","aggregationFunction":"max"}],"z":[],"filter":[]},"config":{"promql_legend":"","layer_type":"scatter","weight_fixed":1}}],"layout":{"x":0,"y":17,"w":12,"h":13,"i":5}}],"variables":null}
+{
+  "version": 2,
+  "dashboardId": "7135569702868361216ua8SLu",
+  "title": "Kubernetes / Events",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2023-11-29T10:06:29.560Z",
+  "panels": [
+    {
+      "id": "Panel_ID8993010",
+      "type": "donut",
+      "title": "Severity",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": "right",
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT severity as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1 ORDER BY x_axis_1",
+          "customQuery": false,
+          "fields": {
+            "stream": "k8s_events",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Severity",
+                "alias": "x_axis_1",
+                "column": "severity",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Timestamp",
+                "alias": "y_axis_1",
+                "column": "_timestamp",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 7,
+        "i": 1
+      }
+    },
+    {
+      "id": "Panel_ID9681410",
+      "type": "stacked",
+      "title": "Severity by namespace",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT k8s_namespace_name as \"x_axis_1\", severity as \"x_axis_2\", count(severity) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "k8s_events",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "k8s_namespace_name",
+                "color": null
+              },
+              {
+                "label": "Severity",
+                "alias": "x_axis_2",
+                "column": "severity",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "severity",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 7,
+        "w": 12,
+        "h": 8,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID64110",
+      "type": "stacked",
+      "title": "Event reason by namespace",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": "bottom",
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT k8s_event_reason as \"x_axis_1\", k8s_namespace_name as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "k8s_events",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "k8s_event_reason",
+                "color": null
+              },
+              {
+                "label": "K8s Namespace Name",
+                "alias": "x_axis_2",
+                "column": "k8s_namespace_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "_timestamp",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 4,
+        "y": 0,
+        "w": 8,
+        "h": 7,
+        "i": 4
+      }
+    },
+    {
+      "id": "Panel_ID9456910",
+      "type": "table",
+      "title": "Raw data",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", k8s_namespace_name as \"x_axis_3\", k8s_object_name as \"x_axis_4\", severity as \"x_axis_5\", k8s_event_reason as \"x_axis_6\", body as \"x_axis_7\", max(k8s_event_count) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7 ORDER BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7",
+          "customQuery": false,
+          "fields": {
+            "stream": "k8s_events",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Timestamp",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram"
+              },
+              {
+                "label": "Namespace",
+                "alias": "x_axis_3",
+                "column": "k8s_namespace_name",
+                "color": null
+              },
+              {
+                "label": "Object",
+                "alias": "x_axis_4",
+                "column": "k8s_object_name",
+                "color": null
+              },
+              {
+                "label": "Severity",
+                "alias": "x_axis_5",
+                "column": "severity",
+                "color": null
+              },
+              {
+                "label": "Reason",
+                "alias": "x_axis_6",
+                "column": "k8s_event_reason",
+                "color": null
+              },
+              {
+                "label": "Body",
+                "alias": "x_axis_7",
+                "column": "body",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Count",
+                "alias": "y_axis_1",
+                "column": "k8s_event_count",
+                "color": "#5960b2",
+                "aggregationFunction": "max"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 17,
+        "w": 12,
+        "h": 13,
+        "i": 5
+      }
+    }
+  ],
+  "variables": null
+}
