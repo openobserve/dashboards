@@ -1,0 +1,296 @@
+{
+  "version": 2,
+  "dashboardId": "7140125295704674304t72sgu",
+  "title": "Windows",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2023-12-11T23:48:47.482Z",
+  "panels": [
+    {
+      "id": "Panel_ID7706110",
+      "type": "area-stacked",
+      "title": "Severity",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", severity as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"windows\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "windows",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram"
+              },
+              {
+                "label": "Severity",
+                "alias": "x_axis_2",
+                "column": "severity",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "_timestamp",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 8,
+        "i": 1
+      }
+    },
+    {
+      "id": "Panel_ID6604910",
+      "type": "area-stacked",
+      "title": "Channel",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", body_channel as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"windows\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "windows",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram"
+              },
+              {
+                "label": "Body Channel",
+                "alias": "x_axis_2",
+                "column": "body_channel",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "_timestamp",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 4,
+        "y": 0,
+        "w": 4,
+        "h": 8,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID5077210",
+      "type": "area-stacked",
+      "title": "Account name",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", body_details_subject_account_name as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"windows\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "windows",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram"
+              },
+              {
+                "label": "Body Details Subject Account Name",
+                "alias": "x_axis_2",
+                "column": "body_details_subject_account_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "_timestamp",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 8,
+        "i": 3
+      }
+    },
+    {
+      "id": "Panel_ID4571710",
+      "type": "table",
+      "title": "Log",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", body_computer as \"x_axis_2\", body_channel as \"x_axis_3\", severity as \"x_axis_4\", body_details_subject_account_name as \"x_axis_5\", body_message as \"x_axis_6\"  FROM \"windows\"  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4, x_axis_5, x_axis_6 ORDER BY x_axis_1, x_axis_2, x_axis_3, x_axis_4, x_axis_5, x_axis_6",
+          "customQuery": false,
+          "fields": {
+            "stream": "windows",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Timestamp",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram"
+              },
+              {
+                "label": "Body Computer",
+                "alias": "x_axis_2",
+                "column": "body_computer",
+                "color": null
+              },
+              {
+                "label": "Body Channel",
+                "alias": "x_axis_3",
+                "column": "body_channel",
+                "color": null
+              },
+              {
+                "label": "Severity",
+                "alias": "x_axis_4",
+                "column": "severity",
+                "color": null
+              },
+              {
+                "label": "Body Details Subject Account Name",
+                "alias": "x_axis_5",
+                "column": "body_details_subject_account_name",
+                "color": null
+              },
+              {
+                "label": "Body Message",
+                "alias": "x_axis_6",
+                "column": "body_message",
+                "color": null
+              }
+            ],
+            "y": [],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 9,
+        "i": 4
+      }
+    }
+  ],
+  "variables": null
+}
