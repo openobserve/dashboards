@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dashboardId": "7135152297587380224PdsRE8",
+  "dashboardId": "7143217636321685504T4LPcw",
   "title": "Traces - By service",
   "description": "",
   "role": "",
   "owner": "",
-  "created": "2023-11-28T06:27:52.201Z",
+  "created": "2023-12-20T12:36:38.928Z",
   "panels": [
     {
       "id": "Panel_ID3718110",
@@ -274,70 +274,9 @@
       }
     },
     {
-      "id": "Panel_ID6752210",
-      "type": "scatter",
-      "title": "Duration - Scatter chart",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "unit": "microseconds",
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "sql",
-      "queries": [
-        {
-          "query": "SELECT _timestamp as \"x_axis_1\", max(duration) as \"max_duration\"  FROM \"default\" where service_name='$service' GROUP BY x_axis_1 ORDER BY x_axis_1",
-          "customQuery": true,
-          "fields": {
-            "stream": "default",
-            "stream_type": "traces",
-            "x": [
-              {
-                "label": " ",
-                "alias": "x_axis_1",
-                "column": "x_axis_1",
-                "color": null
-              }
-            ],
-            "y": [
-              {
-                "label": " ",
-                "alias": "max_duration",
-                "column": "max_duration",
-                "color": null,
-                "aggregationFunction": "count"
-              }
-            ],
-            "z": [],
-            "filter": []
-          },
-          "config": {
-            "promql_legend": "",
-            "layer_type": "scatter",
-            "weight_fixed": 1
-          }
-        }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 7,
-        "w": 6,
-        "h": 7,
-        "i": 7
-      }
-    },
-    {
       "id": "Panel_ID3866410",
       "type": "line",
-      "title": "Latencies",
+      "title": "Latency",
       "description": "",
       "config": {
         "show_legends": true,
@@ -355,7 +294,7 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", approx_percentile_cont(duration, 0.5) as percentile_50, approx_percentile_cont(duration, 0.9) as percentile_90, approx_percentile_cont(duration, 0.99) as percentile_99 FROM \"default\" where service_name='$service' GROUP BY x_axis_1 ORDER BY x_axis_1",
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", approx_percentile_cont(duration, 0.5) as percentile_50, approx_percentile_cont(duration, 0.9) as percentile_90, approx_percentile_cont(duration, 0.95) as percentile_95, approx_percentile_cont(duration, 0.99) as percentile_99 FROM \"default\" where service_name='$service' GROUP BY x_axis_1 ORDER BY x_axis_1",
           "customQuery": true,
           "fields": {
             "stream": "default",
@@ -385,6 +324,13 @@
                 "aggregationFunction": "count"
               },
               {
+                "label": "p95",
+                "alias": "percentile_95",
+                "column": "percentile_95",
+                "color": "#61a0a8",
+                "aggregationFunction": "count"
+              },
+              {
                 "label": "p99",
                 "alias": "percentile_99",
                 "column": "percentile_99",
@@ -408,6 +354,77 @@
         "w": 6,
         "h": 7,
         "i": 9
+      }
+    },
+    {
+      "id": "Panel_ID5440710",
+      "type": "scatter",
+      "title": "Duration",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "unit": "microseconds",
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", max(duration) as \"y_axis_1\"  FROM \"default\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "traces",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram",
+                "sortBy": "ASC",
+                "args": [
+                  {
+                    "value": null
+                  }
+                ]
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "duration",
+                "color": "#5960b2",
+                "aggregationFunction": "max"
+              }
+            ],
+            "z": [],
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 7,
+        "w": 6,
+        "h": 7,
+        "i": 10
       }
     }
   ],
