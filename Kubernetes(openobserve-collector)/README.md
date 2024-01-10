@@ -23,6 +23,10 @@ This folder contains Kubernetes dashboards for OpenObserve. These are built on t
 
 ![Kubernetes Namespace(Pods)](screenshots/namespace_pods.png) 
 
+## Namespace (Pod - Just 1 pod)
+
+![Kubernetes Namespace(Pod)](screenshots/namespace_pod.png) 
+
 ## Events
 
 ![Kubernetes Events](screenshots/events.png) 
