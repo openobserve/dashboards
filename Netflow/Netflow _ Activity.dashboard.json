@@ -1,0 +1,277 @@
+{
+  "version": 2,
+  "dashboardId": "7151336031483203584qjpW21",
+  "title": "Netflow / Activity",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-01-11T22:16:14.878Z",
+  "panels": [
+    {
+      "id": "Panel_ID8453510",
+      "type": "area-stacked",
+      "title": "Activity by protocol",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": "right",
+        "unit": "bytes",
+        "decimals": 2,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", nf_proto as \"x_axis_2\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram",
+                "sortBy": "ASC",
+                "args": [
+                  {
+                    "value": null
+                  }
+                ]
+              },
+              {
+                "label": "Nf Proto",
+                "alias": "x_axis_2",
+                "column": "nf_proto",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "sum"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 9,
+        "i": 1
+      }
+    },
+    {
+      "id": "Panel_ID5164510",
+      "type": "table",
+      "title": "Most chatty (Packet count)",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_src_addr as \"x_axis_1\", nf_dst_addr as \"x_axis_2\", count(nf_packets) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1, x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Source",
+                "alias": "x_axis_1",
+                "column": "nf_src_addr",
+                "color": null
+              },
+              {
+                "label": "Destination",
+                "alias": "x_axis_2",
+                "column": "nf_dst_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Packet count",
+                "alias": "y_axis_1",
+                "column": "nf_packets",
+                "color": "#5960b2",
+                "aggregationFunction": "count",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 9,
+        "w": 6,
+        "h": 12,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID5669310",
+      "type": "table",
+      "title": "Most chatty (Packet volume)",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_src_addr as \"x_axis_1\", nf_dst_addr as \"x_axis_2\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1, x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Source",
+                "alias": "x_axis_1",
+                "column": "nf_src_addr",
+                "color": null
+              },
+              {
+                "label": "Destination",
+                "alias": "x_axis_2",
+                "column": "nf_dst_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Bytes",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "sum",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 9,
+        "w": 6,
+        "h": 12,
+        "i": 3
+      }
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  }
+}

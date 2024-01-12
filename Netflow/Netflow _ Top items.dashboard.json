@@ -1,0 +1,488 @@
+{
+  "version": 2,
+  "dashboardId": "7151323293587476480LCIM5G",
+  "title": "Netflow / Top items",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-01-11T21:25:38.081Z",
+  "panels": [
+    {
+      "id": "Panel_ID8027510",
+      "type": "table",
+      "title": "Top Sources",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_src_addr as \"x_axis_2\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Source",
+                "alias": "x_axis_2",
+                "column": "nf_src_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Connections",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "count",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 3,
+        "y": 0,
+        "w": 3,
+        "h": 11,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID3335710",
+      "type": "table",
+      "title": "Top Destinations",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_dst_addr as \"x_axis_1\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Destination",
+                "alias": "x_axis_1",
+                "column": "nf_dst_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Connections",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "count",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 3,
+        "h": 11,
+        "i": 3
+      }
+    },
+    {
+      "id": "Panel_ID1514710",
+      "type": "donut",
+      "title": "Top Sources",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": "bottom",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_src_addr as \"x_axis_2\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Source",
+                "alias": "x_axis_2",
+                "column": "nf_src_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Connections",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "count",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 11,
+        "i": 4
+      }
+    },
+    {
+      "id": "Panel_ID4869510",
+      "type": "table",
+      "title": "Top sources by traffic volume",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_src_addr as \"x_axis_1\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Source",
+                "alias": "x_axis_1",
+                "column": "nf_src_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Bytes",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "sum",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "w": 3,
+        "h": 10,
+        "i": 5
+      }
+    },
+    {
+      "id": "Panel_ID2428510",
+      "type": "table",
+      "title": "Top destinations by traffic volume",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_dst_addr as \"x_axis_1\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Destination",
+                "alias": "x_axis_1",
+                "column": "nf_dst_addr",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Bytes",
+                "alias": "y_axis_1",
+                "column": "nf_bytes",
+                "color": "#5960b2",
+                "aggregationFunction": "sum",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 10,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 3,
+        "y": 11,
+        "w": 3,
+        "h": 10,
+        "i": 6
+      }
+    },
+    {
+      "id": "Panel_ID239510",
+      "type": "pie",
+      "title": "Top protocols",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": "bottom",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT nf_proto as \"x_axis_2\", count(nf_packets) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "default",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Nf Proto",
+                "alias": "x_axis_2",
+                "column": "nf_proto",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Nf Packets",
+                "alias": "y_axis_1",
+                "column": "nf_packets",
+                "color": "#5960b2",
+                "aggregationFunction": "count"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "netflow"
+                ],
+                "column": "k8s_namespace_name",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 11,
+        "w": 6,
+        "h": 10,
+        "i": 7
+      }
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  }
+}
