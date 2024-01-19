@@ -1,5 +1,7 @@
-if .k8s_namespace_name == "netflow" {
-    .nf=parse_json!(.body)
-    del(.body)
-} 
-.
+.dst_geo = get_enrichment_table_record!("maxmind_city", {"ip": .dst_addr })
+.dst_asn = get_enrichment_table_record!("maxmind_asn", {"ip": .dst_addr })
+
+.src_geo = get_enrichment_table_record!("maxmind_city", {"ip": .src_addr })
+.src_asn = get_enrichment_table_record!("maxmind_asn", {"ip": .src_addr }) 
+ .
+ 

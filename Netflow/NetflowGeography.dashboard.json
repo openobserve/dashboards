@@ -1,0 +1,325 @@
+{
+  "version": 2,
+  "dashboardId": "7153885143055372288czBGQl",
+  "title": "Geography",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-01-18T23:05:30.569Z",
+  "panels": [
+    {
+      "id": "Panel_ID5227510",
+      "type": "geomap",
+      "title": "Top sources",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 2,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT src_geo_latitude as latitude, src_geo_longitude as longitude, sum(packets)/1024 as weight FROM \"netflow1\" where dst_geo_country_name is not null GROUP BY latitude, longitude",
+          "customQuery": true,
+          "fields": {
+            "stream": "netflow1",
+            "stream_type": "logs",
+            "x": [],
+            "y": [],
+            "z": [],
+            "latitude": {
+              "label": "Src Geo Latitude",
+              "alias": "latitude",
+              "column": "latitude",
+              "color": null
+            },
+            "longitude": {
+              "label": "Src Geo Longitude",
+              "alias": "longitude",
+              "column": "longitude",
+              "color": null
+            },
+            "weight": {
+              "label": "Packets",
+              "alias": "weight",
+              "column": "weight",
+              "color": null,
+              "aggregationFunction": "sum"
+            },
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 10,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 10,
+        "i": 1
+      }
+    },
+    {
+      "id": "Panel_ID6896710",
+      "type": "geomap",
+      "title": "Top destinations",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 2,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT dst_geo_latitude as latitude, dst_geo_longitude as longitude, sum(packets)/1024 as weight FROM \"netflow1\" where dst_geo_country_name is not null  GROUP BY latitude, longitude",
+          "customQuery": true,
+          "fields": {
+            "stream": "netflow1",
+            "stream_type": "logs",
+            "x": [],
+            "y": [],
+            "z": [],
+            "latitude": {
+              "label": "Dst Geo Latitude",
+              "alias": "latitude",
+              "column": "latitude",
+              "color": null
+            },
+            "longitude": {
+              "label": "Dst Geo Longitude",
+              "alias": "longitude",
+              "column": "longitude",
+              "color": null
+            },
+            "weight": {
+              "label": "Bytes",
+              "alias": "weight",
+              "column": "weight",
+              "color": null,
+              "aggregationFunction": "sum"
+            },
+            "filter": []
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 10,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 10,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID7776010",
+      "type": "table",
+      "title": "Top destinations",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT dst_geo_country_name as \"x_axis_1\", dst_geo_city_name as \"x_axis_2\", sum(packets) as \"y_axis_1\"  FROM \"netflow1\" WHERE dst_geo_country_name IS NOT NULL GROUP BY x_axis_1, x_axis_2 ORDER BY y_axis_1 DESC LIMIT 20",
+          "customQuery": false,
+          "fields": {
+            "stream": "netflow1",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Country",
+                "alias": "x_axis_1",
+                "column": "dst_geo_country_name",
+                "color": null
+              },
+              {
+                "label": "City",
+                "alias": "x_axis_2",
+                "column": "dst_geo_city_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Packets",
+                "alias": "y_axis_1",
+                "column": "packets",
+                "color": "#5960b2",
+                "aggregationFunction": "sum",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "condition",
+                "values": [],
+                "column": "dst_geo_country_name",
+                "operator": "Is Not Null",
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 20,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 10,
+        "w": 6,
+        "h": 13,
+        "i": 3
+      }
+    },
+    {
+      "id": "Panel_ID7555110",
+      "type": "table",
+      "title": "Top Sources",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT src_geo_country_name as \"x_axis_1\", src_geo_city_name as \"x_axis_2\", sum(packets) as \"y_axis_2\"  FROM \"netflow1\" WHERE src_geo_country_name IS NOT NULL GROUP BY x_axis_1, x_axis_2 ORDER BY y_axis_2 DESC LIMIT 20",
+          "customQuery": false,
+          "fields": {
+            "stream": "netflow1",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Country",
+                "alias": "x_axis_1",
+                "column": "src_geo_country_name",
+                "color": null
+              },
+              {
+                "label": "City",
+                "alias": "x_axis_2",
+                "column": "src_geo_city_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": "Packets",
+                "alias": "y_axis_2",
+                "column": "packets",
+                "color": "#c23531",
+                "aggregationFunction": "sum",
+                "sortBy": "DESC"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "condition",
+                "values": [],
+                "column": "src_geo_country_name",
+                "operator": "Is Not Null",
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 20,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 10,
+        "w": 6,
+        "h": 13,
+        "i": 4
+      }
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  }
+}

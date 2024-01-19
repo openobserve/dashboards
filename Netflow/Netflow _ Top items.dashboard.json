@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dashboardId": "7151323293587476480LCIM5G",
+  "dashboardId": "7153884169272201216iWyXZg",
   "title": "Netflow / Top items",
   "description": "",
   "role": "",
   "owner": "",
-  "created": "2024-01-11T21:25:38.081Z",
+  "created": "2024-01-18T23:01:38.399Z",
   "panels": [
     {
       "id": "Panel_ID8027510",
@@ -32,41 +32,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_src_addr as \"x_axis_2\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "query": "SELECT src_addr as \"x_axis_1\", count(bytes) as \"y_axis_2\"  FROM \"netflow1\"  GROUP BY x_axis_1 LIMIT 10",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Source",
-                "alias": "x_axis_2",
-                "column": "nf_src_addr",
+                "label": "Src Addr",
+                "alias": "x_axis_1",
+                "column": "src_addr",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Connections",
-                "alias": "y_axis_1",
-                "column": "nf_bytes",
-                "color": "#5960b2",
-                "aggregationFunction": "count",
-                "sortBy": "DESC"
+                "label": "Bytes",
+                "alias": "y_axis_2",
+                "column": "bytes",
+                "color": "#c23531",
+                "aggregationFunction": "count"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
@@ -111,41 +100,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_dst_addr as \"x_axis_1\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "query": "SELECT dst_addr as \"x_axis_1\", count(bytes) as \"y_axis_2\"  FROM \"netflow1\"  GROUP BY x_axis_1 LIMIT 10",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Destination",
+                "label": "Dst Addr",
                 "alias": "x_axis_1",
-                "column": "nf_dst_addr",
+                "column": "dst_addr",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Connections",
-                "alias": "y_axis_1",
-                "column": "nf_bytes",
-                "color": "#5960b2",
-                "aggregationFunction": "count",
-                "sortBy": "DESC"
+                "label": "Bytes",
+                "alias": "y_axis_2",
+                "column": "bytes",
+                "color": "#c23531",
+                "aggregationFunction": "count"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
@@ -172,7 +150,7 @@
       "description": "",
       "config": {
         "show_legends": true,
-        "legends_position": "bottom",
+        "legends_position": "right",
         "decimals": 0,
         "axis_border_show": false,
         "legend_width": {
@@ -190,41 +168,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_src_addr as \"x_axis_2\", count(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2 ORDER BY y_axis_1 DESC LIMIT 10",
+          "query": "SELECT src_addr as \"x_axis_1\", count(bytes) as \"y_axis_1\"  FROM \"netflow1\"  GROUP BY x_axis_1 LIMIT 10",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Source",
-                "alias": "x_axis_2",
-                "column": "nf_src_addr",
+                "label": "Src Addr",
+                "alias": "x_axis_1",
+                "column": "src_addr",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Connections",
+                "label": "Bytes",
                 "alias": "y_axis_1",
-                "column": "nf_bytes",
+                "column": "bytes",
                 "color": "#5960b2",
-                "aggregationFunction": "count",
-                "sortBy": "DESC"
+                "aggregationFunction": "count"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
@@ -269,41 +236,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_src_addr as \"x_axis_1\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "query": "SELECT src_addr as \"x_axis_1\", sum(bytes) as \"y_axis_1\"  FROM \"netflow1\"  GROUP BY x_axis_1 LIMIT 10",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Source",
+                "label": "Src Addr",
                 "alias": "x_axis_1",
-                "column": "nf_src_addr",
+                "column": "src_addr",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Bytes",
+                "label": " ",
                 "alias": "y_axis_1",
-                "column": "nf_bytes",
+                "column": "bytes",
                 "color": "#5960b2",
-                "aggregationFunction": "sum",
-                "sortBy": "DESC"
+                "aggregationFunction": "sum"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
@@ -348,41 +304,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_dst_addr as \"x_axis_1\", sum(nf_bytes) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 10",
+          "query": "SELECT dst_addr as \"x_axis_1\", sum(bytes) as \"y_axis_2\"  FROM \"netflow1\"  GROUP BY x_axis_1 LIMIT 10",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Destination",
+                "label": "Dst Addr",
                 "alias": "x_axis_1",
-                "column": "nf_dst_addr",
+                "column": "dst_addr",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Bytes",
-                "alias": "y_axis_1",
-                "column": "nf_bytes",
-                "color": "#5960b2",
-                "aggregationFunction": "sum",
-                "sortBy": "DESC"
+                "label": " ",
+                "alias": "y_axis_2",
+                "column": "bytes",
+                "color": "#c23531",
+                "aggregationFunction": "sum"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
@@ -427,40 +372,30 @@
       "queryType": "sql",
       "queries": [
         {
-          "query": "SELECT nf_proto as \"x_axis_2\", count(nf_packets) as \"y_axis_1\"  FROM \"default\" WHERE k8s_namespace_name IN ('netflow') GROUP BY x_axis_2",
+          "query": "SELECT proto as \"x_axis_1\", count(packets) as \"y_axis_1\"  FROM \"netflow1\"  GROUP BY x_axis_1",
           "customQuery": false,
           "fields": {
-            "stream": "default",
+            "stream": "netflow1",
             "stream_type": "logs",
             "x": [
               {
-                "label": "Nf Proto",
-                "alias": "x_axis_2",
-                "column": "nf_proto",
+                "label": "Proto",
+                "alias": "x_axis_1",
+                "column": "proto",
                 "color": null
               }
             ],
             "y": [
               {
-                "label": "Nf Packets",
+                "label": "Packets",
                 "alias": "y_axis_1",
-                "column": "nf_packets",
+                "column": "packets",
                 "color": "#5960b2",
                 "aggregationFunction": "count"
               }
             ],
             "z": [],
-            "filter": [
-              {
-                "type": "list",
-                "values": [
-                  "netflow"
-                ],
-                "column": "k8s_namespace_name",
-                "operator": null,
-                "value": null
-              }
-            ]
+            "filter": []
           },
           "config": {
             "promql_legend": "",
