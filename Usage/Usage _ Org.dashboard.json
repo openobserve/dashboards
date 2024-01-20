@@ -1,0 +1,391 @@
+{
+  "version": 2,
+  "dashboardId": "7154424830362779648uWevkn",
+  "title": "Usage / Org",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-01-20T10:50:02.328Z",
+  "panels": [
+    {
+      "id": "Panel_ID5885810",
+      "type": "stacked",
+      "title": "Usage",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "unit": "megabytes",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT histogram(_timestamp) as \"x_axis_1\", stream_name as \"x_axis_2\", sum(size) as \"y_axis_1\"  FROM \"usage\" WHERE org_id = '$org_id' AND event IN ('Ingestion') GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+          "customQuery": false,
+          "fields": {
+            "stream": "usage",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": " ",
+                "alias": "x_axis_1",
+                "column": "_timestamp",
+                "color": null,
+                "aggregationFunction": "histogram",
+                "sortBy": "ASC",
+                "args": [
+                  {
+                    "value": null
+                  }
+                ]
+              },
+              {
+                "label": "Stream Name",
+                "alias": "x_axis_2",
+                "column": "stream_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "size",
+                "color": "#5960b2",
+                "aggregationFunction": "sum"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "condition",
+                "values": [],
+                "column": "org_id",
+                "operator": "=",
+                "value": "'$org_id'"
+              },
+              {
+                "type": "list",
+                "values": [
+                  "Ingestion"
+                ],
+                "column": "event",
+                "operator": null,
+                "value": null
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "w": 9,
+        "h": 9,
+        "i": 1
+      }
+    },
+    {
+      "id": "Panel_ID2622310",
+      "type": "metric",
+      "title": "Total",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "unit": "megabytes",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT sum(size) as \"y_axis_1\"  FROM \"usage\" WHERE event IN ('Ingestion') AND org_id = '$org_id'",
+          "customQuery": false,
+          "fields": {
+            "stream": "usage",
+            "stream_type": "logs",
+            "x": [],
+            "y": [
+              {
+                "label": "Size",
+                "alias": "y_axis_1",
+                "column": "size",
+                "color": "#5960b2",
+                "aggregationFunction": "sum"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "Ingestion"
+                ],
+                "column": "event",
+                "operator": null,
+                "value": null
+              },
+              {
+                "type": "condition",
+                "values": [],
+                "column": "org_id",
+                "operator": "=",
+                "value": "'$org_id'"
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "w": 3,
+        "h": 9,
+        "i": 2
+      }
+    },
+    {
+      "id": "Panel_ID7522110",
+      "type": "stacked",
+      "title": "Monthly",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "unit": "megabytes",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT month as \"x_axis_1\", stream_name as \"x_axis_2\", sum(size) as \"y_axis_1\"  FROM \"usage\" WHERE event IN ('Ingestion') AND org_id = '$org_id' GROUP BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "usage",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Month",
+                "alias": "x_axis_1",
+                "column": "month",
+                "color": null
+              },
+              {
+                "label": "Stream Name",
+                "alias": "x_axis_2",
+                "column": "stream_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "size",
+                "color": "#5960b2",
+                "aggregationFunction": "sum"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "Ingestion"
+                ],
+                "column": "event",
+                "operator": null,
+                "value": null
+              },
+              {
+                "type": "condition",
+                "values": [],
+                "column": "org_id",
+                "operator": "=",
+                "value": "'$org_id'"
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 0,
+        "y": 9,
+        "w": 6,
+        "h": 9,
+        "i": 3
+      }
+    },
+    {
+      "id": "Panel_ID4581610",
+      "type": "stacked",
+      "title": "Monthly",
+      "description": "",
+      "config": {
+        "show_legends": true,
+        "legends_position": null,
+        "unit": "megabytes",
+        "decimals": 0,
+        "axis_border_show": false,
+        "legend_width": {
+          "unit": "px"
+        },
+        "base_map": {
+          "type": "osm"
+        },
+        "map_view": {
+          "zoom": 1,
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "queryType": "sql",
+      "queries": [
+        {
+          "query": "SELECT day as \"x_axis_1\", stream_name as \"x_axis_2\", sum(size) as \"y_axis_1\"  FROM \"usage\" WHERE event IN ('Ingestion') AND org_id = '$org_id' GROUP BY x_axis_1, x_axis_2",
+          "customQuery": false,
+          "fields": {
+            "stream": "usage",
+            "stream_type": "logs",
+            "x": [
+              {
+                "label": "Day",
+                "alias": "x_axis_1",
+                "column": "day",
+                "color": null
+              },
+              {
+                "label": "Stream Name",
+                "alias": "x_axis_2",
+                "column": "stream_name",
+                "color": null
+              }
+            ],
+            "y": [
+              {
+                "label": " ",
+                "alias": "y_axis_1",
+                "column": "size",
+                "color": "#5960b2",
+                "aggregationFunction": "sum"
+              }
+            ],
+            "z": [],
+            "filter": [
+              {
+                "type": "list",
+                "values": [
+                  "Ingestion"
+                ],
+                "column": "event",
+                "operator": null,
+                "value": null
+              },
+              {
+                "type": "condition",
+                "values": [],
+                "column": "org_id",
+                "operator": "=",
+                "value": "'$org_id'"
+              }
+            ]
+          },
+          "config": {
+            "promql_legend": "",
+            "layer_type": "scatter",
+            "weight_fixed": 1,
+            "limit": 0,
+            "min": 0,
+            "max": 100
+          }
+        }
+      ],
+      "layout": {
+        "x": 6,
+        "y": 9,
+        "w": 6,
+        "h": 9,
+        "i": 4
+      }
+    }
+  ],
+  "variables": {
+    "list": [
+      {
+        "type": "query_values",
+        "name": "org_id",
+        "label": "",
+        "query_data": {
+          "stream_type": "logs",
+          "stream": "usage",
+          "field": "org_id",
+          "max_record_size": null
+        },
+        "value": "",
+        "options": []
+      }
+    ],
+    "showDynamicFilters": true
+  }
+}
