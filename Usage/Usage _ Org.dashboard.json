@@ -280,7 +280,7 @@
     {
       "id": "Panel_ID4581610",
       "type": "stacked",
-      "title": "Monthly",
+      "title": "Daily",
       "description": "",
       "config": {
         "show_legends": true,
