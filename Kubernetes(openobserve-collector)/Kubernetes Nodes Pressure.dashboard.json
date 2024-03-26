@@ -1,156 +1,161 @@
 {
-  "version": 2,
-  "dashboardId": "7144188269008396288saoSVO",
+  "version": 3,
+  "dashboardId": "7171349160317164435",
   "title": "Kubernetes Nodes Pressure",
   "description": "Disk, Memory, PID pressure on nodes",
   "role": "",
   "owner": "",
-  "created": "2023-12-23T04:53:35.703Z",
-  "panels": [
+  "created": "2024-03-07T05:42:22.593Z",
+  "tabs": [
     {
-      "id": "Panel_ID7354910",
-      "type": "gauge",
-      "title": "Disk pressure",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": "right",
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
         {
-          "query": "k8s_node_condition_disk_pressure",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_node_condition_disk_pressure",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
+          "id": "Panel_ID7354910",
+          "type": "gauge",
+          "title": "Disk pressure",
+          "description": "",
           "config": {
-            "promql_legend": "{k8s_node_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 1
+            "show_legends": true,
+            "legends_position": "right",
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_node_condition_disk_pressure",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_node_condition_disk_pressure",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_node_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 4,
+            "i": 1
+          }
+        },
+        {
+          "id": "Panel_ID2382810",
+          "type": "gauge",
+          "title": "Memory pressure",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_node_condition_memory_pressure",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_node_condition_memory_pressure",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_node_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 4,
+            "w": 48,
+            "h": 4,
+            "i": 2
+          }
+        },
+        {
+          "id": "Panel_ID9904410",
+          "type": "gauge",
+          "title": "PID pressure",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_node_condition_pid_pressure",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_node_condition_pid_pressure",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_node_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 8,
+            "w": 48,
+            "h": 4,
+            "i": 3
           }
         }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 0,
-        "w": 12,
-        "h": 4,
-        "i": 1
-      }
-    },
-    {
-      "id": "Panel_ID2382810",
-      "type": "gauge",
-      "title": "Memory pressure",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
-        {
-          "query": "k8s_node_condition_memory_pressure",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_node_condition_memory_pressure",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
-          "config": {
-            "promql_legend": "{k8s_node_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 1
-          }
-        }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 4,
-        "w": 12,
-        "h": 4,
-        "i": 2
-      }
-    },
-    {
-      "id": "Panel_ID9904410",
-      "type": "gauge",
-      "title": "PID pressure",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
-        {
-          "query": "k8s_node_condition_pid_pressure",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_node_condition_pid_pressure",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
-          "config": {
-            "promql_legend": "{k8s_node_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 1
-          }
-        }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 8,
-        "w": 12,
-        "h": 4,
-        "i": 3
-      }
+      ]
     }
-  ],
-  "variables": null
+  ]
 }

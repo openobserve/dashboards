@@ -1,290 +1,296 @@
 {
-  "version": 2,
-  "dashboardId": "71441251066531102723RX4tw",
+  "version": 3,
+  "dashboardId": "7171349160317164438",
   "title": "Kubernetes / Namespace (Objects)",
   "description": "Deployments, Statefulsets, Daemonsets, Cronjobs, Events",
   "role": "",
   "owner": "",
-  "created": "2023-12-23T00:42:36.398Z",
-  "panels": [
+  "created": "2024-03-07T05:42:22.592Z",
+  "tabs": [
     {
-      "id": "Panel_ID9755810",
-      "type": "gauge",
-      "title": "Deployments",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
         {
-          "query": "k8s_deployment_available{k8s_namespace_name=\"$k8s_namespace_name\"}",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_deployment_available",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
+          "id": "Panel_ID9755810",
+          "type": "gauge",
+          "title": "Deployments",
+          "description": "",
           "config": {
-            "promql_legend": "{k8s_deployment_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 10
-          }
-        }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 0,
-        "w": 6,
-        "h": 3,
-        "i": 1
-      }
-    },
-    {
-      "id": "Panel_ID2873410",
-      "type": "gauge",
-      "title": "Statefulsets",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
-        {
-          "query": "k8s_statefulset_current_pods{k8s_namespace_name=\"$k8s_namespace_name\"}",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_statefulset_current_pods",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
           },
-          "config": {
-            "promql_legend": "{k8s_statefulset_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 10
-          }
-        }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 3,
-        "w": 6,
-        "h": 3,
-        "i": 2
-      }
-    },
-    {
-      "id": "Panel_ID2467010",
-      "type": "gauge",
-      "title": "Daemonsets",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
-        {
-          "query": "k8s_daemonset_current_scheduled_nodes{k8s_namespace_name=\"$k8s_namespace_name\"}",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_daemonset_current_scheduled_nodes",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
-          "config": {
-            "promql_legend": "{k8s_daemonset_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 25
-          }
-        }
-      ],
-      "layout": {
-        "x": 6,
-        "y": 0,
-        "w": 6,
-        "h": 3,
-        "i": 3
-      }
-    },
-    {
-      "id": "Panel_ID811410",
-      "type": "gauge",
-      "title": "Cron Jobs",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "promql",
-      "queries": [
-        {
-          "query": "k8s_cronjob_active_jobs{k8s_namespace_name=\"$k8s_namespace_name\"}",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_cronjob_active_jobs",
-            "stream_type": "metrics",
-            "x": [],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
-          "config": {
-            "promql_legend": "{k8s_cronjob_name}",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 5
-          }
-        }
-      ],
-      "layout": {
-        "x": 6,
-        "y": 3,
-        "w": 6,
-        "h": 3,
-        "i": 4
-      }
-    },
-    {
-      "id": "Panel_ID3051410",
-      "type": "table",
-      "title": "Events",
-      "description": "",
-      "config": {
-        "show_legends": true,
-        "legends_position": null,
-        "base_map": {
-          "type": "osm"
-        },
-        "map_view": {
-          "zoom": 1,
-          "lat": 0,
-          "lng": 0
-        }
-      },
-      "queryType": "sql",
-      "queries": [
-        {
-          "query": "SELECT severity as \"x_axis_1\", body as \"x_axis_2\", k8s_namespace_name as \"x_axis_3\", k8s_object_name as \"x_axis_4\", k8s_event_count as \"x_axis_5\", histogram(_timestamp) as \"x_axis_6\"  FROM \"k8s_events\" where k8s_namespace_name='$k8s_namespace_name'  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4, x_axis_5, x_axis_6 ORDER BY x_axis_6 ASC",
-          "customQuery": true,
-          "fields": {
-            "stream": "k8s_events",
-            "stream_type": "logs",
-            "x": [
-              {
-                "label": "Severity",
-                "alias": "x_axis_1",
-                "column": "x_axis_1",
-                "color": null
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_deployment_available{k8s_namespace_name=\"$k8s_namespace_name\"}",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_deployment_available",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
               },
-              {
-                "label": "Body",
-                "alias": "x_axis_2",
-                "column": "x_axis_2",
-                "color": null
-              },
-              {
-                "label": "K8s Namespace Name",
-                "alias": "x_axis_3",
-                "column": "x_axis_3",
-                "color": null
-              },
-              {
-                "label": "K8s Object Name",
-                "alias": "x_axis_4",
-                "column": "x_axis_4",
-                "color": null
-              },
-              {
-                "label": "K8s Event Count",
-                "alias": "x_axis_5",
-                "column": "x_axis_5",
-                "color": null
-              },
-              {
-                "label": "Timestamp",
-                "alias": "x_axis_6",
-                "column": "x_axis_6",
-                "color": null,
-                "aggregationFunction": "histogram",
-                "sortBy": "ASC"
+              "config": {
+                "promql_legend": "{k8s_deployment_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 10
               }
-            ],
-            "y": [],
-            "z": [],
-            "filter": []
-          },
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 3,
+            "i": 1
+          }
+        },
+        {
+          "id": "Panel_ID2873410",
+          "type": "gauge",
+          "title": "Statefulsets",
+          "description": "",
           "config": {
-            "promql_legend": "",
-            "layer_type": "scatter",
-            "weight_fixed": 1,
-            "limit": 0,
-            "min": 0,
-            "max": 100
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_statefulset_current_pods{k8s_namespace_name=\"$k8s_namespace_name\"}",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_statefulset_current_pods",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_statefulset_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 10
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 3,
+            "w": 24,
+            "h": 3,
+            "i": 2
+          }
+        },
+        {
+          "id": "Panel_ID2467010",
+          "type": "gauge",
+          "title": "Daemonsets",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_daemonset_current_scheduled_nodes{k8s_namespace_name=\"$k8s_namespace_name\"}",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_daemonset_current_scheduled_nodes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_daemonset_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 25
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 3,
+            "i": 3
+          }
+        },
+        {
+          "id": "Panel_ID811410",
+          "type": "gauge",
+          "title": "Cron Jobs",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "k8s_cronjob_active_jobs{k8s_namespace_name=\"$k8s_namespace_name\"}",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_cronjob_active_jobs",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{k8s_cronjob_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 5
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 3,
+            "w": 24,
+            "h": 3,
+            "i": 4
+          }
+        },
+        {
+          "id": "Panel_ID3051410",
+          "type": "table",
+          "title": "Events",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT severity as \"x_axis_1\", body as \"x_axis_2\", k8s_namespace_name as \"x_axis_3\", k8s_object_name as \"x_axis_4\", k8s_event_count as \"x_axis_5\", histogram(_timestamp) as \"x_axis_6\"  FROM \"k8s_events\" where k8s_namespace_name='$k8s_namespace_name'  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4, x_axis_5, x_axis_6 ORDER BY x_axis_6 ASC",
+              "customQuery": true,
+              "fields": {
+                "stream": "k8s_events",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Severity",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  },
+                  {
+                    "label": "Body",
+                    "alias": "x_axis_2",
+                    "column": "x_axis_2",
+                    "color": null
+                  },
+                  {
+                    "label": "K8s Namespace Name",
+                    "alias": "x_axis_3",
+                    "column": "x_axis_3",
+                    "color": null
+                  },
+                  {
+                    "label": "K8s Object Name",
+                    "alias": "x_axis_4",
+                    "column": "x_axis_4",
+                    "color": null
+                  },
+                  {
+                    "label": "K8s Event Count",
+                    "alias": "x_axis_5",
+                    "column": "x_axis_5",
+                    "color": null
+                  },
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_6",
+                    "column": "x_axis_6",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC"
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 6,
+            "w": 48,
+            "h": 13,
+            "i": 5
           }
         }
-      ],
-      "layout": {
-        "x": 0,
-        "y": 6,
-        "w": 12,
-        "h": 13,
-        "i": 5
-      }
+      ]
     }
   ],
   "variables": {
