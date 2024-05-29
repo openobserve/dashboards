@@ -1,0 +1,1865 @@
+{
+  "version": 3,
+  "dashboardId": "7201683650910366539",
+  "title": "SQL Server - otel-collector",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-05-29T21:34:12.744Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
+        {
+          "id": "Panel_ID4005610",
+          "type": "line",
+          "title": "batch_request_rate",
+          "description": "The SQL Server batch request rate is a performance metric that measures the number of SQL batches received per second by the SQL Server. A batch is a group of one or more SQL statements sent from a client to the server for execution. This metric is useful for understanding the workload being handled by the SQL Server and can be used to monitor performance and diagnose issues.\n\nWhy is Batch Request Rate Important?\nWorkload Monitoring:\n\nIt gives an indication of the workload on the SQL Server. Higher batch request rates generally indicate higher activity and demand on the server.\nPerformance Tuning:\n\nHelps in identifying periods of high activity, which can be correlated with other performance metrics to diagnose potential bottlenecks or performance issues.\nCapacity Planning:\n\nUnderstanding the batch request rate can aid in capacity planning and ensuring that the SQL Server instance can handle the expected load.\n",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_batch_request_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_batch_request_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9816210",
+          "type": "line",
+          "title": "batch_sql_compilation_rate",
+          "description": "The Batch Requests/sec metric in SQL Server measures the number of batches (groups of one or more SQL statements) received per second. Similarly, the Batch SQL Compilation/sec metric measures the number of SQL compilations per second. These compilations occur when SQL Server generates execution plans for SQL statements.\n\nUnderstanding Batch SQL Compilation Rate\nBatch SQL Compilation/sec: This metric tracks how many times SQL Server compiles SQL statements into execution plans per second. Each time SQL Server receives a new query or a batch of queries, it needs to compile them into an execution plan before executing them.\nWhy is Batch SQL Compilation Rate Important?\nPerformance Insight:\n\nHigh compilation rates can indicate inefficiencies, as frequent compilations consume CPU resources. Ideally, SQL Server should reuse execution plans from its plan cache to minimize compilations.\nPlan Cache Efficiency:\n\nA high rate of compilations might suggest that the plan cache is not being utilized effectively, leading to excessive recompilations.\nQuery Optimization:\n\nFrequent compilations might indicate that queries are not parameterized properly, leading to the generation of unique execution plans for similar queries.\n",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_batch_sql_compilation_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_batch_sql_compilation_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7840410",
+          "type": "line",
+          "title": "batch_sql_recompilation_rate",
+          "description": "The Batch SQL Recompilation Rate, measured by the SQL Re-Compilations/sec performance counter, indicates the number of times SQL Server recompiles execution plans per second. Recompilations occur when SQL Server determines that an existing execution plan is no longer valid or optimal, requiring a new plan to be generated for the query or batch.\n\nUnderstanding Batch SQL Recompilation Rate\nSQL Re-Compilations/sec: This counter measures how often SQL Server recompiles batches per second. Recompilation is more resource-intensive than reusing an existing plan and can impact performance if it happens frequently.\nWhy is Batch SQL Recompilation Rate Important?\nPerformance Insight:\n\nHigh recompilation rates can lead to increased CPU usage and overall degradation in performance, as recompilation consumes more resources than using cached plans.\nPlan Stability:\n\nFrequent recompilations can indicate underlying issues with query or plan stability, such as changes in schema, statistics, or certain query patterns that cause plans to become invalidated.\nDiagnosis of Bottlenecks:\n\nMonitoring this metric helps in diagnosing performance bottlenecks related to query execution plans.\n",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_batch_sql_recompilation_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_batch_sql_recompilation_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 32,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3916010",
+          "type": "line",
+          "title": "sqlserver_user_connection_count",
+          "description": "The SQLServer:General Statistics - User Connections performance counter in SQL Server measures the number of user connections to the SQL Server instance. This metric indicates how many users or applications are currently connected to the SQL Server.\n\nUnderstanding SQLServer User Connection Count\nUser Connections: This counter shows the number of active user connections to the SQL Server. It includes all client connections, regardless of whether they are performing operations or idle.\nWhy is SQLServer User Connection Count Important?\nResource Management:\n\nMonitoring the number of user connections helps in understanding the load on the SQL Server. A high number of connections can lead to resource contention, impacting performance.\nCapacity Planning:\n\nHelps in planning the capacity and scaling resources to handle the number of expected connections.\nTroubleshooting:\n\nSudden spikes or drops in user connections can indicate potential issues such as connection leaks, application errors, or network problems.\nLicensing:\n\nSome SQL Server licensing models may have limits on the number of user connections, making it essential to monitor this metric to ensure compliance.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_user_connection_count\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_user_connection_count",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 7,
+            "w": 16,
+            "h": 7,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "89544",
+      "name": "Page",
+      "panels": [
+        {
+          "id": "Panel_ID2639910",
+          "type": "line",
+          "title": "page_buffer_cache_hit_ratio",
+          "description": "The Buffer Cache Hit Ratio in SQL Server is a critical performance metric that indicates how often data pages are found in the buffer cache without needing to read from disk. A high buffer cache hit ratio suggests that the server is efficiently using memory, while a low ratio might indicate potential performance issues due to frequent disk I/O.\n\nUnderstanding Buffer Cache Hit Ratio\nBuffer Cache Hit Ratio: This metric measures the percentage of data page requests that are satisfied from the buffer cache (memory) versus those that require a disk read. It is calculated as the ratio of cache hits to total page requests over a given period.\nWhy is Buffer Cache Hit Ratio Important?\nPerformance Insight:\n\nA high buffer cache hit ratio means most data requests are being served from memory, resulting in faster query performance and reduced disk I/O.\nMemory Utilization:\n\nIt helps in understanding how effectively SQL Server is using its allocated memory. Efficient memory use reduces the need for disk access, which is slower compared to memory access.\nResource Optimization:\n\nMonitoring this ratio can help in tuning memory settings and optimizing overall resource usage to maintain high performance.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "percent",
+            "decimals": 0,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_buffer_cache_hit_ratio\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_buffer_cache_hit_ratio",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 32,
+            "y": 10,
+            "w": 16,
+            "h": 7,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9759510",
+          "type": "line",
+          "title": "page_life_expectancy",
+          "description": "\nPage Life Expectancy (PLE) is a key performance metric in SQL Server that measures the average duration (in seconds) that a data page stays in the buffer cache before being evicted. This metric is crucial for understanding memory pressure and overall server performance.\n\nUnderstanding Page Life Expectancy\nPage Life Expectancy (PLE): Indicates how long data pages remain in the buffer cache. A high PLE value suggests that data pages are being retained in memory for a longer duration, which is generally desirable for performance. Conversely, a low PLE value indicates frequent eviction of pages, suggesting memory pressure and potentially leading to increased disk I/O.\nWhy is Page Life Expectancy Important?\nMemory Management:\n\nPLE provides insights into how effectively SQL Server is utilizing its memory. It helps in determining if the server has enough memory to handle the workload.\nPerformance Insight:\n\nA higher PLE generally correlates with better performance since more data pages are available in memory, reducing the need for disk I/O operations.\nTroubleshooting:\n\nMonitoring PLE can help identify memory-related performance issues and guide decisions on whether to increase memory allocation or optimize queries.\n",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "seconds",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_life_expectancy\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_life_expectancy",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 32,
+            "y": 20,
+            "w": 16,
+            "h": 7,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7799010",
+          "type": "line",
+          "title": "page_lazy_write_rate",
+          "description": "The Page Lazy Write Rate in SQL Server measures the rate at which the lazy writer process writes dirty pages (pages that have been modified in memory but not yet written to disk) from the buffer pool to disk. This process helps free up buffer space by moving less frequently used pages out of memory, making room for new data.\n\nUnderstanding Page Lazy Write Rate\nPage Lazy Write Rate: This metric indicates the number of pages per second that the lazy writer process writes to disk. The lazy writer helps manage memory pressure by ensuring that the buffer pool has enough free pages to accommodate new data requests.\nWhy is Page Lazy Write Rate Important?\nMemory Management:\n\nThe lazy writer helps maintain the balance between available memory and the needs of active queries. A high lazy write rate indicates that SQL Server is actively managing memory to keep up with the workload.\nPerformance Insight:\n\nMonitoring the lazy write rate can provide insights into memory pressure and overall system performance. High lazy write rates may suggest that the system is under memory pressure, potentially leading to increased I/O activity.\n",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_lazy_write_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_lazy_write_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 30,
+            "w": 16,
+            "h": 7,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1912210",
+          "type": "line",
+          "title": "page_checkpoint_flush_rate",
+          "description": "The Page Checkpoint Flush Rate in SQL Server measures the frequency at which data pages are flushed to disk as part of a checkpoint operation. This metric is important for understanding how frequently SQL Server writes dirty pages (modified pages) from the buffer cache to disk, ensuring data durability and maintaining database consistency.\n\nUnderstanding Page Checkpoint Flush Rate\nPage Checkpoint Flush Rate: This metric indicates the number of pages written to disk per second during checkpoint operations. A checkpoint operation in SQL Server writes all dirty pages in the buffer cache to disk, reducing the amount of work required during a recovery operation.\nWhy is Page Checkpoint Flush Rate Important?\nData Durability:\n\nEnsures that modified data pages are written to disk, making them durable and safe against server crashes or power failures.\nPerformance Insight:\n\nHigh checkpoint flush rates can indicate frequent modifications to the data and potentially heavy I/O operations. Understanding this rate helps in diagnosing performance issues related to disk I/O.\nRecovery Time:\n\nRegular checkpoints reduce the amount of work needed during a crash recovery, leading to faster recovery times.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_checkpoint_flush_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_checkpoint_flush_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 40,
+            "w": 16,
+            "h": 7,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2679910",
+          "type": "line",
+          "title": "page_operation_rate",
+          "description": "The Page Operation Rate in SQL Server generally refers to the rate at which various types of page operations occur. These operations include page reads, writes, and possibly page splits. Monitoring these operations can provide insights into the workload and performance of the SQL Server instance.\n\nUnderstanding Page Operation Rate\nPage Reads/sec: Measures the rate at which pages are read from disk into the buffer cache. High read rates can indicate frequent disk access due to insufficient memory or poorly optimized queries.\nPage Writes/sec: Measures the rate at which pages are written from the buffer cache to disk. High write rates often indicate heavy transaction activity or frequent checkpoints.\nPage Splits/sec: Measures the rate at which page splits occur in the database. Page splits happen when a page is full, and an insert operation requires space, leading to the page being split into two pages. High page split rates can indicate fragmentation and lead to performance issues.\nWhy is Page Operation Rate Important?\nPerformance Insight:\n\nUnderstanding the rate of page operations helps in diagnosing performance bottlenecks and identifying areas for optimization.\nResource Utilization:\n\nHigh rates of page reads and writes can indicate memory pressure or I/O bottlenecks, necessitating tuning or hardware upgrades.\nIndex and Query Optimization:\n\nFrequent page splits suggest issues with index design or query patterns, which can be addressed through optimization.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_operation_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_operation_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 50,
+            "w": 16,
+            "h": 7,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3274210",
+          "type": "line",
+          "title": "page_split_rate",
+          "description": "The Page Split Rate in SQL Server measures the frequency at which page splits occur within the database. A page split happens when a data or index page becomes full, and an insert or update operation requires more space, causing the page to be split into two pages. This operation can lead to fragmentation and impact database performance.\n\nUnderstanding Page Split Rate\nPage Split Rate: This metric indicates the number of page splits per second. High page split rates can degrade performance by increasing the amount of disk I/O and causing fragmentation.\nWhy is Page Split Rate Important?\nPerformance Insight:\n\nFrequent page splits increase disk I/O and can slow down database performance, especially during insert operations.\nFragmentation:\n\nPage splits cause fragmentation, which can lead to inefficient data retrieval and slower query performance.\nIndex and Storage Optimization:\n\nMonitoring page split rates helps in understanding index efficiency and whether the database needs maintenance.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_page_split_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_page_split_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 60,
+            "w": 16,
+            "h": 7,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "40881",
+      "name": "Lock",
+      "panels": [
+        {
+          "id": "Panel_ID6884810",
+          "type": "line",
+          "title": "lock_wait_time_avg",
+          "description": "The Lock Wait Time (Avg) in SQL Server refers to the average duration that transactions spend waiting for locks. This metric provides insights into the contention levels and potential performance bottlenecks caused by locking.\n\nUnderstanding Lock Wait Time (Avg)\nLock Wait Time (Avg): This metric measures the average time (typically in milliseconds) that a transaction waits to acquire a lock. High average lock wait times indicate significant contention and potential performance issues.\nWhy is Lock Wait Time (Avg) Important?\nPerformance Insight:\n\nHigh average lock wait times suggest that transactions are frequently waiting for locks, which can degrade overall performance.\nConcurrency Control:\n\nHelps in understanding how well the database handles concurrent transactions and whether there are bottlenecks causing delays.\nTroubleshooting:\n\nIdentifying high average lock wait times can help diagnose and resolve performance issues related to locking and blocking.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_lock_wait_time_avg\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_lock_wait_time_avg",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 10,
+            "w": 16,
+            "h": 7,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7815210",
+          "type": "line",
+          "title": "lock_wait_rate",
+          "description": "The Lock Wait Rate in SQL Server measures the frequency at which SQL Server transactions have to wait for locks. This metric is crucial for understanding contention and blocking issues in the database, which can significantly impact performance.\n\nUnderstanding Lock Wait Rate\nLock Wait Rate: This metric indicates the number of lock wait events per second. A lock wait event occurs when a transaction attempts to acquire a lock on a resource (such as a row, page, or table) that is already held by another transaction, causing the first transaction to wait.\nWhy is Lock Wait Rate Important?\nPerformance Insight:\n\nA high lock wait rate can indicate contention and blocking issues, leading to slower transaction throughput and degraded performance.\nConcurrency Control:\n\nMonitoring lock waits helps in understanding how well the database handles concurrent transactions and whether there are any bottlenecks.\nTroubleshooting:\n\nIdentifying high lock wait rates can help in diagnosing and resolving performance issues related to locking and blocking.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", host_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_lock_wait_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_lock_wait_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Host Name",
+                    "alias": "x_axis_2",
+                    "column": "host_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 16,
+            "h": 7,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "90364",
+      "name": "Transaction",
+      "panels": [
+        {
+          "id": "Panel_ID3454510",
+          "type": "line",
+          "title": "transaction_log_flush_rate",
+          "description": "The Transaction Log Flush Rate in SQL Server measures the frequency at which transactions are written (flushed) to the transaction log. This metric is critical for understanding the performance and throughput of the transaction log, which is essential for ensuring data durability and recoverability.\n\nUnderstanding Transaction Log Flush Rate\nTransaction Log Flush Rate: This metric indicates the number of transaction log flushes per second. A flush occurs when the log buffer is written to disk, which happens when a transaction is committed or when the log buffer reaches its capacity.\nWhy is Transaction Log Flush Rate Important?\nPerformance Insight:\n\nHigh transaction log flush rates indicate high transactional activity and can be a sign of intensive write operations. Monitoring this rate helps understand the write workload on the SQL Server instance.\nData Durability:\n\nEnsures that changes made by transactions are recorded in the transaction log and can be recovered in case of a failure.\nTroubleshooting:\n\nHelps diagnose performance issues related to transaction log throughput and identify bottlenecks in write operations.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_log_flush_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_log_flush_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6304210",
+          "type": "line",
+          "title": "transaction_log_flush_data_rate",
+          "description": "The Transaction Log Flush Data Rate in SQL Server measures the rate at which data is written (flushed) to the transaction log. This metric is important for understanding the performance and throughput of the transaction log, which plays a critical role in ensuring data durability and recovery.\n\nUnderstanding Transaction Log Flush Data Rate\nTransaction Log Flush Data Rate: This metric indicates the amount of data written to the transaction log per second. It reflects the throughput of the transaction log writes and can be measured in bytes per second or kilobytes per second.\nWhy is Transaction Log Flush Data Rate Important?\nPerformance Insight:\n\nHigh transaction log flush data rates indicate high transactional activity. Monitoring this rate helps in understanding the write workload on the SQL Server instance.\nData Durability:\n\nEnsures that changes made by transactions are recorded in the transaction log and can be recovered in case of a failure.\nTroubleshooting:\n\nHelps in diagnosing performance issues related to transaction log throughput and identifying bottlenecks in write operations.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_log_flush_data_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_log_flush_data_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7290410",
+          "type": "line",
+          "title": "transaction_log_flush_wait_rate",
+          "description": "The Transaction Log Flush Wait Rate in SQL Server measures the frequency and duration of waits that occur when transactions are being flushed to the transaction log. This metric is crucial for understanding the performance of the transaction log writes and identifying potential bottlenecks that can affect the overall database performance.\n\nUnderstanding Transaction Log Flush Wait Rate\nTransaction Log Flush Wait Rate: This metric indicates the rate at which transactions are waiting to be flushed to the transaction log. These waits occur when the log buffer needs to be written to disk, but the write operation is delayed due to various reasons such as disk I/O contention or insufficient log buffer space.\n\nInterpreting Transaction Log Flush Wait Rate\nHigh Transaction Log Flush Wait Rate: Indicates significant waits for transaction log flushes, which can be caused by:\n\nDisk I/O contention or slow disk performance.\nInsufficient log buffer space.\nHigh volume of transactional activity leading to frequent log flushes.\nSuboptimal transaction log configuration.\nLow Transaction Log Flush Wait Rate: Generally desirable, suggesting minimal contention and efficient transaction log flushing. Indicates good overall performance and effective resource utilization.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_log_flush_wait_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_log_flush_wait_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 32,
+            "y": 0,
+            "w": 16,
+            "h": 7,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8988810",
+          "type": "line",
+          "title": "transaction_log_growth_count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(sqlserver_transaction_log_growth_count[5m])",
+              "customQuery": true,
+              "fields": {
+                "stream": "sqlserver_transaction_log_growth_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 7,
+            "w": 16,
+            "h": 7,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9466410",
+          "type": "line",
+          "title": "transaction_log_shrink_count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(sqlserver_transaction_log_shrink_count[5m])",
+              "customQuery": true,
+              "fields": {
+                "stream": "sqlserver_transaction_log_shrink_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 7,
+            "w": 16,
+            "h": 7,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1508310",
+          "type": "line",
+          "title": "transaction_log_usage",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_log_usage\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_log_usage",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 32,
+            "y": 7,
+            "w": 16,
+            "h": 7,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1318310",
+          "type": "line",
+          "title": "transaction_rate",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 14,
+            "w": 16,
+            "h": 7,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5215710",
+          "type": "line",
+          "title": "transaction_write_rate",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", sqlserver_database_name as \"x_axis_2\", avg(value) as \"y_axis_1\"  FROM \"sqlserver_transaction_write_rate\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1 ASC",
+              "customQuery": false,
+              "fields": {
+                "stream": "sqlserver_transaction_write_rate",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": " ",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Sqlserver Database Name",
+                    "alias": "x_axis_2",
+                    "column": "sqlserver_database_name",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": " ",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg"
+                  }
+                ],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "{sqlserver_database_name}",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 16,
+            "y": 14,
+            "w": 16,
+            "h": 7,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1717017557676000,
+    "endTime": 1717018457676000
+  }
+}
