@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "dashboardId": "7171577566170489580",
+  "dashboardId": "7216282171525311530",
   "title": "OpenObserve Internals",
   "description": "OpenObserve Internal metrics",
   "role": "",
   "owner": "",
-  "created": "2024-03-07T18:52:26.039Z",
+  "created": "2024-07-09T03:30:14.369Z",
   "tabs": [
     {
       "tabId": "default",
@@ -190,6 +190,151 @@
             "w": 24,
             "h": 7,
             "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1457410",
+          "type": "line",
+          "title": "Ingest memtable size",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "unit": "bytes",
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(zo_ingest_memtable_bytes{namespace=\"$namespace\"}) by (pod)",
+              "customQuery": true,
+              "fields": {
+                "stream": "zo_ingest_memtable_arrow_bytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "json-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(zo_ingest_memtable_arrow_bytes{namespace=\"$namespace\"}) by (pod)",
+              "customQuery": true,
+              "fields": {
+                "stream": "access_evaluation_duration",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "arrow-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID647310",
+          "type": "line",
+          "title": "Ingest memtable num",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "unit": "numbers",
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(zo_ingest_memtable_files{namespace=\"$namespace\"}) by (pod)",
+              "customQuery": true,
+              "fields": {
+                "stream": "zo_ingest_memtable_arrow_bytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": []
+              },
+              "config": {
+                "promql_legend": "json-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 4
           },
           "htmlContent": "",
           "markdownContent": ""
@@ -1574,5 +1719,11 @@
       }
     ],
     "showDynamicFilters": false
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1720494921056000,
+    "endTime": 1720495821056000
   }
 }
