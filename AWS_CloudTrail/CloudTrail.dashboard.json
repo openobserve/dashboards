@@ -53,7 +53,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_recipientaccountid as \"x_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT recipientaccountid as \"x_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -63,7 +63,7 @@
                   {
                     "label": "Message Recipientaccountid",
                     "alias": "x_axis_1",
-                    "column": "message_recipientaccountid",
+                    "column": "recipientaccountid",
                     "color": null,
                     "isDerived": false
                   }
@@ -140,7 +140,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(message_eventid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
+              "query": "SELECT count(eventid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -151,7 +151,7 @@
                   {
                     "label": "Message Eventid",
                     "alias": "y_axis_1",
-                    "column": "message_eventid",
+                    "column": "eventid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -229,7 +229,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventname as \"x_axis_1\", count(message_eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventname as \"x_axis_1\", count(eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -239,7 +239,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -248,7 +248,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "y_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -287,7 +287,7 @@
           "id": "Panel_ID5388510",
           "type": "table",
           "title": "Event Count by Event Source",
-          "description": "Count of events grouped by message_eventsource to see which AWS services are being accessed (e.g., servicediscovery.amazonaws.com).",
+          "description": "Count of events grouped by eventsource to see which AWS services are being accessed (e.g., servicediscovery.amazonaws.com).",
           "config": {
             "show_legends": true,
             "legends_position": null,
@@ -326,7 +326,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventsource as \"x_axis_1\", count(message_eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventsource as \"x_axis_1\", count(eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -336,7 +336,7 @@
                   {
                     "label": "Message Eventsource",
                     "alias": "x_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": null,
                     "isDerived": false
                   }
@@ -345,7 +345,7 @@
                   {
                     "label": "# of events",
                     "alias": "y_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -423,7 +423,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_awsregion as \"x_axis_1\", count(message_awsregion) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT awsregion as \"x_axis_1\", count(awsregion) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -433,7 +433,7 @@
                   {
                     "label": "Message Awsregion",
                     "alias": "x_axis_1",
-                    "column": "message_awsregion",
+                    "column": "awsregion",
                     "color": null,
                     "isDerived": false
                   }
@@ -442,7 +442,7 @@
                   {
                     "label": "# of events",
                     "alias": "y_axis_1",
-                    "column": "message_awsregion",
+                    "column": "awsregion",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -520,7 +520,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventcategory as \"x_axis_1\", count(message_eventcategory) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventcategory as \"x_axis_1\", count(eventcategory) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -530,7 +530,7 @@
                   {
                     "label": "Message Eventcategory",
                     "alias": "x_axis_1",
-                    "column": "message_eventcategory",
+                    "column": "eventcategory",
                     "color": null,
                     "isDerived": false
                   }
@@ -539,7 +539,7 @@
                   {
                     "label": "# of events",
                     "alias": "y_axis_1",
-                    "column": "message_eventcategory",
+                    "column": "eventcategory",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -615,7 +615,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(message_eventtype) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(eventtype) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -636,7 +636,7 @@
                   {
                     "label": "Message Eventtype",
                     "alias": "y_axis_1",
-                    "column": "message_eventtype",
+                    "column": "eventtype",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -720,7 +720,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventtype as \"x_axis_1\", count(message_eventtype) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventtype as \"x_axis_1\", count(eventtype) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -730,7 +730,7 @@
                   {
                     "label": "Message Eventtype",
                     "alias": "x_axis_1",
-                    "column": "message_eventtype",
+                    "column": "eventtype",
                     "color": null,
                     "isDerived": false
                   }
@@ -739,7 +739,7 @@
                   {
                     "label": "#of events",
                     "alias": "y_axis_1",
-                    "column": "message_eventtype",
+                    "column": "eventtype",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -815,7 +815,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_readonly as \"x_axis_1\", count(message_readonly) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT readonly as \"x_axis_1\", count(readonly) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -825,7 +825,7 @@
                   {
                     "label": "Message Readonly",
                     "alias": "x_axis_1",
-                    "column": "message_readonly",
+                    "column": "readonly",
                     "color": null,
                     "isDerived": false
                   }
@@ -834,7 +834,7 @@
                   {
                     "label": "Message Readonly",
                     "alias": "y_axis_1",
-                    "column": "message_readonly",
+                    "column": "readonly",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -911,7 +911,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(message_managementevent) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
+              "query": "SELECT count(managementevent) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -922,7 +922,7 @@
                   {
                     "label": "Message Managementevent",
                     "alias": "y_axis_1",
-                    "column": "message_managementevent",
+                    "column": "managementevent",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1000,7 +1000,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventname as \"x_axis_1\", count(message_eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE message_eventname IN ('GetObject', 'PutObject')  GROUP BY x_axis_1",
+              "query": "SELECT eventname as \"x_axis_1\", count(eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE eventname IN ('GetObject', 'PutObject')  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1010,7 +1010,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -1019,7 +1019,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "y_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1037,7 +1037,7 @@
                         "GetObject",
                         "PutObject"
                       ],
-                      "column": "message_eventname",
+                      "column": "eventname",
                       "operator": null,
                       "value": null,
                       "logicalOperator": "AND",
@@ -1110,7 +1110,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_arn as \"x_axis_1\", message_eventname as \"x_axis_2\", count(message_useridentity_arn) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE message_eventname IN ('GetObject', 'PutObject')  GROUP BY x_axis_1, x_axis_2",
+              "query": "SELECT useridentity_arn as \"x_axis_1\", eventname as \"x_axis_2\", count(useridentity_arn) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE eventname IN ('GetObject', 'PutObject')  GROUP BY x_axis_1, x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1120,14 +1120,14 @@
                   {
                     "label": "Message Useridentity Arn",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_arn",
+                    "column": "useridentity_arn",
                     "color": null,
                     "isDerived": false
                   },
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_2",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -1136,7 +1136,7 @@
                   {
                     "label": "count",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_arn",
+                    "column": "useridentity_arn",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1154,7 +1154,7 @@
                         "GetObject",
                         "PutObject"
                       ],
-                      "column": "message_eventname",
+                      "column": "eventname",
                       "operator": null,
                       "value": null,
                       "logicalOperator": "AND",
@@ -1227,7 +1227,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_requestparameters_bucketname as \"x_axis_1\", count(message_requestparameters_bucketname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT requestparameters_bucketname as \"x_axis_1\", count(requestparameters_bucketname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1237,7 +1237,7 @@
                   {
                     "label": "Message Requestparameters Bucketname",
                     "alias": "x_axis_1",
-                    "column": "message_requestparameters_bucketname",
+                    "column": "requestparameters_bucketname",
                     "color": null,
                     "isDerived": false
                   }
@@ -1246,7 +1246,7 @@
                   {
                     "label": "# of events on buckets",
                     "alias": "y_axis_1",
-                    "column": "message_requestparameters_bucketname",
+                    "column": "requestparameters_bucketname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1330,7 +1330,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_type as \"x_axis_1\", count(message_useridentity_type) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_type as \"x_axis_1\", count(useridentity_type) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1340,7 +1340,7 @@
                   {
                     "label": "Message Useridentity Type",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_type",
+                    "column": "useridentity_type",
                     "color": null,
                     "isDerived": false
                   }
@@ -1349,7 +1349,7 @@
                   {
                     "label": "count",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_type",
+                    "column": "useridentity_type",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1427,7 +1427,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_accesskeyid as \"x_axis_1\", count(message_useridentity_accesskeyid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_accesskeyid as \"x_axis_1\", count(useridentity_accesskeyid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1437,7 +1437,7 @@
                   {
                     "label": "Message Useridentity Accesskeyid",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_accesskeyid",
+                    "column": "useridentity_accesskeyid",
                     "color": null,
                     "isDerived": false
                   }
@@ -1446,7 +1446,7 @@
                   {
                     "label": "Message Useridentity Accesskeyid",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_accesskeyid",
+                    "column": "useridentity_accesskeyid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1524,7 +1524,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_arn as \"x_axis_1\", count(message_useridentity_arn) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_arn as \"x_axis_1\", count(useridentity_arn) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1534,7 +1534,7 @@
                   {
                     "label": "Message Useridentity Arn",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_arn",
+                    "column": "useridentity_arn",
                     "color": null,
                     "isDerived": false
                   }
@@ -1543,7 +1543,7 @@
                   {
                     "label": "count",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_arn",
+                    "column": "useridentity_arn",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1621,7 +1621,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_principalid as \"x_axis_1\", count(message_useridentity_principalid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_principalid as \"x_axis_1\", count(useridentity_principalid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1631,7 +1631,7 @@
                   {
                     "label": "Message Useridentity Principalid",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_principalid",
+                    "column": "useridentity_principalid",
                     "color": null,
                     "isDerived": false
                   }
@@ -1640,7 +1640,7 @@
                   {
                     "label": "count",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_principalid",
+                    "column": "useridentity_principalid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1718,7 +1718,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventname as \"x_axis_1\", count(message_eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventname as \"x_axis_1\", count(eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1728,7 +1728,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -1737,7 +1737,7 @@
                   {
                     "label": "count",
                     "alias": "y_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1815,7 +1815,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventname as \"x_axis_1\", count(message_eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match(message_eventname, 'AssumeRole')  GROUP BY x_axis_1",
+              "query": "SELECT eventname as \"x_axis_1\", count(eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match(eventname, 'AssumeRole')  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1825,7 +1825,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -1834,7 +1834,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "y_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -1849,7 +1849,7 @@
                     {
                       "type": "condition",
                       "values": [],
-                      "column": "message_eventname",
+                      "column": "eventname",
                       "operator": "str_match",
                       "value": "AssumeRole",
                       "logicalOperator": "AND",
@@ -1921,7 +1921,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(message_responseelements_consolelogin) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(responseelements_consolelogin) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -1942,7 +1942,7 @@
                   {
                     "label": "Message Responseelements Consolelogin",
                     "alias": "y_axis_1",
-                    "column": "message_responseelements_consolelogin",
+                    "column": "responseelements_consolelogin",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2026,7 +2026,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_sourceipaddress as \"x_axis_1\", count(message_sourceipaddress) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT sourceipaddress as \"x_axis_1\", count(sourceipaddress) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2036,7 +2036,7 @@
                   {
                     "label": "Message Sourceipaddress",
                     "alias": "x_axis_1",
-                    "column": "message_sourceipaddress",
+                    "column": "sourceipaddress",
                     "color": null,
                     "isDerived": false
                   }
@@ -2045,7 +2045,7 @@
                   {
                     "label": "Message Sourceipaddress",
                     "alias": "y_axis_1",
-                    "column": "message_sourceipaddress",
+                    "column": "sourceipaddress",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2121,7 +2121,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useragent as \"x_axis_1\", count(message_useragent) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useragent as \"x_axis_1\", count(useragent) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2131,7 +2131,7 @@
                   {
                     "label": "Message Useragent",
                     "alias": "x_axis_1",
-                    "column": "message_useragent",
+                    "column": "useragent",
                     "color": null,
                     "isDerived": false
                   }
@@ -2140,7 +2140,7 @@
                   {
                     "label": "# agents accessing AWS services",
                     "alias": "y_axis_1",
-                    "column": "message_useragent",
+                    "column": "useragent",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2218,7 +2218,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_invokedby as \"x_axis_1\", count(message_useridentity_invokedby) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_invokedby as \"x_axis_1\", count(useridentity_invokedby) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2228,7 +2228,7 @@
                   {
                     "label": "Message Useridentity Invokedby",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_invokedby",
+                    "column": "useridentity_invokedby",
                     "color": null,
                     "isDerived": false
                   }
@@ -2237,7 +2237,7 @@
                   {
                     "label": "Message Useridentity Invokedby",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_invokedby",
+                    "column": "useridentity_invokedby",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2315,7 +2315,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_awsregion as \"x_axis_1\", message_sourceipaddress as \"x_axis_2\", count(message_sourceipaddress) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
+              "query": "SELECT awsregion as \"x_axis_1\", sourceipaddress as \"x_axis_2\", count(sourceipaddress) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2325,14 +2325,14 @@
                   {
                     "label": "Message Awsregion",
                     "alias": "x_axis_1",
-                    "column": "message_awsregion",
+                    "column": "awsregion",
                     "color": null,
                     "isDerived": false
                   },
                   {
                     "label": "Message Sourceipaddress",
                     "alias": "x_axis_2",
-                    "column": "message_sourceipaddress",
+                    "column": "sourceipaddress",
                     "color": null,
                     "isDerived": false
                   }
@@ -2341,7 +2341,7 @@
                   {
                     "label": "Message Sourceipaddress",
                     "alias": "y_axis_1",
-                    "column": "message_sourceipaddress",
+                    "column": "sourceipaddress",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2425,7 +2425,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventsource as \"x_axis_1\", count(message_eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT eventsource as \"x_axis_1\", count(eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2435,7 +2435,7 @@
                   {
                     "label": "Message Eventsource",
                     "alias": "x_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": null,
                     "isDerived": false
                   }
@@ -2444,7 +2444,7 @@
                   {
                     "label": "Message Eventsource",
                     "alias": "y_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2520,7 +2520,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventname as \"x_axis_1\", message_eventsource as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
+              "query": "SELECT eventname as \"x_axis_1\", eventsource as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2530,14 +2530,14 @@
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   },
                   {
                     "label": "Message Eventsource",
                     "alias": "x_axis_2",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": null,
                     "isDerived": false
                   }
@@ -2614,7 +2614,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(message_requestparameters_serviceid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
+              "query": "SELECT count(requestparameters_serviceid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\" ",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2625,7 +2625,7 @@
                   {
                     "label": "Message Requestparameters Serviceid",
                     "alias": "y_axis_1",
-                    "column": "message_requestparameters_serviceid",
+                    "column": "requestparameters_serviceid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2703,7 +2703,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_accountid as \"x_axis_1\", count(message_useridentity_accountid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT useridentity_accountid as \"x_axis_1\", count(useridentity_accountid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2713,7 +2713,7 @@
                   {
                     "label": "Message Useridentity Accountid",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_accountid",
+                    "column": "useridentity_accountid",
                     "color": null,
                     "isDerived": false
                   }
@@ -2722,7 +2722,7 @@
                   {
                     "label": "Message Useridentity Accountid",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_accountid",
+                    "column": "useridentity_accountid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2805,7 +2805,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_recipientaccountid as \"x_axis_1\", count(message_recipientaccountid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
+              "query": "SELECT recipientaccountid as \"x_axis_1\", count(recipientaccountid) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2815,7 +2815,7 @@
                   {
                     "label": "Message Recipientaccountid",
                     "alias": "x_axis_1",
-                    "column": "message_recipientaccountid",
+                    "column": "recipientaccountid",
                     "color": null,
                     "isDerived": false
                   }
@@ -2824,7 +2824,7 @@
                   {
                     "label": "Message Recipientaccountid",
                     "alias": "y_axis_1",
-                    "column": "message_recipientaccountid",
+                    "column": "recipientaccountid",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -2900,7 +2900,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_accountid as \"x_axis_1\", message_eventname as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
+              "query": "SELECT useridentity_accountid as \"x_axis_1\", eventname as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -2910,14 +2910,14 @@
                   {
                     "label": "Message Useridentity Accountid",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_accountid",
+                    "column": "useridentity_accountid",
                     "color": null,
                     "isDerived": false
                   },
                   {
                     "label": "Message Eventname",
                     "alias": "x_axis_2",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": null,
                     "isDerived": false
                   }
@@ -2993,7 +2993,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_accountid as \"x_axis_1\", message_eventsource as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
+              "query": "SELECT useridentity_accountid as \"x_axis_1\", eventsource as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1, x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3003,14 +3003,14 @@
                   {
                     "label": "Message Useridentity Accountid",
                     "alias": "x_axis_1",
-                    "column": "message_useridentity_accountid",
+                    "column": "useridentity_accountid",
                     "color": null,
                     "isDerived": false
                   },
                   {
                     "label": "Message Eventsource",
                     "alias": "x_axis_2",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": null,
                     "isDerived": false
                   }
@@ -3092,7 +3092,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_useridentity_sessioncontext as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match_ignore_case(message_useridentity_sessioncontext, '\"mfaAuthenticated\":\"false\"')  GROUP BY x_axis_2",
+              "query": "SELECT useridentity_sessioncontext as \"x_axis_2\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match_ignore_case(useridentity_sessioncontext, '\"mfaAuthenticated\":\"false\"')  GROUP BY x_axis_2",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3102,7 +3102,7 @@
                   {
                     "label": "Message Useridentity Sessioncontext",
                     "alias": "x_axis_2",
-                    "column": "message_useridentity_sessioncontext",
+                    "column": "useridentity_sessioncontext",
                     "color": null,
                     "isDerived": false
                   }
@@ -3117,7 +3117,7 @@
                     {
                       "type": "condition",
                       "values": [],
-                      "column": "message_useridentity_sessioncontext",
+                      "column": "useridentity_sessioncontext",
                       "operator": "str_match_ignore_case",
                       "value": "\"mfaAuthenticated\":\"false\"",
                       "logicalOperator": "AND",
@@ -3189,7 +3189,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(message_useridentity_sessioncontext) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(useridentity_sessioncontext) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3210,7 +3210,7 @@
                   {
                     "label": "Message Useridentity Sessioncontext",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_sessioncontext",
+                    "column": "useridentity_sessioncontext",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -3288,7 +3288,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT message_eventsource as \"x_axis_1\", count(message_eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE message_eventsource IN ('cloudfront.amazonaws.com', 'config.amazonaws.com', 'appconfig.amazonaws.com')  GROUP BY x_axis_1",
+              "query": "SELECT eventsource as \"x_axis_1\", count(eventsource) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE eventsource IN ('cloudfront.amazonaws.com', 'config.amazonaws.com', 'appconfig.amazonaws.com')  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3298,7 +3298,7 @@
                   {
                     "label": "Message Eventsource",
                     "alias": "x_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": null,
                     "isDerived": false
                   }
@@ -3307,7 +3307,7 @@
                   {
                     "label": "# of Eventsource",
                     "alias": "y_axis_1",
-                    "column": "message_eventsource",
+                    "column": "eventsource",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -3326,7 +3326,7 @@
                         "config.amazonaws.com",
                         "appconfig.amazonaws.com"
                       ],
-                      "column": "message_eventsource",
+                      "column": "eventsource",
                       "operator": null,
                       "value": null,
                       "logicalOperator": "AND",
@@ -3399,7 +3399,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(message_useridentity_sessioncontext) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match_ignore_case(message_useridentity_sessioncontext, '\"mfaAuthenticated\":\"false\"') ",
+              "query": "SELECT count(useridentity_sessioncontext) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE str_match_ignore_case(useridentity_sessioncontext, '\"mfaAuthenticated\":\"false\"') ",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3410,7 +3410,7 @@
                   {
                     "label": "Message Useridentity Sessioncontext",
                     "alias": "y_axis_1",
-                    "column": "message_useridentity_sessioncontext",
+                    "column": "useridentity_sessioncontext",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -3425,7 +3425,7 @@
                     {
                       "type": "condition",
                       "values": [],
-                      "column": "message_useridentity_sessioncontext",
+                      "column": "useridentity_sessioncontext",
                       "operator": "str_match_ignore_case",
                       "value": "\"mfaAuthenticated\":\"false\"",
                       "logicalOperator": "AND",
@@ -3498,7 +3498,7 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(message_eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE message_eventname IN ('ConsoleLogin') ",
+              "query": "SELECT count(eventname) as \"y_axis_1\"  FROM \"aws_orgs_cloudtrail\"  WHERE eventname IN ('ConsoleLogin') ",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
@@ -3509,7 +3509,7 @@
                   {
                     "label": "Message Eventname",
                     "alias": "y_axis_1",
-                    "column": "message_eventname",
+                    "column": "eventname",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -3526,7 +3526,7 @@
                       "values": [
                         "ConsoleLogin"
                       ],
-                      "column": "message_eventname",
+                      "column": "eventname",
                       "operator": null,
                       "value": null,
                       "logicalOperator": "AND",
