@@ -1,0 +1,2170 @@
+{
+  "version": 5,
+  "dashboardId": "7257193140698759087",
+  "title": "OpenVPN",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-10-30T04:07:28.525Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Network Access and Flow Dashboard",
+      "panels": [
+        {
+          "id": "Panel_ID3351010",
+          "type": "metric",
+          "title": "Total Network Flow Events",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(eventname) as \"y_axis_1\"  FROM \"openvpn\"  WHERE eventname IN ('flow-established') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Eventname",
+                    "alias": "y_axis_1",
+                    "column": "eventname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "flow-established"
+                      ],
+                      "column": "eventname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4745510",
+          "type": "metric",
+          "title": "Allowed Connections",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [
+              {
+                "type": "regex",
+                "value": "",
+                "pattern": "true",
+                "text": "allowed"
+              },
+              {
+                "type": "regex",
+                "value": "",
+                "pattern": "false",
+                "text": "denied"
+              }
+            ]
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(allowed) as \"y_axis_1\"  FROM \"openvpn\"  WHERE str_match(allowed, 'true')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Allowed",
+                    "alias": "y_axis_1",
+                    "column": "allowed",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [
+                        "true"
+                      ],
+                      "column": "allowed",
+                      "operator": "str_match",
+                      "value": "true",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID252810",
+          "type": "metric",
+          "title": "Total Clients Disconnected",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(eventname) as \"y_axis_1\"  FROM \"openvpn\"  WHERE eventname IN ('client-disconnected') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Eventname",
+                    "alias": "y_axis_1",
+                    "column": "eventname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "client-disconnected"
+                      ],
+                      "column": "eventname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5993810",
+          "type": "metric",
+          "title": "Total Clients Connected",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(eventname) as \"y_axis_1\"  FROM \"openvpn\"  WHERE eventname IN ('client-connected') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Eventname",
+                    "alias": "y_axis_1",
+                    "column": "eventname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "client-connected"
+                      ],
+                      "column": "eventname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3838810",
+          "type": "metric",
+          "title": "Suspicious User Agents",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(eventname) as \"y_axis_1\"  FROM \"openvpn\"  WHERE eventname IN ('ETPRO USER_AGENTS Observed Suspicious UA (Mozilla/5.0)') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Eventname",
+                    "alias": "y_axis_1",
+                    "column": "eventname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "ETPRO USER_AGENTS Observed Suspicious UA (Mozilla/5.0)"
+                      ],
+                      "column": "eventname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3073710",
+          "type": "metric",
+          "title": "Denied Connections",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [
+              {
+                "type": "regex",
+                "value": "",
+                "pattern": "true",
+                "text": "allowed"
+              },
+              {
+                "type": "regex",
+                "value": "",
+                "pattern": "false",
+                "text": "denied"
+              }
+            ]
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(allowed) as \"y_axis_1\"  FROM \"openvpn\"  WHERE str_match(allowed, 'false')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Allowed",
+                    "alias": "y_axis_1",
+                    "column": "allowed",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [
+                        "true"
+                      ],
+                      "column": "allowed",
+                      "operator": "str_match",
+                      "value": "false",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "10185",
+      "name": "Geolocation and Region-Based Analysis",
+      "panels": [
+        {
+          "id": "Panel_ID5357310",
+          "type": "table",
+          "title": "Connections by Source Gateway Region",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sourcegatewayregionname as \"x_axis_1\"  FROM \"openvpn\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Sourcegatewayregionname",
+                    "alias": "x_axis_1",
+                    "column": "sourcegatewayregionname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4099710",
+          "type": "table",
+          "title": "Source to Destination Gateway",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sourcegatewayregionname as \"x_axis_1\", destinationgatewayregionname as \"x_axis_2\"  FROM \"openvpn\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Sourcegatewayregionname",
+                    "alias": "x_axis_1",
+                    "column": "sourcegatewayregionname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Destinationgatewayregionname",
+                    "alias": "x_axis_2",
+                    "column": "destinationgatewayregionname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9374410",
+          "type": "heatmap",
+          "title": "Geographic Heatmap of Source IPs",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sourceip as \"x_axis_1\", sourcegatewayregionname as \"y_axis_1\", count(sourceip) as \"z_axis_1\"  FROM \"openvpn\"  GROUP BY x_axis_1, y_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Sourceip",
+                    "alias": "x_axis_1",
+                    "column": "sourceip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Sourcegatewayregionname",
+                    "alias": "y_axis_1",
+                    "column": "sourcegatewayregionname",
+                    "color": "#5960b2",
+                    "isDerived": false
+                  }
+                ],
+                "z": [
+                  {
+                    "label": "Sourceip",
+                    "alias": "z_axis_1",
+                    "column": "sourceip",
+                    "color": "#c23531",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2500710",
+          "type": "geomap",
+          "title": "Source IPs HM",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(publicip) as weight FROM \"openvpn\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Publicip",
+                  "alias": "weight",
+                  "column": "publicip",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5847810",
+          "type": "geomap",
+          "title": "Initiatorname HM",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(initiatorname) as weight FROM \"openvpn\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Initiatorname",
+                  "alias": "weight",
+                  "column": "initiatorname",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7261410",
+          "type": "geomap",
+          "title": "Clientsconnected HM",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(eventname) as weight FROM \"openvpn\"  WHERE eventname IN ('client-connected') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Eventname",
+                  "alias": "weight",
+                  "column": "eventname",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "client-connected"
+                      ],
+                      "column": "eventname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "44827",
+      "name": "User Access and Initiator Analysis",
+      "panels": [
+        {
+          "id": "Panel_ID4486810",
+          "type": "table",
+          "title": "Access Attempts by User",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT initiator as \"x_axis_1\", initiatortype as \"x_axis_2\", initiatorname as \"x_axis_3\", initiatorpublicip as \"x_axis_4\"  FROM \"openvpn\"  WHERE initiatortype IN ('User')  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Initiator",
+                    "alias": "x_axis_1",
+                    "column": "initiator",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatortype",
+                    "alias": "x_axis_2",
+                    "column": "initiatortype",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorname",
+                    "alias": "x_axis_3",
+                    "column": "initiatorname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorpublicip",
+                    "alias": "x_axis_4",
+                    "column": "initiatorpublicip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "User"
+                      ],
+                      "column": "initiatortype",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9238810",
+          "type": "table",
+          "title": "Access Attempts by Device",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT initiator as \"x_axis_1\", initiatortype as \"x_axis_2\", initiatorname as \"x_axis_3\", initiatorpublicip as \"x_axis_4\"  FROM \"openvpn\"  WHERE initiatortype IN ('Device')  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Initiator",
+                    "alias": "x_axis_1",
+                    "column": "initiator",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatortype",
+                    "alias": "x_axis_2",
+                    "column": "initiatortype",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorname",
+                    "alias": "x_axis_3",
+                    "column": "initiatorname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorpublicip",
+                    "alias": "x_axis_4",
+                    "column": "initiatorpublicip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "Device"
+                      ],
+                      "column": "initiatortype",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6790310",
+          "type": "table",
+          "title": "Access Attempts by Connector",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT initiator as \"x_axis_1\", initiatortype as \"x_axis_2\", initiatorname as \"x_axis_3\", initiatorpublicip as \"x_axis_4\"  FROM \"openvpn\"  WHERE initiatortype IN ('Connector')  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Initiator",
+                    "alias": "x_axis_1",
+                    "column": "initiator",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatortype",
+                    "alias": "x_axis_2",
+                    "column": "initiatortype",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorname",
+                    "alias": "x_axis_3",
+                    "column": "initiatorname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Initiatorpublicip",
+                    "alias": "x_axis_4",
+                    "column": "initiatorpublicip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "Connector"
+                      ],
+                      "column": "initiatortype",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID847010",
+          "type": "table",
+          "title": "Source Entity Type Analysis",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sourceentitytype as \"x_axis_1\", count(sourceentitytype) as \"y_axis_1\"  FROM \"openvpn\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Sourceentitytype",
+                    "alias": "x_axis_1",
+                    "column": "sourceentitytype",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Sourceentitytype",
+                    "alias": "y_axis_1",
+                    "column": "sourceentitytype",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2700210",
+          "type": "table",
+          "title": "Destination Entity Type Analysis",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT destinationentitytype as \"x_axis_1\", count(destinationentitytype) as \"y_axis_1\"  FROM \"openvpn\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Destinationentitytype",
+                    "alias": "x_axis_1",
+                    "column": "destinationentitytype",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Destinationentitytype",
+                    "alias": "y_axis_1",
+                    "column": "destinationentitytype",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "90242",
+      "name": "Security and Anomaly Detection",
+      "panels": [
+        {
+          "id": "Panel_ID6827010",
+          "type": "table",
+          "title": "Allowed Users",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT initiator as \"x_axis_1\", allowed as \"x_axis_2\", histogram(_timestamp) as \"x_axis_3\"  FROM \"openvpn\"  WHERE initiatortype IN ('User') AND str_match(allowed, 'true')  GROUP BY x_axis_1, x_axis_2, x_axis_3 ORDER BY x_axis_3 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Initiator",
+                    "alias": "x_axis_1",
+                    "column": "initiator",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Allowed",
+                    "alias": "x_axis_2",
+                    "column": "allowed",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_3",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "DESC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "User"
+                      ],
+                      "column": "initiatortype",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "allowed",
+                      "operator": "str_match",
+                      "value": "true",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7723810",
+          "type": "table",
+          "title": "Denied Users",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT initiator as \"x_axis_1\", allowed as \"x_axis_2\", histogram(_timestamp) as \"x_axis_3\"  FROM \"openvpn\"  WHERE initiatortype IN ('User') AND str_match(allowed, 'false')  GROUP BY x_axis_1, x_axis_2, x_axis_3 ORDER BY x_axis_3 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Initiator",
+                    "alias": "x_axis_1",
+                    "column": "initiator",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Allowed",
+                    "alias": "x_axis_2",
+                    "column": "allowed",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_3",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "DESC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "User"
+                      ],
+                      "column": "initiatortype",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "allowed",
+                      "operator": "str_match",
+                      "value": "false",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5104710",
+          "type": "table",
+          "title": "External IP Addresses",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT publicip as \"x_axis_1\"  FROM \"openvpn\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "openvpn",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Publicip",
+                    "alias": "x_axis_1",
+                    "column": "publicip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1731606490905000,
+    "endTime": 1731607390905000
+  }
+}
