@@ -1,0 +1,2274 @@
+{
+  "version": 5,
+  "dashboardId": "7263647106777241957",
+  "title": "WAF (Web Application Firewall)",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-11-16T22:11:59.471Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Action and Request Metadata",
+      "panels": [
+        {
+          "id": "Panel_ID4092910",
+          "type": "table",
+          "title": "Total Requests by Action",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_action as \"x_axis_1\", count(message_action) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Action",
+                    "alias": "x_axis_1",
+                    "column": "message_action",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Action",
+                    "alias": "y_axis_1",
+                    "column": "message_action",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8715710",
+          "type": "bar",
+          "title": "Requests Over Time by Action",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(message_action) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Action",
+                    "alias": "y_axis_1",
+                    "column": "message_action",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8275110",
+          "type": "table",
+          "title": "Top HTTP Methods",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_httpmethod as \"x_axis_1\", count(message_httprequest_httpmethod) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Httpmethod",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_httpmethod",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Httprequest Httpmethod",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_httpmethod",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID358210",
+          "type": "gauge",
+          "title": "Requests by HTTP Version",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_httpversion as \"x_axis_1\", count(message_httprequest_httpversion) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Httpversion",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_httpversion",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Httprequest Httpversion",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_httpversion",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3092910",
+          "type": "table",
+          "title": "Top Requested URIs",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_uri as \"x_axis_1\", message_httprequest_clientip as \"x_axis_2\", count(message_httprequest_uri) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Uri",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_uri",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Message Httprequest Clientip",
+                    "alias": "x_axis_2",
+                    "column": "message_httprequest_clientip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_uri",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6150510",
+          "type": "table",
+          "title": "Client IP Distribution",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_clientip as \"x_axis_1\", count(message_httprequest_clientip) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Clientip",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_clientip",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_clientip",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8497710",
+          "type": "table",
+          "title": "Requests by Country",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_country as \"x_axis_1\", count(message_httprequest_country) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Country",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_country",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_country",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9399710",
+          "type": "table",
+          "title": "Most Frequent Headers",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_httprequest_headers as \"x_axis_1\", count(message_httprequest_headers) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Httprequest Headers",
+                    "alias": "x_axis_1",
+                    "column": "message_httprequest_headers",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_headers",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6071210",
+          "type": "table",
+          "title": "Top Rule Groups Triggered",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_rulegrouplist as \"x_axis_1\", count(message_rulegrouplist) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Rulegrouplist",
+                    "alias": "x_axis_1",
+                    "column": "message_rulegrouplist",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Rulegrouplist",
+                    "alias": "y_axis_1",
+                    "column": "message_rulegrouplist",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 40,
+            "w": 24,
+            "h": 9,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1508210",
+          "type": "bar",
+          "title": "Request ID Analysis",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(message_httprequest_requestid) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Httprequest Requestid",
+                    "alias": "y_axis_1",
+                    "column": "message_httprequest_requestid",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 40,
+            "w": 24,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8538110",
+          "type": "table",
+          "title": "Request Labels",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_labels as \"x_axis_1\", count(message_labels) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Labels",
+                    "alias": "x_axis_1",
+                    "column": "message_labels",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Labels",
+                    "alias": "y_axis_1",
+                    "column": "message_labels",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 50,
+            "w": 24,
+            "h": 9,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4246710",
+          "type": "gauge",
+          "title": "Terminating Rule ID ",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_terminatingruleid as \"x_axis_1\", count(message_terminatingruleid) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Terminatingruleid",
+                    "alias": "x_axis_1",
+                    "column": "message_terminatingruleid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Terminatingruleid",
+                    "alias": "y_axis_1",
+                    "column": "message_terminatingruleid",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 50,
+            "w": 24,
+            "h": 9,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8236310",
+          "type": "gauge",
+          "title": "Terminating Rule Types",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_terminatingruletype as \"x_axis_1\", count(message_terminatingruletype) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Terminatingruletype",
+                    "alias": "x_axis_1",
+                    "column": "message_terminatingruletype",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Terminatingruletype",
+                    "alias": "y_axis_1",
+                    "column": "message_terminatingruletype",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 60,
+            "w": 24,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6621510",
+          "type": "table",
+          "title": "Request Labels",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT message_labels as \"x_axis_1\", count(message_labels) as \"y_axis_1\"  FROM \"entities_waf\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Message Labels",
+                    "alias": "x_axis_1",
+                    "column": "message_labels",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Message Labels",
+                    "alias": "y_axis_1",
+                    "column": "message_labels",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 60,
+            "w": 24,
+            "h": 9,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "63797",
+      "name": "Geographic",
+      "panels": [
+        {
+          "id": "Panel_ID1416810",
+          "type": "geomap",
+          "title": "Allowed",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_action) as weight FROM \"entities_waf\"  WHERE message_action IN ('ALLOW') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Action",
+                  "alias": "weight",
+                  "column": "message_action",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "ALLOW"
+                      ],
+                      "column": "message_action",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4191710",
+          "type": "geomap",
+          "title": "Blocked",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_action) as weight FROM \"entities_waf\"  WHERE message_action IN ('BLOCK') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Action",
+                  "alias": "weight",
+                  "column": "message_action",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "BLOCK"
+                      ],
+                      "column": "message_action",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5882010",
+          "type": "geomap",
+          "title": "Captcha",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_action) as weight FROM \"entities_waf\"  WHERE message_action IN ('CAPTCHA') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Action",
+                  "alias": "weight",
+                  "column": "message_action",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "CAPTCHA"
+                      ],
+                      "column": "message_action",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8534110",
+          "type": "geomap",
+          "title": "Client IP",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_httprequest_clientip) as weight FROM \"entities_waf\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Httprequest Clientip",
+                  "alias": "weight",
+                  "column": "message_httprequest_clientip",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3175210",
+          "type": "geomap",
+          "title": "HTTP Requests",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_httprequest_httpmethod) as weight FROM \"entities_waf\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Httprequest Httpmethod",
+                  "alias": "weight",
+                  "column": "message_httprequest_httpmethod",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1616110",
+          "type": "geomap",
+          "title": "Missing Tokens",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_captcharesponse_failurereason) as weight FROM \"entities_waf\"  WHERE message_captcharesponse_failurereason IN ('TOKEN_MISSING') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Captcharesponse Failurereason",
+                  "alias": "weight",
+                  "column": "message_captcharesponse_failurereason",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "TOKEN_MISSING"
+                      ],
+                      "column": "message_captcharesponse_failurereason",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5593210",
+          "type": "geomap",
+          "title": "Allowed",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(message_action) as weight FROM \"entities_waf\"  WHERE message_action IN ('ALLOW') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "entities_waf",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Message Action",
+                  "alias": "weight",
+                  "column": "message_action",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "ALLOW"
+                      ],
+                      "column": "message_action",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m"
+  }
+}
