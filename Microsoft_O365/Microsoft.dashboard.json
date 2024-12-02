@@ -1,0 +1,5440 @@
+{
+  "version": 5,
+  "dashboardId": "7267008510833994518",
+  "title": "Microsoft_1E",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-11-26T04:22:16.427Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Signin Activity",
+      "panels": [
+        {
+          "id": "Panel_ID9912210",
+          "type": "table",
+          "title": "Caller IP",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT calleripaddress as \"x_axis_1\", count(calleripaddress) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_1",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "y_axis_1",
+                    "column": "calleripaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3940310",
+          "type": "table",
+          "title": "User Initiation",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT identity as \"x_axis_1\", calleripaddress as \"x_axis_2\", count(identity) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Identity",
+                    "alias": "x_axis_1",
+                    "column": "identity",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_2",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "identity",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID685010",
+          "type": "table",
+          "title": "Countries",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT location as \"x_axis_1\", count(location) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Location",
+                    "alias": "x_axis_1",
+                    "column": "location",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Location",
+                    "alias": "y_axis_1",
+                    "column": "location",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID969910",
+          "type": "table",
+          "title": "Apps Users Signing In",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appdisplayname as \"x_axis_1\", properties_userprincipalname as \"x_axis_2\", count(properties_appdisplayname) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Userprincipalname",
+                    "alias": "x_axis_2",
+                    "column": "properties_userprincipalname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "y_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID256310",
+          "type": "table",
+          "title": "Apps ObjectIDs",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appdisplayname as \"x_axis_1\", properties_appid as \"x_axis_2\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Appid",
+                    "alias": "x_axis_2",
+                    "column": "properties_appid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID643710",
+          "type": "table",
+          "title": "Conditional Access Engaged",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appliedconditionalaccesspolicies as \"x_axis_1\", count(properties_appliedconditionalaccesspolicies) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appliedconditionalaccesspolicies",
+                    "alias": "x_axis_1",
+                    "column": "properties_appliedconditionalaccesspolicies",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Appliedconditionalaccesspolicies",
+                    "alias": "y_axis_1",
+                    "column": "properties_appliedconditionalaccesspolicies",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3945910",
+          "type": "metric",
+          "title": "MFA Authenticated",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(properties_authenticationdetails) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  WHERE str_match_ignore_case(properties_authenticationdetails, 'MFA Completed') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Properties Authenticationdetails",
+                    "alias": "y_axis_1",
+                    "column": "properties_authenticationdetails",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "properties_authenticationdetails",
+                      "operator": "str_match_ignore_case",
+                      "value": "MFA Completed",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1477710",
+          "type": "gauge",
+          "title": "MFA vs Non MFA",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_authenticationrequirement as \"x_axis_1\", count(properties_authenticationrequirement) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Authenticationrequirement",
+                    "alias": "x_axis_1",
+                    "column": "properties_authenticationrequirement",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Authenticationrequirement",
+                    "alias": "y_axis_1",
+                    "column": "properties_authenticationrequirement",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4894110",
+          "type": "table",
+          "title": "Client App Used to SignIn",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_clientappused as \"x_axis_1\", count(properties_clientappused) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "x_axis_1",
+                    "column": "properties_clientappused",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "y_axis_1",
+                    "column": "properties_clientappused",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8909110",
+          "type": "table",
+          "title": "Conditional Access Audience",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_conditionalaccessaudiences as \"x_axis_1\", count(properties_conditionalaccessaudiences) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Conditionalaccessaudiences",
+                    "alias": "x_axis_1",
+                    "column": "properties_conditionalaccessaudiences",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Conditionalaccessaudiences",
+                    "alias": "y_axis_1",
+                    "column": "properties_conditionalaccessaudiences",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2781010",
+          "type": "table",
+          "title": "Client App Used to SignIn",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_clientappused as \"x_axis_1\", count(properties_clientappused) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "x_axis_1",
+                    "column": "properties_clientappused",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "y_axis_1",
+                    "column": "properties_clientappused",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5062110",
+          "type": "gauge",
+          "title": "Browser Used to SignIn",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_devicedetail_browser as \"x_axis_1\", count(properties_devicedetail_browser) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Devicedetail Browser",
+                    "alias": "x_axis_1",
+                    "column": "properties_devicedetail_browser",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Devicedetail Browser",
+                    "alias": "y_axis_1",
+                    "column": "properties_devicedetail_browser",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3416510",
+          "type": "table",
+          "title": "OS level Signins",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_devicedetail_operatingsystem as \"x_axis_1\", count(properties_devicedetail_operatingsystem) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Devicedetail Operatingsystem",
+                    "alias": "x_axis_1",
+                    "column": "properties_devicedetail_operatingsystem",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Devicedetail Operatingsystem",
+                    "alias": "y_axis_1",
+                    "column": "properties_devicedetail_operatingsystem",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 54,
+            "w": 24,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2454810",
+          "type": "table",
+          "title": "TenantID",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_hometenantid as \"x_axis_2\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Hometenantid",
+                    "alias": "x_axis_2",
+                    "column": "properties_hometenantid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 54,
+            "w": 24,
+            "h": 9,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5397910",
+          "type": "table",
+          "title": "IP Interactive Logins",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_ipaddress as \"x_axis_1\", properties_isinteractive as \"x_axis_2\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Ipaddress",
+                    "alias": "x_axis_1",
+                    "column": "properties_ipaddress",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Isinteractive",
+                    "alias": "x_axis_2",
+                    "column": "properties_isinteractive",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 63,
+            "w": 24,
+            "h": 9,
+            "i": 15
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7690410",
+          "type": "table",
+          "title": "Country/ State/ City",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_userdisplayname as \"x_axis_1\", properties_location_countryorregion as \"x_axis_2\", properties_location_state as \"x_axis_3\", properties_location_city as \"x_axis_4\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location Countryorregion",
+                    "alias": "x_axis_2",
+                    "column": "properties_location_countryorregion",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location State",
+                    "alias": "x_axis_3",
+                    "column": "properties_location_state",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location City",
+                    "alias": "x_axis_4",
+                    "column": "properties_location_city",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 63,
+            "w": 24,
+            "h": 9,
+            "i": 16
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2316910",
+          "type": "table",
+          "title": "User Agent",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_useragent as \"x_axis_2\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "x_axis_2",
+                    "column": "properties_useragent",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 72,
+            "w": 24,
+            "h": 9,
+            "i": 17
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1520910",
+          "type": "table",
+          "title": "Users Logins",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_userdisplayname as \"x_axis_1\", count(properties_userdisplayname) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "y_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 72,
+            "w": 24,
+            "h": 9,
+            "i": 18
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6288310",
+          "type": "table",
+          "title": "MFA Method",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_mfadetail_authmethod as \"x_axis_1\", count(properties_mfadetail_authmethod) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Mfadetail Authmethod",
+                    "alias": "x_axis_1",
+                    "column": "properties_mfadetail_authmethod",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Mfadetail Authmethod",
+                    "alias": "y_axis_1",
+                    "column": "properties_mfadetail_authmethod",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 81,
+            "w": 24,
+            "h": 9,
+            "i": 19
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7109310",
+          "type": "table",
+          "title": "Failure Reason",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_status_failurereason as \"x_axis_1\", count(properties_status_failurereason) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "x_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "y_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 81,
+            "w": 24,
+            "h": 9,
+            "i": 20
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2781610",
+          "type": "gauge",
+          "title": "Apps Users Signing In",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appdisplayname as \"x_axis_1\", count(properties_userprincipalname) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  WHERE properties_appdisplayname IN ('retool-org-dev', 'retool-org-qa')  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Userprincipalname",
+                    "alias": "y_axis_1",
+                    "column": "properties_userprincipalname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "retool-org-dev",
+                        "retool-org-qa"
+                      ],
+                      "column": "properties_appdisplayname",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 90,
+            "w": 48,
+            "h": 8,
+            "i": 21
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "43248",
+      "name": "Non-Interactive SignIns",
+      "panels": [
+        {
+          "id": "Panel_ID2740310",
+          "type": "table",
+          "title": "Countries NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT location as \"x_axis_1\", count(location) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Location",
+                    "alias": "x_axis_1",
+                    "column": "location",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Location",
+                    "alias": "y_axis_1",
+                    "column": "location",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID482510",
+          "type": "table",
+          "title": "Apps ObjectIDs NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appdisplayname as \"x_axis_1\", properties_appid as \"x_axis_2\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Appid",
+                    "alias": "x_axis_2",
+                    "column": "properties_appid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5930910",
+          "type": "metric",
+          "title": "MFA Authenticated NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(properties_authenticationdetails) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  WHERE str_match_ignore_case(properties_authenticationdetails, 'MFA Completed') ",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Properties Authenticationdetails",
+                    "alias": "y_axis_1",
+                    "column": "properties_authenticationdetails",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "properties_authenticationdetails",
+                      "operator": "str_match_ignore_case",
+                      "value": "MFA Completed",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7974610",
+          "type": "table",
+          "title": "Apps Users Signing In NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appdisplayname as \"x_axis_1\", properties_userprincipalname as \"x_axis_2\", count(properties_appdisplayname) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Userprincipalname",
+                    "alias": "x_axis_2",
+                    "column": "properties_userprincipalname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Appdisplayname",
+                    "alias": "y_axis_1",
+                    "column": "properties_appdisplayname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6855310",
+          "type": "table",
+          "title": "Conditional Access Engaged NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_appliedconditionalaccesspolicies as \"x_axis_1\", count(properties_appliedconditionalaccesspolicies) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Appliedconditionalaccesspolicies",
+                    "alias": "x_axis_1",
+                    "column": "properties_appliedconditionalaccesspolicies",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Appliedconditionalaccesspolicies",
+                    "alias": "y_axis_1",
+                    "column": "properties_appliedconditionalaccesspolicies",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7293810",
+          "type": "gauge",
+          "title": "MFA vs Non MFA NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_authenticationrequirement as \"x_axis_1\", count(properties_authenticationrequirement) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Authenticationrequirement",
+                    "alias": "x_axis_1",
+                    "column": "properties_authenticationrequirement",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Authenticationrequirement",
+                    "alias": "y_axis_1",
+                    "column": "properties_authenticationrequirement",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2490510",
+          "type": "table",
+          "title": "Caller IP NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT calleripaddress as \"x_axis_1\", count(calleripaddress) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_1",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "y_axis_1",
+                    "column": "calleripaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9058510",
+          "type": "table",
+          "title": "User Initiation NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT identity as \"x_axis_1\", calleripaddress as \"x_axis_2\", count(identity) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Identity",
+                    "alias": "x_axis_1",
+                    "column": "identity",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_2",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "count",
+                    "alias": "y_axis_1",
+                    "column": "identity",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5035310",
+          "type": "table",
+          "title": "Client App Used to SignIn NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_clientappused as \"x_axis_1\", count(properties_clientappused) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "x_axis_1",
+                    "column": "properties_clientappused",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "y_axis_1",
+                    "column": "properties_clientappused",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID565210",
+          "type": "table",
+          "title": "Conditional Access Audience NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_conditionalaccessaudiences as \"x_axis_1\", count(properties_conditionalaccessaudiences) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Conditionalaccessaudiences",
+                    "alias": "x_axis_1",
+                    "column": "properties_conditionalaccessaudiences",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Conditionalaccessaudiences",
+                    "alias": "y_axis_1",
+                    "column": "properties_conditionalaccessaudiences",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1611810",
+          "type": "table",
+          "title": "Client App Used to SignIn NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_clientappused as \"x_axis_1\", count(properties_clientappused) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "x_axis_1",
+                    "column": "properties_clientappused",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Clientappused",
+                    "alias": "y_axis_1",
+                    "column": "properties_clientappused",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 54,
+            "w": 24,
+            "h": 9,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3487210",
+          "type": "table",
+          "title": "OS level Signins NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_devicedetail_operatingsystem as \"x_axis_1\", count(properties_devicedetail_operatingsystem) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Devicedetail Operatingsystem",
+                    "alias": "x_axis_1",
+                    "column": "properties_devicedetail_operatingsystem",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Devicedetail Operatingsystem",
+                    "alias": "y_axis_1",
+                    "column": "properties_devicedetail_operatingsystem",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 63,
+            "w": 24,
+            "h": 9,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9929410",
+          "type": "table",
+          "title": "IP Interactive Logins NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_ipaddress as \"x_axis_1\", properties_isinteractive as \"x_axis_2\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Ipaddress",
+                    "alias": "x_axis_1",
+                    "column": "properties_ipaddress",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Isinteractive",
+                    "alias": "x_axis_2",
+                    "column": "properties_isinteractive",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 72,
+            "w": 24,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4744210",
+          "type": "table",
+          "title": "User Agent NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_useragent as \"x_axis_2\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "x_axis_2",
+                    "column": "properties_useragent",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 81,
+            "w": 24,
+            "h": 9,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4762910",
+          "type": "gauge",
+          "title": "Browser Used to SignIn NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_devicedetail_browser as \"x_axis_1\", count(properties_devicedetail_browser) as \"y_axis_1\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Devicedetail Browser",
+                    "alias": "x_axis_1",
+                    "column": "properties_devicedetail_browser",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Devicedetail Browser",
+                    "alias": "y_axis_1",
+                    "column": "properties_devicedetail_browser",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 54,
+            "w": 24,
+            "h": 9,
+            "i": 16
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7736510",
+          "type": "table",
+          "title": "TenantID NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_hometenantid as \"x_axis_2\"  FROM \"microsoft_org_signin_logs_default\"  GROUP BY x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_signin_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Hometenantid",
+                    "alias": "x_axis_2",
+                    "column": "properties_hometenantid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 63,
+            "w": 24,
+            "h": 9,
+            "i": 17
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9772610",
+          "type": "table",
+          "title": "Country/ State/ City NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_userdisplayname as \"x_axis_1\", properties_location_countryorregion as \"x_axis_2\", properties_location_state as \"x_axis_3\", properties_location_city as \"x_axis_4\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location Countryorregion",
+                    "alias": "x_axis_2",
+                    "column": "properties_location_countryorregion",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location State",
+                    "alias": "x_axis_3",
+                    "column": "properties_location_state",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location City",
+                    "alias": "x_axis_4",
+                    "column": "properties_location_city",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 72,
+            "w": 24,
+            "h": 9,
+            "i": 18
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4408610",
+          "type": "table",
+          "title": "Users Logins NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_userdisplayname as \"x_axis_1\", count(properties_userdisplayname) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "x_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Userdisplayname",
+                    "alias": "y_axis_1",
+                    "column": "properties_userdisplayname",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 81,
+            "w": 24,
+            "h": 9,
+            "i": 19
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7769110",
+          "type": "table",
+          "title": "Failure Reason NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_status_failurereason as \"x_axis_1\", count(properties_status_failurereason) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "x_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "y_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 90,
+            "w": 24,
+            "h": 9,
+            "i": 20
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9863610",
+          "type": "table",
+          "title": "Failure Reason NI",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_status_failurereason as \"x_axis_1\", count(properties_status_failurereason) as \"y_axis_1\"  FROM \"microsoft_org_noninteractive_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "x_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Status Failurereason",
+                    "alias": "y_axis_1",
+                    "column": "properties_status_failurereason",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 90,
+            "w": 24,
+            "h": 9,
+            "i": 21
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4394810",
+          "type": "geomap",
+          "title": "Caller IP Heat Map",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT latitude as latitude, longitude as longitude, count(calleripaddress) as weight FROM \"microsoft_org_noninteractive_logs_default\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Latitude",
+                  "alias": "latitude",
+                  "column": "latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Longitude",
+                  "alias": "longitude",
+                  "column": "longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Calleripaddress",
+                  "alias": "weight",
+                  "column": "calleripaddress",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 22
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2335810",
+          "type": "geomap",
+          "title": "Users Heat Map",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT latitude as latitude, longitude as longitude, count(properties_userprincipalname) as weight FROM \"microsoft_org_noninteractive_logs_default\" GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_noninteractive_logs_default",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Latitude",
+                  "alias": "latitude",
+                  "column": "latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Longitude",
+                  "alias": "longitude",
+                  "column": "longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Properties Userprincipalname",
+                  "alias": "weight",
+                  "column": "properties_userprincipalname",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 23
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "99754",
+      "name": "GraphAPI",
+      "panels": [
+        {
+          "id": "Panel_ID3872610",
+          "type": "table",
+          "title": "CallerIP",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT calleripaddress as \"x_axis_1\", count(calleripaddress) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_1",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "y_axis_1",
+                    "column": "calleripaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2962810",
+          "type": "table",
+          "title": "Location of origin",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT calleripaddress as \"x_axis_1\", location as \"x_axis_2\", count(calleripaddress) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "x_axis_1",
+                    "column": "calleripaddress",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Location",
+                    "alias": "x_axis_2",
+                    "column": "location",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Calleripaddress",
+                    "alias": "y_axis_1",
+                    "column": "calleripaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2257510",
+          "type": "gauge",
+          "title": "Location of origin",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_c_idtyp as \"x_axis_1\", count(properties_c_idtyp) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties C Idtyp",
+                    "alias": "x_axis_1",
+                    "column": "properties_c_idtyp",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties C Idtyp",
+                    "alias": "y_axis_1",
+                    "column": "properties_c_idtyp",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID287110",
+          "type": "table",
+          "title": "IP with Region",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_ipaddress as \"x_axis_1\", properties_location as \"x_axis_2\", count(properties_ipaddress) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Ipaddress",
+                    "alias": "x_axis_1",
+                    "column": "properties_ipaddress",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Properties Location",
+                    "alias": "x_axis_2",
+                    "column": "properties_location",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Ipaddress",
+                    "alias": "y_axis_1",
+                    "column": "properties_ipaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 10,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1201210",
+          "type": "gauge",
+          "title": "HTTP Request",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_requestmethod as \"x_axis_1\", count(properties_requestmethod) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Requestmethod",
+                    "alias": "x_axis_1",
+                    "column": "properties_requestmethod",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Requestmethod",
+                    "alias": "y_axis_1",
+                    "column": "properties_requestmethod",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8995410",
+          "type": "table",
+          "title": "Status Code",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_responsestatuscode as \"x_axis_3\", count(properties_ipaddress) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_3",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Responsestatuscode",
+                    "alias": "x_axis_3",
+                    "column": "properties_responsestatuscode",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Ipaddress",
+                    "alias": "y_axis_1",
+                    "column": "properties_ipaddress",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 20,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID4509510",
+          "type": "table",
+          "title": "Roles",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_roles as \"x_axis_1\", count(properties_roles) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Roles",
+                    "alias": "x_axis_1",
+                    "column": "properties_roles",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Roles",
+                    "alias": "y_axis_1",
+                    "column": "properties_roles",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1251510",
+          "type": "table",
+          "title": "Scopes",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_scopes as \"x_axis_1\", count(properties_scopes) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Scopes",
+                    "alias": "x_axis_1",
+                    "column": "properties_scopes",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Scopes",
+                    "alias": "y_axis_1",
+                    "column": "properties_scopes",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 30,
+            "w": 24,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1345610",
+          "type": "table",
+          "title": "User Agent",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_useragent as \"x_axis_1\", count(properties_useragent) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "x_axis_1",
+                    "column": "properties_useragent",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "y_axis_1",
+                    "column": "properties_useragent",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 40,
+            "w": 24,
+            "h": 9,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8723510",
+          "type": "table",
+          "title": "User Agent",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": true,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT properties_useragent as \"x_axis_1\", count(properties_useragent) as \"y_axis_1\"  FROM \"microsoft_org_microsoftgraphactivity_logs_default\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "microsoft_org_microsoftgraphactivity_logs_default",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "x_axis_1",
+                    "column": "properties_useragent",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Properties Useragent",
+                    "alias": "y_axis_1",
+                    "column": "properties_useragent",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 40,
+            "w": 24,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1732678552239000,
+    "endTime": 1732679452239000
+  }
+}
