@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "dashboardId": "7216282171525311530",
+  "version": 5,
+  "dashboardId": "7270279691804616005",
   "title": "OpenObserve Internals",
   "description": "OpenObserve Internal metrics",
   "role": "",
   "owner": "",
-  "created": "2024-07-09T03:30:14.369Z",
+  "created": "2024-12-05T03:36:24.216Z",
   "tabs": [
     {
       "tabId": "default",
@@ -46,6 +46,7 @@
           "queries": [
             {
               "query": null,
+              "vrlFunctionQuery": null,
               "customQuery": false,
               "fields": {
                 "stream": "",
@@ -53,7 +54,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "",
@@ -103,6 +109,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_ingest_wal_read_bytes{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -110,7 +117,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "read-{pod}",
@@ -120,6 +132,7 @@
             },
             {
               "query": "sum(irate(zo_ingest_wal_write_bytes{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -127,7 +140,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "write-{pod}",
@@ -138,7 +156,7 @@
           ],
           "layout": {
             "x": 0,
-            "y": 10,
+            "y": 0,
             "w": 24,
             "h": 7,
             "i": 1
@@ -168,6 +186,7 @@
           "queries": [
             {
               "query": "sum(zo_ingest_wal_used_bytes{namespace=\"$namespace\"}) by (pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -175,7 +194,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{pod}",
@@ -186,7 +210,7 @@
           ],
           "layout": {
             "x": 24,
-            "y": 20,
+            "y": 0,
             "w": 24,
             "h": 7,
             "i": 2
@@ -232,6 +256,7 @@
           "queries": [
             {
               "query": "sum(zo_ingest_memtable_bytes{namespace=\"$namespace\"}) by (pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "zo_ingest_memtable_arrow_bytes",
@@ -239,7 +264,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "json-{pod}",
@@ -249,6 +279,7 @@
             },
             {
               "query": "sum(zo_ingest_memtable_arrow_bytes{namespace=\"$namespace\"}) by (pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "access_evaluation_duration",
@@ -256,7 +287,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "arrow-{pod}",
@@ -267,7 +303,7 @@
           ],
           "layout": {
             "x": 0,
-            "y": 30,
+            "y": 7,
             "w": 24,
             "h": 9,
             "i": 3
@@ -284,12 +320,21 @@
             "show_legends": true,
             "legends_position": "bottom",
             "unit": "numbers",
+            "top_results_others": false,
             "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
             "legend_width": {
               "unit": "px"
             },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
@@ -305,14 +350,23 @@
               "size_fixed": 2
             },
             "drilldown": [],
+            "mark_line": [],
             "connect_nulls": false,
             "no_value_replacement": "",
-            "wrap_table_cells": false
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            }
           },
           "queryType": "promql",
           "queries": [
             {
               "query": "sum(zo_ingest_memtable_files{namespace=\"$namespace\"}) by (pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "zo_ingest_memtable_arrow_bytes",
@@ -320,10 +374,15 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
-                "promql_legend": "json-{pod}",
+                "promql_legend": "{pod}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -331,10 +390,230 @@
           ],
           "layout": {
             "x": 24,
-            "y": 30,
+            "y": 7,
             "w": 24,
             "h": 9,
             "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3987910",
+          "type": "line",
+          "title": "Ingest WAL lock time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "unit": "seconds",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum(irate(zo_ingest_wal_lock_time_bucket{namespace=\"$namespace\"}[1m])) by (le, pod))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "cadvisor_version_info",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P95-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "histogram_quantile(0.50, sum(irate(zo_ingest_wal_lock_time_bucket{namespace=\"$namespace\"}[1m])) by (le, pod))",
+              "vrlFunctionQuery": null,
+              "customQuery": true,
+              "fields": {
+                "stream": "cadvisor_version_info",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P50-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 16,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2299910",
+          "type": "line",
+          "title": "Ingest Memtable lock time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "unit": "seconds",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum(irate(zo_ingest_memtable_lock_time_bucket{namespace=\"$namespace\"}[1m])) by (le, pod))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "cadvisor_version_info",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P95-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "histogram_quantile(0.50, sum(irate(zo_ingest_memtable_lock_time_bucket{namespace=\"$namespace\"}[1m])) by (le, pod))",
+              "vrlFunctionQuery": null,
+              "customQuery": true,
+              "fields": {
+                "stream": "cadvisor_version_info",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P50-{pod}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 16,
+            "w": 24,
+            "h": 9,
+            "i": 6
           },
           "htmlContent": "",
           "markdownContent": ""
@@ -367,6 +646,7 @@
           "queries": [
             {
               "query": "topk(10, irate(zo_compact_used_time{namespace=\"$namespace\"}[1m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -374,7 +654,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -414,6 +699,7 @@
           "queries": [
             {
               "query": "topk(10, irate(zo_compact_merged_files{namespace=\"$namespace\"}[1m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -421,7 +707,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -461,6 +752,7 @@
           "queries": [
             {
               "query": "topk(10, sum(zo_compact_delay_hours{namespace=\"$namespace\"})by (organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -468,7 +760,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -509,6 +806,7 @@
           "queries": [
             {
               "query": "topk(10, irate(zo_compact_merged_bytes{namespace=\"$namespace\"}[1m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -516,7 +814,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -576,6 +879,7 @@
           "queries": [
             {
               "query": "max(zo_meta_storage_bytes{namespace=\"$namespace\"})",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -583,7 +887,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Value",
@@ -637,6 +946,7 @@
           "queries": [
             {
               "query": "max(zo_meta_storage_keys{namespace=\"$namespace\"})",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -644,7 +954,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Value",
@@ -691,6 +1006,7 @@
           "queries": [
             {
               "query": "topk(10, max(zo_storage_original_bytes{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -698,7 +1014,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -739,6 +1060,7 @@
           "queries": [
             {
               "query": "sum(max(zo_storage_compressed_bytes{namespace=\"$namespace\", stream_type=\"metrics\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -746,7 +1068,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total",
@@ -756,6 +1083,7 @@
             },
             {
               "query": "topk(10, max(zo_storage_compressed_bytes{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -763,7 +1091,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -817,6 +1150,7 @@
           "queries": [
             {
               "query": "topk(10, max(zo_storage_files{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -824,7 +1158,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -878,6 +1217,7 @@
           "queries": [
             {
               "query": "topk(10, max(zo_storage_records{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -885,7 +1225,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -927,6 +1272,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_storage_read_requests{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -934,7 +1280,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "read-{pod}",
@@ -944,6 +1295,7 @@
             },
             {
               "query": "sum(irate(zo_storage_write_requests{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -951,7 +1303,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "write-{pod}",
@@ -992,6 +1349,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_storage_read_bytes{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -999,7 +1357,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "read-{pod}",
@@ -1009,6 +1372,7 @@
             },
             {
               "query": "sum(irate(zo_storage_write_bytes{namespace=\"$namespace\"}[5m]))by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1016,7 +1380,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "write-{pod}",
@@ -1057,6 +1426,7 @@
           "queries": [
             {
               "query": "topk(10, sum(irate(zo_storage_time{namespace=\"$namespace\"}[1m]))by(organization, stream_type, stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1064,7 +1434,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -1111,6 +1486,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_ingest_bytes{namespace=\"$namespace\"}[5m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1118,7 +1494,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total",
@@ -1128,6 +1509,7 @@
             },
             {
               "query": "topk(10, irate(zo_ingest_bytes{namespace=\"$namespace\"}[5m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1135,7 +1517,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -1177,6 +1564,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_ingest_records{namespace=\"$namespace\"}[5m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1184,7 +1572,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total",
@@ -1194,6 +1587,7 @@
             },
             {
               "query": "topk(10, irate(zo_ingest_records{namespace=\"$namespace\"}[5m]))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1201,7 +1595,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -1248,6 +1647,7 @@
           "queries": [
             {
               "query": "sum(zo_query_memory_cache_limit_bytes{namespace=\"$namespace\", pod=~\".*querier.*\"})by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1255,7 +1655,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total-{pod}",
@@ -1265,6 +1670,7 @@
             },
             {
               "query": "sum(zo_query_memory_cache_used_bytes{namespace=\"$namespace\", pod=~\".*querier.*\"})by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1272,7 +1678,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Used-{pod}",
@@ -1312,6 +1723,7 @@
           "queries": [
             {
               "query": "sum(zo_query_memory_cache_files{namespace=\"$namespace\"})",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1319,7 +1731,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total",
@@ -1329,6 +1746,7 @@
             },
             {
               "query": "topk(10, sum(zo_query_memory_cache_files{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1336,7 +1754,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -1377,6 +1800,7 @@
           "queries": [
             {
               "query": "sum(zo_query_disk_cache_limit_bytes{namespace=\"$namespace\", pod=~\".*querier.*\"})by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1384,7 +1808,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total-{pod}",
@@ -1394,6 +1823,7 @@
             },
             {
               "query": "sum(zo_query_disk_cache_used_bytes{namespace=\"$namespace\", pod=~\".*querier.*\"})by(pod)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1401,7 +1831,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Used-{pod}",
@@ -1441,6 +1876,7 @@
           "queries": [
             {
               "query": "sum(zo_query_disk_cache_files{namespace=\"$namespace\"})",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1448,7 +1884,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "Total",
@@ -1458,6 +1899,7 @@
             },
             {
               "query": "topk(10, sum(zo_query_disk_cache_files{namespace=\"$namespace\"})by(organization,stream_type,stream))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1465,7 +1907,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "/{organization}/{stream_type}/{stream}",
@@ -1526,6 +1973,7 @@
           "queries": [
             {
               "query": "sum(irate(zo_http_incoming_requests{namespace=\"$namespace\"}[5m])) by (exported_endpoint)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "zo_http_incoming_requests",
@@ -1533,7 +1981,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "HTTP-{exported_endpoint}",
@@ -1543,6 +1996,7 @@
             },
             {
               "query": "sum(irate(zo_grpc_incoming_requests{namespace=\"$namespace\"}[5m])) by (exported_endpoint)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "zo_http_incoming_requests",
@@ -1550,7 +2004,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "gRPC-{exported_endpoint}",
@@ -1591,6 +2050,7 @@
           "queries": [
             {
               "query": "histogram_quantile(0.95, sum(irate(zo_http_response_time_bucket{namespace=\"$namespace\"}[5m])) by (le, exported_endpoint))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1598,7 +2058,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "P95-{exported_endpoint}",
@@ -1608,6 +2073,7 @@
             },
             {
               "query": "histogram_quantile(0.99, sum(irate(zo_http_response_time_bucket{namespace=\"$namespace\"}[5m])) by (le, exported_endpoint))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "_rumdata",
@@ -1615,7 +2081,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "P99-{exported_endpoint}",
@@ -1656,6 +2127,7 @@
           "queries": [
             {
               "query": "histogram_quantile(0.95, sum(irate(zo_grpc_response_time_bucket{namespace=\"$namespace\"}[5m])) by (le, exported_endpoint))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "cadvisor_version_info",
@@ -1663,7 +2135,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "P95-{exported_endpoint}",
@@ -1673,6 +2150,7 @@
             },
             {
               "query": "histogram_quantile(0.99, sum(irate(zo_grpc_response_time_bucket{namespace=\"$namespace\"}[5m])) by (le, exported_endpoint))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "ALERTS",
@@ -1680,7 +2158,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "P99-{exported_endpoint}",
@@ -1712,10 +2195,14 @@
           "stream_type": "metrics",
           "stream": "container_cpu_utilization",
           "field": "k8s_namespace_name",
-          "max_record_size": null
+          "max_record_size": 50
         },
         "value": "",
-        "options": []
+        "options": [],
+        "multiSelect": false,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": []
       }
     ],
     "showDynamicFilters": false
