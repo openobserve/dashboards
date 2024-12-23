@@ -1,240 +1,20 @@
 {
   "version": 5,
   "dashboardId": "7275956485597712092",
-  "title": "Uptime monitoring",
+  "title": "Uptime_Monitoring_Otel",
   "description": "",
   "role": "",
   "owner": "",
   "created": "2024-12-20T21:38:18.783Z",
   "tabs": [
     {
-      "tabId": "default",
-      "name": "Default",
+      "tabId": "68230",
+      "name": "Uptime",
       "panels": [
         {
-          "id": "Panel_ID3183010",
-          "type": "table",
-          "title": "URL SSL Monitoring",
-          "description": "",
-          "config": {
-            "show_legends": true,
-            "legends_position": null,
-            "decimals": 2,
-            "line_thickness": 1.5,
-            "top_results_others": false,
-            "axis_border_show": false,
-            "label_option": {
-              "rotate": 0
-            },
-            "show_symbol": false,
-            "line_interpolation": "smooth",
-            "legend_width": {
-              "unit": "px"
-            },
-            "base_map": {
-              "type": "osm"
-            },
-            "map_type": {
-              "type": "world"
-            },
-            "map_view": {
-              "zoom": 1,
-              "lat": 0,
-              "lng": 0
-            },
-            "map_symbol_style": {
-              "size": "by Value",
-              "size_by_value": {
-                "min": 1,
-                "max": 100
-              },
-              "size_fixed": 2
-            },
-            "drilldown": [],
-            "mark_line": [],
-            "override_config": [],
-            "connect_nulls": false,
-            "no_value_replacement": "",
-            "wrap_table_cells": false,
-            "table_transpose": false,
-            "table_dynamic_columns": false,
-            "color": {
-              "mode": "palette-classic-by-series",
-              "fixedColor": [
-                "#53ca53"
-              ],
-              "seriesBy": "last"
-            }
-          },
-          "queryType": "sql",
-          "queries": [
-            {
-              "query": "SELECT \n    url AS \"x_axis_1\", \n    CASE \n        WHEN ssl_valid = true THEN '🟢' \n        WHEN ssl_valid = false THEN '🔴' \n    END AS uptime_monitor \nFROM \"uptime_monitor\" \nWHERE \n    ssl_valid IS NOT NULL \nORDER BY \n    uptime_monitor ASC, \n    url DESC",
-              "vrlFunctionQuery": "",
-              "customQuery": true,
-              "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
-                "x": [
-                  {
-                    "label": "x_axis_1",
-                    "alias": "x_axis_1",
-                    "column": "x_axis_1",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "status_indicator",
-                    "alias": "uptime_monitor",
-                    "column": "uptime_monitor",
-                    "color": null,
-                    "isDerived": false
-                  }
-                ],
-                "y": [],
-                "z": [],
-                "breakdown": [],
-                "filter": {
-                  "filterType": "group",
-                  "logicalOperator": "AND",
-                  "conditions": []
-                }
-              },
-              "config": {
-                "promql_legend": "",
-                "layer_type": "scatter",
-                "weight_fixed": 1,
-                "limit": 0,
-                "min": 0,
-                "max": 100,
-                "time_shift": []
-              }
-            }
-          ],
-          "layout": {
-            "x": 0,
-            "y": 0,
-            "w": 24,
-            "h": 23,
-            "i": 1
-          },
-          "htmlContent": "",
-          "markdownContent": ""
-        },
-        {
-          "id": "Panel_ID1419410",
-          "type": "table",
-          "title": "URL Uptime Monitoring",
-          "description": "",
-          "config": {
-            "show_legends": true,
-            "legends_position": null,
-            "decimals": 2,
-            "line_thickness": 1.5,
-            "top_results_others": false,
-            "axis_border_show": false,
-            "label_option": {
-              "rotate": 0
-            },
-            "show_symbol": false,
-            "line_interpolation": "smooth",
-            "legend_width": {
-              "unit": "px"
-            },
-            "base_map": {
-              "type": "osm"
-            },
-            "map_type": {
-              "type": "world"
-            },
-            "map_view": {
-              "zoom": 1,
-              "lat": 0,
-              "lng": 0
-            },
-            "map_symbol_style": {
-              "size": "by Value",
-              "size_by_value": {
-                "min": 1,
-                "max": 100
-              },
-              "size_fixed": 2
-            },
-            "drilldown": [],
-            "mark_line": [],
-            "override_config": [],
-            "connect_nulls": false,
-            "no_value_replacement": "",
-            "wrap_table_cells": false,
-            "table_transpose": false,
-            "table_dynamic_columns": false,
-            "color": {
-              "mode": "palette-classic-by-series",
-              "fixedColor": [
-                "#53ca53"
-              ],
-              "seriesBy": "last"
-            }
-          },
-          "queryType": "sql",
-          "queries": [
-            {
-              "query": "SELECT \n    url AS \"x_axis_1\", \n    CASE \n        WHEN uptime = true THEN '🟢' \n        WHEN uptime = false THEN '🔴' \n    END AS uptime_monitor \nFROM \"uptime_monitor\" \nWHERE \n    uptime IS NOT NULL \nORDER BY \n    uptime_monitor ASC, \n    url DESC",
-              "vrlFunctionQuery": "",
-              "customQuery": true,
-              "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
-                "x": [
-                  {
-                    "label": "x_axis_1",
-                    "alias": "x_axis_1",
-                    "column": "x_axis_1",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "status_indicator",
-                    "alias": "uptime_monitor",
-                    "column": "uptime_monitor",
-                    "color": null,
-                    "isDerived": false
-                  }
-                ],
-                "y": [],
-                "z": [],
-                "breakdown": [],
-                "filter": {
-                  "filterType": "group",
-                  "logicalOperator": "AND",
-                  "conditions": []
-                }
-              },
-              "config": {
-                "promql_legend": "",
-                "layer_type": "scatter",
-                "weight_fixed": 1,
-                "limit": 0,
-                "min": 0,
-                "max": 100,
-                "time_shift": []
-              }
-            }
-          ],
-          "layout": {
-            "x": 24,
-            "y": 0,
-            "w": 24,
-            "h": 23,
-            "i": 2
-          },
-          "htmlContent": "",
-          "markdownContent": ""
-        },
-        {
-          "id": "Panel_ID1117410",
-          "type": "table",
-          "title": "Uptime Check Status Code",
+          "id": "Panel_ID6373310",
+          "type": "gauge",
+          "title": "Status Code",
           "description": "",
           "config": {
             "show_legends": true,
@@ -279,7 +59,6 @@
             "wrap_table_cells": false,
             "table_transpose": false,
             "table_dynamic_columns": false,
-            "mappings": [],
             "color": {
               "mode": "palette-classic-by-series",
               "fixedColor": [
@@ -291,367 +70,26 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT url as \"x_axis_1\", checked_at as \"x_axis_2\", status_code as \"x_axis_3\"  FROM \"uptime_monitor\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "query": "SELECT http_status_code as \"x_axis_1\", count(http_status_code) as \"y_axis_1\"  FROM \"httpcheck_status\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
+                "stream": "httpcheck_status",
+                "stream_type": "metrics",
                 "x": [
                   {
-                    "label": "Url",
+                    "label": "Http Status Code",
                     "alias": "x_axis_1",
-                    "column": "url",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "Checked At",
-                    "alias": "x_axis_2",
-                    "column": "checked_at",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "Status Code",
-                    "alias": "x_axis_3",
-                    "column": "status_code",
-                    "color": null,
-                    "isDerived": false
-                  }
-                ],
-                "y": [],
-                "z": [],
-                "breakdown": [],
-                "filter": {
-                  "filterType": "group",
-                  "logicalOperator": "AND",
-                  "conditions": []
-                }
-              },
-              "config": {
-                "promql_legend": "",
-                "layer_type": "scatter",
-                "weight_fixed": 1,
-                "limit": 0,
-                "min": 0,
-                "max": 100,
-                "time_shift": []
-              }
-            }
-          ],
-          "layout": {
-            "x": 0,
-            "y": 10,
-            "w": 24,
-            "h": 9,
-            "i": 3
-          },
-          "htmlContent": "",
-          "markdownContent": ""
-        },
-        {
-          "id": "Panel_ID1952310",
-          "type": "table",
-          "title": "Uptime Errors",
-          "description": "",
-          "config": {
-            "show_legends": true,
-            "legends_position": null,
-            "unit": "numbers",
-            "decimals": 0,
-            "line_thickness": 1.5,
-            "top_results_others": false,
-            "axis_border_show": false,
-            "label_option": {
-              "rotate": 0
-            },
-            "show_symbol": false,
-            "line_interpolation": "smooth",
-            "legend_width": {
-              "unit": "px"
-            },
-            "base_map": {
-              "type": "osm"
-            },
-            "map_type": {
-              "type": "world"
-            },
-            "map_view": {
-              "zoom": 1,
-              "lat": 0,
-              "lng": 0
-            },
-            "map_symbol_style": {
-              "size": "by Value",
-              "size_by_value": {
-                "min": 1,
-                "max": 100
-              },
-              "size_fixed": 2
-            },
-            "drilldown": [],
-            "mark_line": [],
-            "override_config": [],
-            "connect_nulls": false,
-            "no_value_replacement": "",
-            "wrap_table_cells": false,
-            "table_transpose": false,
-            "table_dynamic_columns": false,
-            "mappings": [],
-            "color": {
-              "mode": "palette-classic-by-series",
-              "fixedColor": [
-                "#53ca53"
-              ],
-              "seriesBy": "last"
-            }
-          },
-          "queryType": "sql",
-          "queries": [
-            {
-              "query": "SELECT url as \"x_axis_1\", error_message as \"x_axis_2\"  FROM \"uptime_monitor\"  GROUP BY x_axis_1, x_axis_2",
-              "vrlFunctionQuery": "",
-              "customQuery": false,
-              "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
-                "x": [
-                  {
-                    "label": "Url",
-                    "alias": "x_axis_1",
-                    "column": "url",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "Error Message",
-                    "alias": "x_axis_2",
-                    "column": "error_message",
-                    "color": null,
-                    "isDerived": false
-                  }
-                ],
-                "y": [],
-                "z": [],
-                "breakdown": [],
-                "filter": {
-                  "filterType": "group",
-                  "logicalOperator": "AND",
-                  "conditions": []
-                }
-              },
-              "config": {
-                "promql_legend": "",
-                "layer_type": "scatter",
-                "weight_fixed": 1,
-                "limit": 0,
-                "min": 0,
-                "max": 100,
-                "time_shift": []
-              }
-            }
-          ],
-          "layout": {
-            "x": 24,
-            "y": 10,
-            "w": 24,
-            "h": 9,
-            "i": 4
-          },
-          "htmlContent": "",
-          "markdownContent": ""
-        },
-        {
-          "id": "Panel_ID1727310",
-          "type": "table",
-          "title": "URL SSL Valid",
-          "description": "",
-          "config": {
-            "show_legends": true,
-            "legends_position": null,
-            "unit": "numbers",
-            "decimals": 0,
-            "line_thickness": 1.5,
-            "top_results_others": false,
-            "axis_border_show": false,
-            "label_option": {
-              "rotate": 0
-            },
-            "show_symbol": false,
-            "line_interpolation": "smooth",
-            "legend_width": {
-              "unit": "px"
-            },
-            "base_map": {
-              "type": "osm"
-            },
-            "map_type": {
-              "type": "world"
-            },
-            "map_view": {
-              "zoom": 1,
-              "lat": 0,
-              "lng": 0
-            },
-            "map_symbol_style": {
-              "size": "by Value",
-              "size_by_value": {
-                "min": 1,
-                "max": 100
-              },
-              "size_fixed": 2
-            },
-            "drilldown": [],
-            "mark_line": [],
-            "override_config": [],
-            "connect_nulls": false,
-            "no_value_replacement": "",
-            "wrap_table_cells": false,
-            "table_transpose": false,
-            "table_dynamic_columns": false,
-            "mappings": [],
-            "color": {
-              "mode": "palette-classic-by-series",
-              "fixedColor": [
-                "#53ca53"
-              ],
-              "seriesBy": "last"
-            }
-          },
-          "queryType": "sql",
-          "queries": [
-            {
-              "query": "SELECT url as \"x_axis_1\", ssl_valid as \"x_axis_2\"  FROM \"uptime_monitor\"  GROUP BY x_axis_1, x_axis_2",
-              "vrlFunctionQuery": "",
-              "customQuery": false,
-              "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
-                "x": [
-                  {
-                    "label": "Url",
-                    "alias": "x_axis_1",
-                    "column": "url",
-                    "color": null,
-                    "isDerived": false
-                  },
-                  {
-                    "label": "Ssl Valid",
-                    "alias": "x_axis_2",
-                    "column": "ssl_valid",
-                    "color": null,
-                    "isDerived": false
-                  }
-                ],
-                "y": [],
-                "z": [],
-                "breakdown": [],
-                "filter": {
-                  "filterType": "group",
-                  "logicalOperator": "AND",
-                  "conditions": []
-                }
-              },
-              "config": {
-                "promql_legend": "",
-                "layer_type": "scatter",
-                "weight_fixed": 1,
-                "limit": 0,
-                "min": 0,
-                "max": 100,
-                "time_shift": []
-              }
-            }
-          ],
-          "layout": {
-            "x": 0,
-            "y": 20,
-            "w": 24,
-            "h": 9,
-            "i": 5
-          },
-          "htmlContent": "",
-          "markdownContent": ""
-        },
-        {
-          "id": "Panel_ID5903510",
-          "type": "area",
-          "title": "Errors Over Time",
-          "description": "",
-          "config": {
-            "show_legends": true,
-            "legends_position": null,
-            "decimals": 2,
-            "line_thickness": 1.5,
-            "top_results_others": false,
-            "axis_border_show": false,
-            "label_option": {
-              "rotate": 0
-            },
-            "show_symbol": false,
-            "line_interpolation": "smooth",
-            "legend_width": {
-              "unit": "px"
-            },
-            "base_map": {
-              "type": "osm"
-            },
-            "map_type": {
-              "type": "world"
-            },
-            "map_view": {
-              "zoom": 1,
-              "lat": 0,
-              "lng": 0
-            },
-            "map_symbol_style": {
-              "size": "by Value",
-              "size_by_value": {
-                "min": 1,
-                "max": 100
-              },
-              "size_fixed": 2
-            },
-            "drilldown": [],
-            "mark_line": [],
-            "override_config": [],
-            "connect_nulls": false,
-            "no_value_replacement": "",
-            "wrap_table_cells": false,
-            "table_transpose": false,
-            "table_dynamic_columns": false,
-            "color": {
-              "mode": "palette-classic-by-series",
-              "fixedColor": [
-                "#53ca53"
-              ],
-              "seriesBy": "last"
-            }
-          },
-          "queryType": "sql",
-          "queries": [
-            {
-              "query": "SELECT checked_at as \"x_axis_1\", count(error_message) as \"y_axis_1\"  FROM \"uptime_monitor\"  GROUP BY x_axis_1",
-              "vrlFunctionQuery": "",
-              "customQuery": false,
-              "fields": {
-                "stream": "uptime_monitor",
-                "stream_type": "logs",
-                "x": [
-                  {
-                    "label": "Checked At",
-                    "alias": "x_axis_1",
-                    "column": "checked_at",
+                    "column": "http_status_code",
                     "color": null,
                     "isDerived": false
                   }
                 ],
                 "y": [
                   {
-                    "label": "Error Message",
+                    "label": "Http Status Code",
                     "alias": "y_axis_1",
-                    "column": "error_message",
+                    "column": "http_status_code",
                     "color": "#5960b2",
                     "aggregationFunction": "count",
                     "isDerived": false
@@ -678,10 +116,704 @@
           ],
           "layout": {
             "x": 24,
-            "y": 20,
+            "y": 0,
             "w": 24,
             "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5204210",
+          "type": "table",
+          "title": "Error Messages",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT http_url as \"x_axis_1\", error_message as \"x_axis_2\"  FROM \"httpcheck_error\"  GROUP BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "httpcheck_error",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "http_url",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Error Message",
+                    "alias": "x_axis_2",
+                    "column": "error_message",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 22,
+            "y": 9,
+            "w": 26,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5019110",
+          "type": "pie",
+          "title": "Error Messages Count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT http_url as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"httpcheck_error\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "httpcheck_error",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "http_url",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 5,
+            "y": 18,
+            "w": 16,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1684810",
+          "type": "table",
+          "title": "Top 10 status class",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT http_url as \"x_axis_1\", http_status_class as \"x_axis_3\"  FROM \"httpcheck_status\"  GROUP BY x_axis_1, x_axis_3 LIMIT 10",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "httpcheck_status",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "http_url",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Http Status Class",
+                    "alias": "x_axis_3",
+                    "column": "http_status_class",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 10,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 11,
+            "y": 9,
+            "w": 11,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2281110",
+          "type": "table",
+          "title": "Top 10 status code",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT http_url as \"x_axis_1\", http_status_code as \"x_axis_2\"  FROM \"httpcheck_status\"  GROUP BY x_axis_1, x_axis_2 LIMIT 10",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "httpcheck_status",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "http_url",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Http Status Code",
+                    "alias": "x_axis_2",
+                    "column": "http_status_code",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 10,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 11,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7290410",
+          "type": "pie",
+          "title": "Status code 200",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT http_url as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"httpcheck_status\"  WHERE http_status_code IN ('200')  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "httpcheck_status",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "http_url",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "200"
+                      ],
+                      "column": "http_status_code",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 21,
+            "y": 18,
+            "w": 16,
+            "h": 9,
             "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8291510",
+          "type": "table",
+          "title": "Uptime Status",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT \n    http_url AS \"x_axis_1\",\n    MAX(value) AS \"x_axis_2\", \n    SUM(CASE WHEN value = 0 THEN 1 ELSE 0 END) AS \"error_count\", \n    CASE \n        WHEN MAX(value) = 1 THEN '🟢 Success'\n        WHEN MAX(value) = 0 THEN '🔴 Error'\n    END AS \"status_indicator\"\nFROM \n    \"httpcheck_status\"\nGROUP BY \n    http_url\nORDER BY \n    \"error_count\" DESC, \"x_axis_1\" ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "httpcheck_status",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Http Url",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "status_indicator",
+                    "alias": "status_indicator",
+                    "column": "status_indicator",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "y_axis_1",
+                    "alias": "error_count",
+                    "column": "error_count",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 7
           },
           "htmlContent": "",
           "markdownContent": ""
@@ -695,6 +827,8 @@
   },
   "defaultDatetimeDuration": {
     "type": "relative",
-    "relativeTimePeriod": "15m"
+    "relativeTimePeriod": "15m",
+    "startTime": 1734991549048000,
+    "endTime": 1734992449048000
   }
 }
