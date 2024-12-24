@@ -1,0 +1,1115 @@
+{
+  "version": 5,
+  "dashboardId": "7277217960614183136",
+  "title": "Zookeeper",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2024-12-24T07:08:54.535Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
+        {
+          "id": "Panel_ID4171710",
+          "type": "area",
+          "title": "Zookeeper Connection Status",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"zookeeper_connection_active\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_connection_active",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3252510",
+          "type": "metric",
+          "title": "Zookeeper Data Tree Count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"zookeeper_data_tree_ephemeral_node_count\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_data_tree_ephemeral_node_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID371910",
+          "type": "metric",
+          "title": "Zookeeper FD limit",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"zookeeper_file_descriptor_limit\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_file_descriptor_limit",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7834410",
+          "type": "metric",
+          "title": "Zookeeper FD Open",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"zookeeper_file_descriptor_open\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_file_descriptor_open",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8393510",
+          "type": "metric",
+          "title": "Zookeeper Latency Max",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "milliseconds",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"zookeeper_latency_max\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_latency_max",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2174110",
+          "type": "metric",
+          "title": "Zookeeper Packet Count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"zookeeper_packet_count\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_packet_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9296610",
+          "type": "area",
+          "title": "Zookeeper Request Active",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"zookeeper_request_active\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_request_active",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6059910",
+          "type": "line",
+          "title": "Zookeeper ruok",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"zookeeper_ruok\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_ruok",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2546010",
+          "type": "line",
+          "title": "Zookeeper Watch Count",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"zookeeper_watch_count\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_watch_count",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID276110",
+          "type": "metric",
+          "title": "Zookeeper Znode",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(distinct(value)) as \"y_axis_1\"  FROM \"zookeeper_znode_count\"",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "zookeeper_znode_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count-distinct",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m"
+  }
+}
