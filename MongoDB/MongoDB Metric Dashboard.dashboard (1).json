@@ -377,7 +377,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "sum(mongodb_document_operation_count) by (operation)",
+              "query": "sum(rate(mongodb_operation_count[2m])) by (operation)",
               "vrlFunctionQuery": "",
               "customQuery": true,
               "fields": {
@@ -417,7 +417,7 @@
         },
         {
           "id": "Panel_ID2750110",
-          "type": "bar",
+          "type": "line",
           "title": "Operations by type",
           "description": "",
           "config": {
@@ -479,7 +479,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "sum(mongodb_operation_count) by (operation)",
+              "query": "sum(rate(mongodb_operation_count[2m])) by (operation)",
               "vrlFunctionQuery": "",
               "customQuery": true,
               "fields": {
@@ -833,10 +833,10 @@
             }
           ],
           "layout": {
-            "x": 10,
-            "y": 18,
-            "w": 23,
-            "h": 6,
+            "x": 29,
+            "y": 16,
+            "w": 15,
+            "h": 7,
             "i": 8,
             "moved": false
           },
@@ -939,6 +939,134 @@
             "w": 18,
             "h": 8,
             "i": 9,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3165810",
+          "type": "table",
+          "title": "Table Chart",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(value) as \"y_axis_1\", count(start_time) as \"y_axis_2\"  FROM \"mongodb_collection_count\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "mongodb_collection_count",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Start Time",
+                    "alias": "y_axis_2",
+                    "column": "start_time",
+                    "color": "#c23531",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 10,
             "moved": false
           },
           "htmlContent": "",
