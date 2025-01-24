@@ -1,0 +1,1497 @@
+{
+  "version": 5,
+  "dashboardId": "7288347933831878286",
+  "title": "ALB",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2025-01-24T00:47:26.835Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
+        {
+          "id": "Panel_ID1565210",
+          "type": "table",
+          "title": "SSL Details",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT chosen_cert_arn as \"x_axis_1\", ssl_cipher as \"x_axis_2\", ssl_protocol as \"x_axis_3\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Cert Arn",
+                    "alias": "x_axis_1",
+                    "column": "chosen_cert_arn",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Ssl Cipher",
+                    "alias": "x_axis_2",
+                    "column": "ssl_cipher",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Ssl Protocol",
+                    "alias": "x_axis_3",
+                    "column": "ssl_protocol",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 1,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID395610",
+          "type": "table",
+          "title": "ELB",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT elb as \"x_axis_1\", elb_status_code as \"x_axis_2\", matched_rule_priority as \"x_axis_3\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Elb",
+                    "alias": "x_axis_1",
+                    "column": "elb",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status Code",
+                    "alias": "x_axis_2",
+                    "column": "elb_status_code",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Matched Rule Priority",
+                    "alias": "x_axis_3",
+                    "column": "matched_rule_priority",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 24,
+            "h": 9,
+            "i": 2,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID972910",
+          "type": "area",
+          "title": "Received Bytes",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(received_bytes) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Received Bytes",
+                    "alias": "y_axis_1",
+                    "column": "received_bytes",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 3,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID7586010",
+          "type": "area",
+          "title": "Sent Bytes",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(sent_bytes) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Sent Bytes",
+                    "alias": "y_axis_1",
+                    "column": "sent_bytes",
+                    "color": "#c23531",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 9,
+            "w": 24,
+            "h": 9,
+            "i": 4,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID8668210",
+          "type": "area",
+          "title": "Response Processing Time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "seconds",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(response_processing_time) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Response Processing Time",
+                    "alias": "y_axis_1",
+                    "column": "response_processing_time",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 5,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID498510",
+          "type": "area",
+          "title": "Request Processing Time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "seconds",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(request_processing_time) as \"y_axis_2\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Request Processing Time",
+                    "alias": "y_axis_2",
+                    "column": "request_processing_time",
+                    "color": "#c23531",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 18,
+            "w": 24,
+            "h": 9,
+            "i": 6,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6477510",
+          "type": "pie",
+          "title": "Domain Requests",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT domain_name as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Domain Name",
+                    "alias": "x_axis_1",
+                    "column": "domain_name",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "y_axis_1",
+                    "column": "_timestamp",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 7,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6356810",
+          "type": "pie",
+          "title": "Target Status",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT target_status_code_list as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Target Status Code List",
+                    "alias": "x_axis_1",
+                    "column": "target_status_code_list",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "y_axis_1",
+                    "column": "_timestamp",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 27,
+            "w": 24,
+            "h": 9,
+            "i": 8,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID311210",
+          "type": "sankey",
+          "title": "Client to Domain Request Time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "seconds",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT client_host as source, domain_name as target, sum(request_processing_time) as value FROM \"alb_external_wazuh\"GROUP BY source, target",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "source": {
+                  "label": "Client Host",
+                  "alias": "source",
+                  "column": "client_host",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "target": {
+                  "label": "Domain Name",
+                  "alias": "target",
+                  "column": "domain_name",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "value": {
+                  "label": "Request Processing Time",
+                  "alias": "value",
+                  "column": "request_processing_time",
+                  "color": "#5960b2",
+                  "aggregationFunction": "sum",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 9,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1310610",
+          "type": "metric",
+          "title": "200 status",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(target_status_code) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  WHERE target_status_code IN ('200')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Target Status Code",
+                    "alias": "y_axis_1",
+                    "column": "target_status_code",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "200"
+                      ],
+                      "column": "target_status_code",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 36,
+            "w": 24,
+            "h": 9,
+            "i": 10,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID5043210",
+          "type": "geomap",
+          "title": "Geo location on events",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 2,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_external_wazuh\"  WHERE classification IN ('Acceptable') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Timestamp",
+                  "alias": "weight",
+                  "column": "_timestamp",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "Acceptable"
+                      ],
+                      "column": "classification",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 11,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1997010",
+          "type": "geomap",
+          "title": "Geo location based 200 code",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 2,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_external_wazuh\"  WHERE elb_status_code IN ('200') GROUP BY latitude, longitude",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "alb_external_wazuh",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "latitude": {
+                  "label": "Geo Latitude",
+                  "alias": "latitude",
+                  "column": "geo_latitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "longitude": {
+                  "label": "Geo Longitude",
+                  "alias": "longitude",
+                  "column": "geo_longitude",
+                  "color": "#5960b2",
+                  "isDerived": false
+                },
+                "weight": {
+                  "label": "Timestamp",
+                  "alias": "weight",
+                  "column": "_timestamp",
+                  "color": "#5960b2",
+                  "aggregationFunction": "count",
+                  "isDerived": false
+                },
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "200"
+                      ],
+                      "column": "elb_status_code",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 45,
+            "w": 24,
+            "h": 9,
+            "i": 12,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m"
+  }
+}
