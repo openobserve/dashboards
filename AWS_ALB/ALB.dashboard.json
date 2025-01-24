@@ -73,11 +73,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT chosen_cert_arn as \"x_axis_1\", ssl_cipher as \"x_axis_2\", ssl_protocol as \"x_axis_3\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "query": "SELECT chosen_cert_arn as \"x_axis_1\", ssl_cipher as \"x_axis_2\", ssl_protocol as \"x_axis_3\"  FROM \"alb_demo\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -195,11 +195,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT elb as \"x_axis_1\", elb_status_code as \"x_axis_2\", matched_rule_priority as \"x_axis_3\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "query": "SELECT elb as \"x_axis_1\", elb_status_code as \"x_axis_2\", matched_rule_priority as \"x_axis_3\"  FROM \"alb_demo\"  GROUP BY x_axis_1, x_axis_2, x_axis_3",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -318,11 +318,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(received_bytes) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(received_bytes) as \"y_axis_1\"  FROM \"alb_demo\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -438,11 +438,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(sent_bytes) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(sent_bytes) as \"y_axis_1\"  FROM \"alb_demo\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -558,11 +558,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(response_processing_time) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(response_processing_time) as \"y_axis_1\"  FROM \"alb_demo\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -678,11 +678,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(request_processing_time) as \"y_axis_2\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(request_processing_time) as \"y_axis_2\"  FROM \"alb_demo\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -797,11 +797,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT domain_name as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1",
+              "query": "SELECT domain_name as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_demo\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -914,11 +914,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT target_status_code_list as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  GROUP BY x_axis_1",
+              "query": "SELECT target_status_code_list as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"alb_demo\"  GROUP BY x_axis_1",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [
                   {
@@ -1032,11 +1032,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT client_host as source, domain_name as target, sum(request_processing_time) as value FROM \"alb_external_wazuh\"GROUP BY source, target",
+              "query": "SELECT client_host as source, domain_name as target, sum(request_processing_time) as value FROM \"alb_demo\"GROUP BY source, target",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [],
                 "y": [],
@@ -1154,11 +1154,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT count(target_status_code) as \"y_axis_1\"  FROM \"alb_external_wazuh\"  WHERE target_status_code IN ('200')",
+              "query": "SELECT count(target_status_code) as \"y_axis_1\"  FROM \"alb_demo\"  WHERE target_status_code IN ('200')",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [],
                 "y": [
@@ -1276,11 +1276,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_external_wazuh\"  WHERE classification IN ('Acceptable') GROUP BY latitude, longitude",
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_demo\"  WHERE classification IN ('Acceptable') GROUP BY latitude, longitude",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [],
                 "y": [],
@@ -1411,11 +1411,11 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_external_wazuh\"  WHERE elb_status_code IN ('200') GROUP BY latitude, longitude",
+              "query": "SELECT geo_latitude as latitude, geo_longitude as longitude, count(_timestamp) as weight FROM \"alb_demo\"  WHERE elb_status_code IN ('200') GROUP BY latitude, longitude",
               "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
-                "stream": "alb_external_wazuh",
+                "stream": "alb_demo",
                 "stream_type": "logs",
                 "x": [],
                 "y": [],
