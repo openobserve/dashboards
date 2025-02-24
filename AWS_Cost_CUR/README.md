@@ -14,4 +14,4 @@ The JSON file includes panels covering various critical cost metrics, such as:
 - **Savings & Optimization**: Reserved Instance utilization, Savings Plans effectiveness, and unused resources.  
 - **Billing & Tag-Based Cost Breakdown**: Cost allocation by department, project, or environment using AWS cost tags.  
 
-![aws cost](./screenshots/aws_cur_dashboard.gif)  
+![aws cost](./screenshots/cur_dashboard.gif)  
