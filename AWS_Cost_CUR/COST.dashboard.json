@@ -1,0 +1,682 @@
+{
+  "version": 5,
+  "dashboardId": "7298095812674865739",
+  "title": "CUR",
+  "description": "",
+  "role": "",
+  "owner": "",
+  "created": "2025-02-19T21:48:37.479Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Default",
+      "panels": [
+        {
+          "id": "Panel_ID47010",
+          "type": "table",
+          "title": "Raw Cost Records",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "currency-dollar",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT lineitem_usageaccountid as \"x_axis_1\", lineitem_productcode as \"x_axis_2\", lineitem_resourceid as \"x_axis_3\", lineitem_usageamount as \"x_axis_4\", lineitem_unblendedcost as \"x_axis_5\", product_fromlocation as \"x_axis_6\", pricing_currency as \"x_axis_7\"  FROM \"aws_cost_cur\"  WHERE lineitem_usageaccountid IN ($AccountID) AND lineitem_productcode IN ($Resource)  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "aws_cost_cur",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Account ID",
+                    "alias": "x_axis_1",
+                    "column": "lineitem_usageaccountid",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Resource",
+                    "alias": "x_axis_2",
+                    "column": "lineitem_productcode",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Resourceid",
+                    "alias": "x_axis_3",
+                    "column": "lineitem_resourceid",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Usage Amount",
+                    "alias": "x_axis_4",
+                    "column": "lineitem_usageamount",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Unblended Cost",
+                    "alias": "x_axis_5",
+                    "column": "lineitem_unblendedcost",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Region",
+                    "alias": "x_axis_6",
+                    "column": "product_fromlocation",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Currency",
+                    "alias": "x_axis_7",
+                    "column": "pricing_currency",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_usageaccountid",
+                      "operator": "IN",
+                      "value": "$AccountID",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_productcode",
+                      "operator": "IN",
+                      "value": "$Resource",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 23,
+            "h": 11,
+            "i": 1,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "Panel_ID8791210",
+          "type": "line",
+          "title": "Cost Trend Over Time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "currency-dollar",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(lineitem_unblendedcost) as \"y_axis_1\", lineitem_productcode as \"breakdown_1\"  FROM \"aws_cost_cur\"  WHERE lineitem_usageaccountid IN ($AccountID) AND (lineitem_productcode IN ($Resource))  GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "aws_cost_cur",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Unblended Cost",
+                    "alias": "y_axis_1",
+                    "column": "lineitem_unblendedcost",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Lineitem Productcode",
+                    "alias": "breakdown_1",
+                    "column": "lineitem_productcode",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_usageaccountid",
+                      "operator": "IN",
+                      "value": "$AccountID",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "filterType": "group",
+                      "logicalOperator": "AND",
+                      "conditions": [
+                        {
+                          "type": "condition",
+                          "values": [],
+                          "column": "lineitem_productcode",
+                          "operator": "IN",
+                          "value": "$Resource",
+                          "logicalOperator": "AND",
+                          "filterType": "condition"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 23,
+            "y": 0,
+            "w": 25,
+            "h": 11,
+            "i": 2,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "Panel_ID9314510",
+          "type": "area",
+          "title": "Account Usage Over Time",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "currency-dollar",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", count(lineitem_usageamount) as \"y_axis_1\", lineitem_usageaccountid as \"breakdown_1\"  FROM \"aws_cost_cur\"  WHERE lineitem_usageaccountid IN ($AccountID) AND lineitem_productcode IN ($Resource)  GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "aws_cost_cur",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Lineitem Usageamount",
+                    "alias": "y_axis_1",
+                    "column": "lineitem_usageamount",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Lineitem Usageaccountid",
+                    "alias": "breakdown_1",
+                    "column": "lineitem_usageaccountid",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_usageaccountid",
+                      "operator": "IN",
+                      "value": "$AccountID",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_productcode",
+                      "operator": "IN",
+                      "value": "$Resource",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 11,
+            "w": 23,
+            "h": 9,
+            "i": 3,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "Panel_ID2739210",
+          "type": "table",
+          "title": "Group Rate Types",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "currency-dollar",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT product_group as \"x_axis_1\", product_groupdescription as \"x_axis_2\", product_location as \"x_axis_3\"  FROM \"aws_cost_cur\"  WHERE lineitem_usageaccountid IN ($AccountID) AND lineitem_productcode IN ($Resource)  GROUP BY x_axis_1, x_axis_2, x_axis_3",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "aws_cost_cur",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Group",
+                    "alias": "x_axis_1",
+                    "column": "product_group",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Charge Type",
+                    "alias": "x_axis_2",
+                    "column": "product_groupdescription",
+                    "color": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Product Location",
+                    "alias": "x_axis_3",
+                    "column": "product_location",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_usageaccountid",
+                      "operator": "IN",
+                      "value": "$AccountID",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "condition",
+                      "values": [],
+                      "column": "lineitem_productcode",
+                      "operator": "IN",
+                      "value": "$Resource",
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
+              }
+            }
+          ],
+          "layout": {
+            "x": 23,
+            "y": 11,
+            "w": 25,
+            "h": 9,
+            "i": 4,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [
+      {
+        "type": "query_values",
+        "name": "AccountID",
+        "label": "",
+        "query_data": {
+          "stream_type": "logs",
+          "stream": "aws_cost_cur",
+          "field": "lineitem_usageaccountid",
+          "max_record_size": 100000,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": []
+      },
+      {
+        "type": "query_values",
+        "name": "Resource",
+        "label": "",
+        "query_data": {
+          "stream_type": "logs",
+          "stream": "aws_cost_cur",
+          "field": "lineitem_productcode",
+          "max_record_size": 100000,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": []
+      }
+    ],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m"
+  }
+}
