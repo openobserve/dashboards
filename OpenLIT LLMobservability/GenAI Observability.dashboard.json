@@ -1,0 +1,1399 @@
+{
+  "version": 5,
+  "dashboardId": "7300446679726031227",
+  "title": "GenAI Observability",
+  "description": "This dashboard tracks the performance of LLM and VectorDB, recording metrics like latency, tokens used, and cost. It also logs input and output data, including request IDs, timestamps, user IDs, and model versions. This helps identify how well the systems are working and where improvements can be made.",
+  "role": "",
+  "owner": "",
+  "created": "2025-02-26T16:57:20.255Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "GenAI",
+      "panels": [
+        {
+          "id": "Panel_ID4678610",
+          "type": "metric",
+          "title": "Total Successful GenAI Requests",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\" WHERE telemetry_sdk_name IN ('openlit')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#121969",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "openlit"
+                      ],
+                      "column": "telemetry_sdk_name",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 0,
+            "w": 12,
+            "h": 4,
+            "i": 1,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6880210",
+          "type": "markdown",
+          "title": "-",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "",
+          "queries": [
+            {
+              "query": "",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 24,
+            "h": 8,
+            "i": 2,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": "---\n#### GenAI Observability\n\nThis dashboard displays the usage stats of LLMs, Vector Databases and GPUs, tracking OpenTelemetry Traces and Metrics sent using [OpenLIT](https://github.com/openlit/openlit).\n\n---"
+        },
+        {
+          "id": "Panel_ID3159310",
+          "type": "metric",
+          "title": "Total Successful VectorDB Requests",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(value) as \"y_axis_1\"  FROM \"db_total_requests\" WHERE telemetry_sdk_name IN ('openlit')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "db_total_requests",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#121969",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "openlit"
+                      ],
+                      "column": "telemetry_sdk_name",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 36,
+            "y": 0,
+            "w": 12,
+            "h": 4,
+            "i": 3,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3087510",
+          "type": "metric",
+          "title": "Total Usage Cost",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sum(value) as \"y_axis_1\"  FROM \"gen_ai_usage_cost_sum\" WHERE telemetry_sdk_name IN ('openlit')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_usage_cost_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#121969",
+                    "aggregationFunction": "sum",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "openlit"
+                      ],
+                      "column": "telemetry_sdk_name",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 24,
+            "y": 4,
+            "w": 12,
+            "h": 4,
+            "i": 4,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6066010",
+          "type": "metric",
+          "title": "Avg Usage Cost",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT avg(value) as \"y_axis_1\"  FROM \"gen_ai_usage_cost_bucket\" WHERE telemetry_sdk_name IN ('openlit')",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_usage_cost_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#121969",
+                    "aggregationFunction": "avg",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "openlit"
+                      ],
+                      "column": "telemetry_sdk_name",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 36,
+            "y": 4,
+            "w": 12,
+            "h": 4,
+            "i": 5,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2985010",
+          "type": "area",
+          "title": "Avg Request Duration",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "unit": "microseconds",
+            "decimals": 0,
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1
+            }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", avg(duration) as \"y_axis_1\"  FROM \"default\"  GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "x_axis_1",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "args": [
+                      {
+                        "value": null
+                      }
+                    ],
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Duration",
+                    "alias": "y_axis_1",
+                    "column": "duration",
+                    "color": "#5960b2",
+                    "aggregationFunction": "avg",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 8,
+            "w": 48,
+            "h": 9,
+            "i": 6,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID1096310",
+          "type": "h-bar",
+          "title": "Top GenAI Models by Usage",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_request_model as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Gen Ai Request Model",
+                    "alias": "x_axis_1",
+                    "column": "gen_ai_request_model",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 17,
+            "w": 26,
+            "h": 16,
+            "i": 7,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID2627110",
+          "type": "pie",
+          "title": "GenAI Requests by System",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_system as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Gen Ai System",
+                    "alias": "x_axis_1",
+                    "column": "gen_ai_system",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 26,
+            "y": 17,
+            "w": 11,
+            "h": 8,
+            "i": 8,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3443210",
+          "type": "pie",
+          "title": "GenAI Requests by Operation",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_operation_name as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Gen Ai Operation Name",
+                    "alias": "x_axis_1",
+                    "column": "gen_ai_operation_name",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 37,
+            "y": 17,
+            "w": 11,
+            "h": 8,
+            "i": 9,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6455310",
+          "type": "pie",
+          "title": "GenAI Requests by Environment",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_environment as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Gen Ai Environment",
+                    "alias": "x_axis_1",
+                    "column": "gen_ai_environment",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 26,
+            "y": 25,
+            "w": 11,
+            "h": 8,
+            "i": 10,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3428310",
+          "type": "pie",
+          "title": "GenAI Requests by Application",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_application_name as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"gen_ai_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "gen_ai_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Gen Ai Application Name",
+                    "alias": "x_axis_1",
+                    "column": "gen_ai_application_name",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 37,
+            "y": 25,
+            "w": 11,
+            "h": 8,
+            "i": 11,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID3329710",
+          "type": "table",
+          "title": "GenAI Requests",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT events as \"x_axis_1\", count(gen_ai_usage_cost) as \"y_axis_1\"  FROM \"default\" WHERE gen_ai_operation_name IN ('image', 'embedding', 'chat', 'audio') AND span_status IN ('OK') GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Events",
+                    "alias": "x_axis_1",
+                    "column": "events",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Gen Ai Usage Cost",
+                    "alias": "y_axis_1",
+                    "column": "gen_ai_usage_cost",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": [
+                    {
+                      "type": "list",
+                      "values": [
+                        "image",
+                        "embedding",
+                        "chat",
+                        "audio"
+                      ],
+                      "column": "gen_ai_operation_name",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    },
+                    {
+                      "type": "list",
+                      "values": [
+                        "OK"
+                      ],
+                      "column": "span_status",
+                      "operator": null,
+                      "value": null,
+                      "logicalOperator": "AND",
+                      "filterType": "condition"
+                    }
+                  ]
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 33,
+            "w": 48,
+            "h": 15,
+            "i": 12,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID9754610",
+          "type": "h-bar",
+          "title": "Top GenAI Models by Usage",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT db_system as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"db_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "db_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Db System",
+                    "alias": "x_axis_1",
+                    "column": "db_system",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 48,
+            "w": 35,
+            "h": 10,
+            "i": 13,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "Panel_ID6186610",
+          "type": "pie",
+          "title": "DB Requests by Operation",
+          "description": "",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "axis_border_show": false,
+            "legend_width": {
+              "unit": "px"
+            },
+            "base_map": {
+              "type": "osm"
+            },
+            "map_view": {
+              "zoom": 1,
+              "lat": 0,
+              "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT db_operation as \"x_axis_1\", count(value) as \"y_axis_1\"  FROM \"db_total_requests\"  GROUP BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "db_total_requests",
+                "stream_type": "metrics",
+                "x": [
+                  {
+                    "label": "Db Operation",
+                    "alias": "x_axis_1",
+                    "column": "db_operation",
+                    "color": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Value",
+                    "alias": "y_axis_1",
+                    "column": "value",
+                    "color": "#5960b2",
+                    "aggregationFunction": "count",
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100
+              }
+            }
+          ],
+          "layout": {
+            "x": 35,
+            "y": 48,
+            "w": 13,
+            "h": 10,
+            "i": 14,
+            "moved": false
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [
+      {
+        "type": "query_values",
+        "name": "Application",
+        "label": "",
+        "query_data": {
+          "stream_type": "metrics",
+          "stream": "gen_ai_total_requests",
+          "field": "gen_ai_application_name",
+          "max_record_size": null,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true
+      },
+      {
+        "type": "query_values",
+        "name": "Environment",
+        "label": "",
+        "query_data": {
+          "stream_type": "metrics",
+          "stream": "gen_ai_total_requests",
+          "field": "gen_ai_environment",
+          "max_record_size": null,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true
+      }
+    ],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1724391104630000,
+    "endTime": 1724392004630000
+  }
+}
