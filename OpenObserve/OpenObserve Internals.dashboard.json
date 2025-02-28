@@ -662,7 +662,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -715,7 +715,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -822,7 +822,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
