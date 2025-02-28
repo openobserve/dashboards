@@ -734,7 +734,7 @@
         {
           "id": "Panel_ID3176510",
           "type": "line",
-          "title": "Compact delay hours",
+          "title": "Compact pending jobs",
           "description": "",
           "config": {
             "show_legends": true,
@@ -751,7 +751,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "topk(10, sum(zo_compact_delay_hours{namespace=\"$namespace\"})by (organization,stream_type,stream))",
+              "query": "topk(10, sum(zo_compact_pending_jobs{namespace=\"$namespace\"})by (organization,stream_type))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -768,7 +768,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
