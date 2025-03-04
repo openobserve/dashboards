@@ -5,7 +5,7 @@
   "description": "OpenObserve Internal metrics",
   "role": "",
   "owner": "",
-  "created": "2024-12-05T03:36:24.216Z",
+  "created": "2025-03-04T03:36:24.216Z",
   "tabs": [
     {
       "tabId": "default",
@@ -1022,7 +1022,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1099,7 +1099,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1166,7 +1166,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1233,7 +1233,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1442,7 +1442,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1525,7 +1525,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1603,7 +1603,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1762,7 +1762,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -1915,7 +1915,7 @@
                 }
               },
               "config": {
-                "promql_legend": "/{organization}/{stream_type}/{stream}",
+                "promql_legend": "/{organization}/{stream_type}",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
