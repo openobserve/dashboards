@@ -666,7 +666,7 @@
       "name": "Ingesters",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID1298535",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -726,7 +726,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID5320702",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -777,7 +777,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID7666534",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -828,7 +828,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID5389535",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -876,7 +876,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID4315330",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -927,7 +927,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID7518945",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -978,7 +978,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8861610",
+          "id": "Panel_ID3975935",
           "type": "line",
           "title": "Storage: PVC usage (%)",
           "description": "",
@@ -1026,7 +1026,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3126710",
+          "id": "Panel_ID4033653",
           "type": "area-stacked",
           "title": "Storage: IOPS(Reads+Writes)",
           "description": "",
@@ -1086,7 +1086,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3140810",
+          "id": "Panel_ID5349514",
           "type": "area-stacked",
           "title": "Storage: ThroughPut(Read+Write)",
           "description": "",
@@ -1147,7 +1147,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID8461175",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -1195,7 +1195,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID1395270",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
@@ -1249,7 +1249,7 @@
       "name": "Compactors",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID8311343",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -1309,7 +1309,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID7669602",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -1360,7 +1360,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID4554880",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -1411,7 +1411,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID3248419",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -1459,7 +1459,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID9798863",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -1510,7 +1510,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID4294799",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -1561,7 +1561,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID1652588",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -1609,7 +1609,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID8643346",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
@@ -1663,7 +1663,7 @@
       "name": "Alertmanagers",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID8923309",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -1723,7 +1723,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID8442195",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -1774,7 +1774,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID3641227",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -1825,7 +1825,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID9555432",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -1873,7 +1873,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID9628767",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -1924,7 +1924,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID8232056",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -1975,7 +1975,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID6049318",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -2023,7 +2023,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID8838393",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
@@ -2077,7 +2077,7 @@
       "name": "Postgres",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID1323555",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -2137,7 +2137,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID2977874",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -2188,7 +2188,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID5292623",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -2239,7 +2239,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID7542797",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -2287,7 +2287,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID2414119",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -2338,7 +2338,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID2385710",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -2389,7 +2389,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8861610",
+          "id": "Panel_ID3426368",
           "type": "line",
           "title": "Storage: PVC usage (%)",
           "description": "",
@@ -2437,7 +2437,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3126710",
+          "id": "Panel_ID5738008",
           "type": "area-stacked",
           "title": "Storage: IOPS(Reads+Writes)",
           "description": "",
@@ -2497,7 +2497,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3140810",
+          "id": "Panel_ID6768487",
           "type": "area-stacked",
           "title": "Storage: ThroughPut(Read+Write)",
           "description": "",
@@ -2558,7 +2558,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID8275762",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -2606,7 +2606,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID6402218",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
@@ -2660,7 +2660,7 @@
       "name": "etcd",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID3656046",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -2720,7 +2720,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID7035313",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -2771,7 +2771,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID8791359",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -2822,7 +2822,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID4390600",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -2870,7 +2870,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID8188219",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -2921,7 +2921,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID5954692",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -2972,7 +2972,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8861610",
+          "id": "Panel_ID5149975",
           "type": "line",
           "title": "Storage: PVC usage (%)",
           "description": "",
@@ -3020,7 +3020,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3126710",
+          "id": "Panel_ID1263105",
           "type": "area-stacked",
           "title": "Storage: IOPS(Reads+Writes)",
           "description": "",
@@ -3080,7 +3080,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3140810",
+          "id": "Panel_ID8909076",
           "type": "area-stacked",
           "title": "Storage: ThroughPut(Read+Write)",
           "description": "",
@@ -3141,7 +3141,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID2330734",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -3189,7 +3189,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID6948541",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
@@ -3243,7 +3243,7 @@
       "name": "Routers",
       "panels": [
         {
-          "id": "Panel_ID4455010",
+          "id": "Panel_ID2136043",
           "type": "area-stacked",
           "title": "CPU utilization",
           "description": "The amount of CPU used by each pod in the cluster. CPU is reported as the average core usage measured in cpu units. 1 cpu, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers, and 1 hyper-thread on bare-metal Intel processors.",
@@ -3303,7 +3303,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8926510",
+          "id": "Panel_ID9291856",
           "type": "line",
           "title": "CPU Utilization (From Requests)",
           "description": "When a CPU Request is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that request.",
@@ -3354,7 +3354,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID8947610",
+          "id": "Panel_ID1424059",
           "type": "line",
           "title": "CPU Utilization (From Limits)",
           "description": "When a CPU Limit is present in a pod configuration, this chart shows how much CPU each pod uses as a percentage against that limit.",
@@ -3405,7 +3405,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID5620510",
+          "id": "Panel_ID6873843",
           "type": "area-stacked",
           "title": "Memory usage",
           "description": "The amount of memory being used by each Kubernetes pod.",
@@ -3453,7 +3453,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6935610",
+          "id": "Panel_ID2260289",
           "type": "line",
           "title": "Memory Utilization (From Requests)",
           "description": "When a Memory Request is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that request value.",
@@ -3504,7 +3504,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID9150910",
+          "id": "Panel_ID2633021",
           "type": "line",
           "title": "Memory Utilization (From Limits)",
           "description": "When a Memory Limit is present in a pod configuration, this chart shows how much memory each pod uses as a percentage against that limit value.",
@@ -3555,7 +3555,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID3109810",
+          "id": "Panel_ID4080307",
           "type": "area-stacked",
           "title": "Network: Receive bandwidth (primary interface)",
           "description": "",
@@ -3603,7 +3603,7 @@
           "markdownContent": ""
         },
         {
-          "id": "Panel_ID6996710",
+          "id": "Panel_ID3029784",
           "type": "area-stacked",
           "title": "Network: Transmit bandwidth (primary interface)",
           "description": "",
