@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7270279691804618315",
+  "dashboardId": "7376104538391994368",
   "title": "Kubernetes  / Namespace (Pod)",
   "description": "",
   "role": "",
   "owner": "",
-  "created": "2024-12-05T03:37:30.265Z",
+  "created": "2025-09-23T04:06:03.182Z",
   "tabs": [
     {
       "tabId": "default",
@@ -86,11 +86,11 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "k8s_pod_cpu_utilization{k8s_namespace_name=\"$k8s_namespace_name\", k8s_pod_name=\"$k8s_pod_name\"}",
+              "query": "k8s_pod_cpu_usage{k8s_namespace_name=\"$k8s_namespace_name\", k8s_pod_name=\"$k8s_pod_name\"}",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "k8s_pod_cpu_utilization",
+                "stream": "k8s_pod_cpu_usage",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
@@ -115,7 +115,10 @@
             "w": 24,
             "h": 6,
             "i": 7
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID62210",
@@ -484,7 +487,10 @@
             "w": 24,
             "h": 6,
             "i": 14
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID4327510",
@@ -607,12 +613,17 @@
         "label": "",
         "query_data": {
           "stream_type": "metrics",
-          "stream": "container_cpu_utilization",
+          "stream": "k8s_pod_cpu_usage",
           "field": "k8s_namespace_name",
           "max_record_size": 100
         },
         "value": "",
-        "options": []
+        "options": [],
+        "multiSelect": false,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
       },
       {
         "type": "query_values",
@@ -620,7 +631,7 @@
         "label": "",
         "query_data": {
           "stream_type": "metrics",
-          "stream": "k8s_pod_cpu_utilization",
+          "stream": "k8s_pod_cpu_usage",
           "field": "k8s_pod_name",
           "max_record_size": 100,
           "filter": [
@@ -636,7 +647,8 @@
         "multiSelect": false,
         "hideOnDashboard": false,
         "selectAllValueForMultiSelect": "first",
-        "customMultiSelectValue": []
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
       }
     ],
     "showDynamicFilters": false
