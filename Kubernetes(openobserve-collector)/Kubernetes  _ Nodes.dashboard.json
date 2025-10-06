@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "dashboardId": "7171349160317164434",
+  "version": 5,
+  "dashboardId": "7380761957986492417",
   "title": "Kubernetes  / Nodes",
   "description": "CPU, Memory, Storage, Network metrics for all nodes",
   "role": "",
   "owner": "",
-  "created": "2024-03-07T05:42:22.591Z",
+  "created": "2025-10-06T00:32:58.505Z",
   "tabs": [
     {
       "tabId": "default",
@@ -33,6 +33,7 @@
           "queries": [
             {
               "query": "k8s_node_memory_rss{}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_memory_rss",
@@ -40,7 +41,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -77,15 +83,21 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "k8s_node_cpu_utilization{}",
+              "query": "k8s_node_cpu_usage{}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "k8s_node_cpu_utilization",
+                "stream": "k8s_node_cpu_usage",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -100,7 +112,10 @@
             "w": 24,
             "h": 6,
             "i": 7
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID4566510",
@@ -124,6 +139,7 @@
           "queries": [
             {
               "query": "irate(k8s_node_network_io{direction=\"receive\"}[5m])",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_network_io",
@@ -131,7 +147,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -170,6 +191,7 @@
           "queries": [
             {
               "query": "irate(k8s_node_network_io{direction=\"transmit\"}[5m])",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_network_io",
@@ -177,7 +199,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -202,30 +229,99 @@
           "config": {
             "show_legends": true,
             "legends_position": "right",
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
               "lat": 0,
               "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
             }
           },
           "queryType": "promql",
           "queries": [
             {
-              "query": "ceil(sum by(k8s_node_name) (rate(container_fs_reads_total{container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"}[$__rate_interval]) + rate(container_fs_writes_total{container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"}[$__rate_interval])))",
+              "query": "sum by (k8s_node_name) (\n  rate(system_disk_operations{direction=\"read\"}[1m])\n)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "container_fs_reads_total",
+                "stream": "container_cpu_time",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
-                "promql_legend": "{k8s_node_name}",
+                "promql_legend": "{k8s_node_name}-read",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum by (k8s_node_name) (\n  rate(system_disk_operations{direction=\"write\"}[1m])\n)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "container_cpu_time",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{k8s_node_name}-write",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -237,7 +333,10 @@
             "w": 24,
             "h": 6,
             "i": 11
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID2533410",
@@ -248,30 +347,99 @@
             "show_legends": true,
             "legends_position": "right",
             "unit": "bps",
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
               "lat": 0,
               "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
             }
           },
           "queryType": "promql",
           "queries": [
             {
-              "query": "sum by(k8s_node_name)(\n  rate(container_fs_reads_bytes_total{\n    container!= \"\",\n    device=~\"(/dev/)?(mmcblk[0-9]p[0-9]+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"\n  }[$__rate_interval])\n  +\n  rate(container_fs_writes_bytes_total{\n    container!= \"\",\n    device=~\"(/dev/)?(mmcblk[0-9]p[0-9]+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\"\n  }[$__rate_interval])\n)",
+              "query": "sum by (k8s_node_name, device) (rate(system_disk_io{direction=\"read\"}[1m]))",
+              "vrlFunctionQuery": "",
               "customQuery": true,
               "fields": {
-                "stream": "container_fs_reads_bytes_total",
+                "stream": "container_cpu_time",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
-                "promql_legend": "{k8s_node_name}",
+                "promql_legend": "{k8s_node_name}-read",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum by (k8s_node_name, device) (rate(system_disk_io{direction=\"write\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "container_cpu_time",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{k8s_node_name}-write",
                 "layer_type": "scatter",
                 "weight_fixed": 1
               }
@@ -283,7 +451,10 @@
             "w": 24,
             "h": 6,
             "i": 12
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID3829110",
@@ -294,27 +465,73 @@
             "show_legends": true,
             "legends_position": "right",
             "unit": "percent-1",
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
               "lat": 0,
               "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
             }
           },
           "queryType": "promql",
           "queries": [
             {
-              "query": "(sum(avg_over_time(k8s_node_cpu_utilization[5m])) by (k8s_node_name)) / (sum(machine_cpu_cores) by (k8s_node_name))",
+              "query": "(k8s_node_cpu_usage / k8s_node_allocatable_cpu)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "machine_cpu_cores",
+                "stream": "container_cpu_time",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -332,7 +549,10 @@
             "w": 24,
             "h": 7,
             "i": 13
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID2868510",
@@ -343,27 +563,73 @@
             "show_legends": true,
             "legends_position": "right",
             "unit": "percent-1",
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
               "lat": 0,
               "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
             }
           },
           "queryType": "promql",
           "queries": [
             {
-              "query": "sum(k8s_node_memory_rss) by (k8s_node_name) /sum(machine_memory_bytes) by (k8s_node_name)",
+              "query": "(k8s_node_memory_usage / k8s_node_allocatable_memory)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "machine_memory_bytes",
+                "stream": "container_cpu_time",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -378,7 +644,10 @@
             "w": 24,
             "h": 7,
             "i": 14
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         }
       ]
     }

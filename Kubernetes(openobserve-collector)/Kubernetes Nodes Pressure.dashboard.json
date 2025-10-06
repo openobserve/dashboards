@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "dashboardId": "7171349160317164435",
+  "version": 5,
+  "dashboardId": "7380761957986492416",
   "title": "Kubernetes Nodes Pressure",
   "description": "Disk, Memory, PID pressure on nodes",
   "role": "",
   "owner": "",
-  "created": "2024-03-07T05:42:22.593Z",
+  "created": "2025-10-06T00:32:58.506Z",
   "tabs": [
     {
       "tabId": "default",
@@ -32,6 +32,7 @@
           "queries": [
             {
               "query": "k8s_node_condition_disk_pressure",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_condition_disk_pressure",
@@ -39,7 +40,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -80,6 +86,7 @@
           "queries": [
             {
               "query": "k8s_node_condition_memory_pressure",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_condition_memory_pressure",
@@ -87,7 +94,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",
@@ -128,6 +140,7 @@
           "queries": [
             {
               "query": "k8s_node_condition_pid_pressure",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_node_condition_pid_pressure",
@@ -135,7 +148,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_node_name}",

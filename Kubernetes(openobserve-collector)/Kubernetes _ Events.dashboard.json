@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "dashboardId": "7171349160317164442",
+  "version": 5,
+  "dashboardId": "7380761957680308224",
   "title": "Kubernetes / Events",
   "description": "What's happening in my cluster",
   "role": "",
   "owner": "",
-  "created": "2024-03-07T05:42:22.592Z",
+  "created": "2025-10-06T00:32:58.506Z",
   "tabs": [
     {
       "tabId": "default",
@@ -32,6 +32,7 @@
           "queries": [
             {
               "query": "SELECT severity as \"x_axis_1\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": null,
               "customQuery": false,
               "fields": {
                 "stream": "k8s_events",
@@ -54,7 +55,12 @@
                   }
                 ],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "",
@@ -92,6 +98,7 @@
           "queries": [
             {
               "query": "SELECT k8s_namespace_name as \"x_axis_1\", severity as \"x_axis_2\", count(severity) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+              "vrlFunctionQuery": null,
               "customQuery": false,
               "fields": {
                 "stream": "k8s_events",
@@ -101,12 +108,6 @@
                     "label": " ",
                     "alias": "x_axis_1",
                     "column": "k8s_namespace_name",
-                    "color": null
-                  },
-                  {
-                    "label": "Severity",
-                    "alias": "x_axis_2",
-                    "column": "severity",
                     "color": null
                   }
                 ],
@@ -120,7 +121,19 @@
                   }
                 ],
                 "z": [],
-                "filter": []
+                "breakdown": [
+                  {
+                    "label": "Severity",
+                    "alias": "x_axis_2",
+                    "column": "severity",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "",
@@ -157,7 +170,8 @@
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT k8s_event_reason as \"x_axis_1\", k8s_namespace_name as \"x_axis_2\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2 ORDER BY x_axis_1, x_axis_2",
+              "query": "SELECT body_object_reason as \"x_axis_1\", count(_timestamp) as \"y_axis_1\", k8s_namespace_name as \"breakdown_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, breakdown_1",
+              "vrlFunctionQuery": null,
               "customQuery": false,
               "fields": {
                 "stream": "k8s_events",
@@ -166,14 +180,11 @@
                   {
                     "label": " ",
                     "alias": "x_axis_1",
-                    "column": "k8s_event_reason",
-                    "color": null
-                  },
-                  {
-                    "label": "K8s Namespace Name",
-                    "alias": "x_axis_2",
-                    "column": "k8s_namespace_name",
-                    "color": null
+                    "column": "body_object_reason",
+                    "color": null,
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": true
                   }
                 ],
                 "y": [
@@ -182,11 +193,24 @@
                     "alias": "y_axis_1",
                     "column": "_timestamp",
                     "color": "#5960b2",
-                    "aggregationFunction": "count"
+                    "aggregationFunction": "count",
+                    "treatAsNonTimestamp": false
                   }
                 ],
                 "z": [],
-                "filter": []
+                "breakdown": [
+                  {
+                    "label": "K8s Namespace Name",
+                    "alias": "breakdown_1",
+                    "column": "k8s_namespace_name",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "",
@@ -201,29 +225,79 @@
             "w": 32,
             "h": 7,
             "i": 4
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
-          "id": "Panel_ID9456910",
+          "id": "Panel_ID8651010",
           "type": "table",
-          "title": "Raw data",
+          "title": "Events",
           "description": "",
           "config": {
             "show_legends": true,
             "legends_position": null,
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
+            },
+            "map_type": {
+              "type": "world"
             },
             "map_view": {
               "zoom": 1,
               "lat": 0,
               "lng": 0
+            },
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "mappings": [],
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [
+                "#53ca53"
+              ],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
             }
           },
           "queryType": "sql",
           "queries": [
             {
-              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", k8s_namespace_name as \"x_axis_3\", k8s_object_name as \"x_axis_4\", severity as \"x_axis_5\", k8s_event_reason as \"x_axis_6\", body as \"x_axis_7\", max(k8s_event_count) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7 ORDER BY x_axis_1, x_axis_3, x_axis_4, x_axis_5, x_axis_6, x_axis_7",
+              "query": "SELECT histogram(_timestamp) as \"x_axis_1\", k8s_namespace_name as \"x_axis_2\", severity as \"x_axis_3\", body_object_reason as \"x_axis_4\", count(_timestamp) as \"y_axis_1\"  FROM \"k8s_events\"  GROUP BY x_axis_1, x_axis_2, x_axis_3, x_axis_4 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
               "customQuery": false,
               "fields": {
                 "stream": "k8s_events",
@@ -234,65 +308,81 @@
                     "alias": "x_axis_1",
                     "column": "_timestamp",
                     "color": null,
-                    "aggregationFunction": "histogram"
+                    "aggregationFunction": "histogram",
+                    "sortBy": "ASC",
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": false
                   },
                   {
-                    "label": "Namespace",
-                    "alias": "x_axis_3",
+                    "label": "K8s Namespace Name",
+                    "alias": "x_axis_2",
                     "column": "k8s_namespace_name",
-                    "color": null
-                  },
-                  {
-                    "label": "Object",
-                    "alias": "x_axis_4",
-                    "column": "k8s_object_name",
-                    "color": null
+                    "color": null,
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": true
                   },
                   {
                     "label": "Severity",
-                    "alias": "x_axis_5",
+                    "alias": "x_axis_3",
                     "column": "severity",
-                    "color": null
+                    "color": null,
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": true
                   },
                   {
-                    "label": "Reason",
-                    "alias": "x_axis_6",
-                    "column": "k8s_event_reason",
-                    "color": null
-                  },
-                  {
-                    "label": "Body",
-                    "alias": "x_axis_7",
-                    "column": "body",
-                    "color": null
+                    "label": "Body Object Reason",
+                    "alias": "x_axis_4",
+                    "column": "body_object_reason",
+                    "color": null,
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": true
                   }
                 ],
                 "y": [
                   {
-                    "label": "Count",
+                    "label": "Timestamp",
                     "alias": "y_axis_1",
-                    "column": "k8s_event_count",
+                    "column": "_timestamp",
                     "color": "#5960b2",
-                    "aggregationFunction": "max"
+                    "aggregationFunction": "count",
+                    "isDerived": false,
+                    "havingConditions": [],
+                    "treatAsNonTimestamp": false
                   }
                 ],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "",
                 "layer_type": "scatter",
-                "weight_fixed": 1
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": []
               }
             }
           ],
           "layout": {
             "x": 0,
-            "y": 17,
+            "y": 15,
             "w": 48,
-            "h": 13,
-            "i": 5
-          }
+            "h": 10,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         }
       ]
     }

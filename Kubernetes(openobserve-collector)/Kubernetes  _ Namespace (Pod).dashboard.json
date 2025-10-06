@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7376104538391994368",
+  "dashboardId": "7380761957642559488",
   "title": "Kubernetes  / Namespace (Pod)",
   "description": "",
   "role": "",
   "owner": "",
-  "created": "2025-09-23T04:06:03.182Z",
+  "created": "2025-10-06T00:32:58.502Z",
   "tabs": [
     {
       "tabId": "default",

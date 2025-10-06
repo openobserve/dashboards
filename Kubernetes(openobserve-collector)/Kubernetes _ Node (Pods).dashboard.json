@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "dashboardId": "7171349160317164443",
+  "version": 5,
+  "dashboardId": "7380761958015852544",
   "title": "Kubernetes / Node (Pods)",
   "description": "Pod metrics per node",
   "role": "",
   "owner": "",
-  "created": "2024-03-07T05:42:22.593Z",
+  "created": "2025-10-06T00:32:58.507Z",
   "tabs": [
     {
       "tabId": "default",
@@ -33,6 +33,7 @@
           "queries": [
             {
               "query": "k8s_pod_memory_usage{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_memory_usage",
@@ -40,7 +41,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -55,7 +61,10 @@
             "w": 24,
             "h": 6,
             "i": 6
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID6215710",
@@ -77,15 +86,21 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "k8s_pod_cpu_utilization{k8s_node_name=\"$k8s_node_name\"}",
+              "query": "k8s_pod_cpu_usage{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
-                "stream": "k8s_pod_cpu_utilization",
+                "stream": "k8s_pod_cpu_usage",
                 "stream_type": "metrics",
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -100,7 +115,10 @@
             "w": 24,
             "h": 6,
             "i": 7
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID4566510",
@@ -124,6 +142,7 @@
           "queries": [
             {
               "query": "irate(k8s_pod_network_io{direction=\"receive\", k8s_node_name=\"$k8s_node_name\"}[5m])",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_network_io",
@@ -131,7 +150,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -170,6 +194,7 @@
           "queries": [
             {
               "query": "irate(k8s_pod_network_io{direction=\"transmit\", k8s_node_name=\"$k8s_node_name\"}[5m])",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_network_io",
@@ -177,7 +202,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -215,6 +245,7 @@
           "queries": [
             {
               "query": "ceil(sum by(pod) (rate(container_fs_reads_total{container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", k8s_node_name=\"$k8s_node_name\"}[$__rate_interval]) + rate(container_fs_writes_total{container!=\"\", device=~\"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\", k8s_node_name=\"$k8s_node_name\"}[$__rate_interval])))",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "container_fs_reads_total",
@@ -222,7 +253,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{pod}",
@@ -261,6 +297,7 @@
           "queries": [
             {
               "query": "sum by(pod)(\n  rate(container_fs_reads_bytes_total{\n    container!= \"\",\n    device=~\"(/dev/)?(mmcblk[0-9]p[0-9]+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\",\n    k8s_node_name=\"$k8s_node_name\"\n  }[$__rate_interval])\n  +\n  rate(container_fs_writes_bytes_total{\n    container!= \"\",\n    device=~\"(/dev/)?(mmcblk[0-9]p[0-9]+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)\",\n    k8s_node_name=\"$k8s_node_name\"\n  }[$__rate_interval])\n)",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "container_fs_reads_bytes_total",
@@ -268,7 +305,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{pod}",
@@ -307,6 +349,7 @@
           "queries": [
             {
               "query": "k8s_pod_cpu_request_utilization{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_cpu_request_utilization",
@@ -314,7 +357,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -356,6 +404,7 @@
           "queries": [
             {
               "query": "k8s_pod_cpu_request_utilization{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_cpu_limit_utilization",
@@ -363,7 +412,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -405,6 +459,7 @@
           "queries": [
             {
               "query": "k8s_pod_memory_request_utilization{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_memory_request_utilization",
@@ -412,7 +467,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -454,6 +514,7 @@
           "queries": [
             {
               "query": "k8s_pod_memory_limit_utilization{k8s_node_name=\"$k8s_node_name\"}",
+              "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
                 "stream": "k8s_pod_memory_limit_utilization",
@@ -461,7 +522,12 @@
                 "x": [],
                 "y": [],
                 "z": [],
-                "filter": []
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
               },
               "config": {
                 "promql_legend": "{k8s_pod_name}",
@@ -492,21 +558,25 @@
         "label": "",
         "query_data": {
           "stream_type": "metrics",
-          "stream": "container_cpu_utilization",
+          "stream": "k8s_node_allocatable_cpu",
           "field": "k8s_node_name",
           "max_record_size": 100
         },
         "value": "",
-        "options": []
-      },
-      {
-        "type": "dynamic_filters",
-        "name": "+",
-        "label": "",
-        "query_data": null,
-        "value": "",
-        "options": []
+        "options": [],
+        "multiSelect": false,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
       }
-    ]
+    ],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1759716049421000,
+    "endTime": 1759716949421000
   }
 }
