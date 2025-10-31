@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957990686720",
+  "dashboardId": "7389706929645293568",
   "title": "Kubernetes / Namespace (Objects)",
   "description": "Deployments, Statefulsets, Daemonsets, Cronjobs, Events",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.506Z",
+  "created": "2025-10-30T16:57:05.778Z",
   "tabs": [
     {
       "tabId": "default",
@@ -61,7 +61,7 @@
             "x": 0,
             "y": 0,
             "w": 24,
-            "h": 3,
+            "h": 9,
             "i": 1
           }
         },
@@ -113,9 +113,9 @@
           ],
           "layout": {
             "x": 0,
-            "y": 3,
+            "y": 9,
             "w": 24,
-            "h": 3,
+            "h": 9,
             "i": 2
           }
         },
@@ -169,7 +169,7 @@
             "x": 24,
             "y": 0,
             "w": 24,
-            "h": 3,
+            "h": 9,
             "i": 3
           }
         },
@@ -221,9 +221,9 @@
           ],
           "layout": {
             "x": 24,
-            "y": 3,
+            "y": 9,
             "w": 24,
-            "h": 3,
+            "h": 9,
             "i": 4
           }
         }

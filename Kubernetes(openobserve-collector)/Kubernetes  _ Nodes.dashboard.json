@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957986492417",
+  "dashboardId": "7389706929641099264",
   "title": "Kubernetes  / Nodes",
   "description": "CPU, Memory, Storage, Network metrics for all nodes",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.505Z",
+  "created": "2025-10-30T16:57:05.779Z",
   "tabs": [
     {
       "tabId": "default",
@@ -32,7 +32,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "k8s_node_memory_rss{}",
+              "query": "k8s_node_memory_rss{k8s_cluster='$k8s_cluster'}",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -61,7 +61,10 @@
             "w": 24,
             "h": 6,
             "i": 6
-          }
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
         },
         {
           "id": "Panel_ID6215710",
@@ -83,7 +86,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "k8s_node_cpu_usage{}",
+              "query": "k8s_node_cpu_usage{k8s_cluster='$k8s_cluster'}",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -476,6 +479,9 @@
             "legend_width": {
               "unit": "px"
             },
+            "legend_height": {
+              "unit": "px"
+            },
             "base_map": {
               "type": "osm"
             },
@@ -512,12 +518,13 @@
               "layout": null,
               "num_of_columns": 1,
               "group_by_y_axis": false
-            }
+            },
+            "show_gridlines": true
           },
           "queryType": "promql",
           "queries": [
             {
-              "query": "(k8s_node_cpu_usage / k8s_node_allocatable_cpu)",
+              "query": "(1 - avg by (k8s_node_name) (\n  system_cpu_utilization{state=\"idle\"}\n))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -615,7 +622,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "(k8s_node_memory_usage / k8s_node_allocatable_memory)",
+              "query": "system_memory_utilization{state=\"used\"}",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -653,6 +660,32 @@
     }
   ],
   "variables": {
-    "list": []
+    "list": [
+      {
+        "type": "query_values",
+        "name": "k8s_cluster",
+        "label": "",
+        "query_data": {
+          "stream_type": "metrics",
+          "stream": "k8s_node_cpu_usage",
+          "field": "k8s_cluster",
+          "max_record_size": null,
+          "filter": []
+        },
+        "value": "",
+        "options": [
+          {
+            "label": "",
+            "value": "",
+            "selected": true
+          }
+        ],
+        "multiSelect": false,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "first",
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
+      }
+    ]
   }
 }

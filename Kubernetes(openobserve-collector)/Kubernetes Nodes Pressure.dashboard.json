@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957986492416",
+  "dashboardId": "7389706929636904960",
   "title": "Kubernetes Nodes Pressure",
   "description": "Disk, Memory, PID pressure on nodes",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.506Z",
+  "created": "2025-10-30T16:57:05.778Z",
   "tabs": [
     {
       "tabId": "default",
@@ -61,7 +61,7 @@
             "x": 0,
             "y": 0,
             "w": 48,
-            "h": 4,
+            "h": 7,
             "i": 1
           }
         },
@@ -113,9 +113,9 @@
           ],
           "layout": {
             "x": 0,
-            "y": 4,
+            "y": 7,
             "w": 48,
-            "h": 4,
+            "h": 7,
             "i": 2
           }
         },
@@ -167,9 +167,9 @@
           ],
           "layout": {
             "x": 0,
-            "y": 8,
+            "y": 14,
             "w": 48,
-            "h": 4,
+            "h": 7,
             "i": 3
           }
         }

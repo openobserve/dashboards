@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957680308224",
+  "dashboardId": "7389706929477521408",
   "title": "Kubernetes / Events",
   "description": "What's happening in my cluster",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.506Z",
+  "created": "2025-10-30T16:57:05.778Z",
   "tabs": [
     {
       "tabId": "default",

@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957701279744",
+  "dashboardId": "7389706929821454336",
   "title": "Kubernetes  / Namespace (Pods)",
   "description": "Pod metrics per namespace",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.504Z",
+  "created": "2025-10-30T16:57:05.779Z",
   "tabs": [
     {
       "tabId": "default",
@@ -597,6 +597,11 @@
           }
         }
       ]
+    },
+    {
+      "tabId": "28767",
+      "name": "test tab",
+      "panels": []
     }
   ],
   "variables": {

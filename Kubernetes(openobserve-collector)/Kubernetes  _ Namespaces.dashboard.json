@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "dashboardId": "7380761957982298112",
+  "dashboardId": "7389706929515270144",
   "title": "Kubernetes  / Namespaces",
   "description": "Saturation metrics (CPU, Memory, Network) for all namespaces.",
   "role": "",
   "owner": "",
-  "created": "2025-10-06T00:32:58.505Z",
+  "created": "2025-10-30T16:57:05.779Z",
   "tabs": [
     {
       "tabId": "default",
