@@ -524,7 +524,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "(1 - avg by (k8s_node_name) (\n  system_cpu_utilization{state=\"idle\"}\n))",
+              "query": "(1 - avg by (k8s_node_name) (\n  system_cpu_utilization{state=\"idle\", k8s_cluster=\"$k8s_cluster\"}\n))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -622,7 +622,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "system_memory_utilization{state=\"used\"}",
+              "query": "system_memory_utilization{state=\"used\", k8s_cluster=\"$k8s_cluster\"}",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
