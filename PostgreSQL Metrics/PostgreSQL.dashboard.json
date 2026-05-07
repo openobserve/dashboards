@@ -298,7 +298,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "(postgresql_backends / postgresql_connection_max)",
+              "query": "(sum(postgresql_backends) / sum(postgresql_connection_max)) * 100",
               "vrlFunctionQuery": "",
               "customQuery": true,
               "fields": {
@@ -315,7 +315,7 @@
                 }
               },
               "config": {
-                "promql_legend": "{postgresql_database_name}",
+                "promql_legend": "Utilization %",
                 "layer_type": "scatter",
                 "weight_fixed": 1,
                 "limit": 0,
@@ -3809,7 +3809,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "((rate(postgresql_blks_hit[5m]) / (rate(postgresql_blks_hit[5m]) + rate(postgresql_blks_read[5m]))) * 0.40) + ((rate(postgresql_commits[5m]) / (rate(postgresql_commits[5m]) + rate(postgresql_rollbacks[5m]))) * 0.30) + (((postgresql_connection_max - postgresql_backends) / postgresql_connection_max) * 0.30)",
+              "query": "((sum(rate(postgresql_blks_hit[5m])) / (sum(rate(postgresql_blks_hit[5m])) + sum(rate(postgresql_blks_read[5m])))) * 0.40) + ((sum(rate(postgresql_commits[5m])) / (sum(rate(postgresql_commits[5m])) + sum(rate(postgresql_rollbacks[5m])))) * 0.30) + (((sum(postgresql_connection_max) - sum(postgresql_backends)) / sum(postgresql_connection_max)) * 0.30)",
               "vrlFunctionQuery": "",
               "customQuery": true,
               "fields": {
