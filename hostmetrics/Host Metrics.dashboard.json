@@ -212,7 +212,7 @@
       "queryType": "promql",
       "queries": [
         {
-          "query": "avg by(host_name) (irate(system_network_io{direction=\"receive\" }[5m]))",
+          "query": "sum by(host_name) (irate(system_network_io{direction=\"receive\" }[5m]))",
           "customQuery": true,
           "fields": {
             "stream": "bytes_committed",
@@ -258,7 +258,7 @@
       "queryType": "promql",
       "queries": [
         {
-          "query": "avg by(host_name) (irate(system_network_io{direction=\"transmit\" }[5m]))",
+          "query": "sum by(host_name) (irate(system_network_io{direction=\"transmit\" }[5m]))",
           "customQuery": true,
           "fields": {
             "stream": "bytes_committed",
