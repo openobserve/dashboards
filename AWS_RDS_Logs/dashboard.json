@@ -1,0 +1,1425 @@
+{
+  "version": 8,
+  "dashboardId": "7477275965811343360",
+  "title": "RDS Log Analysis",
+  "description": "Production-grade RDS log analysis dashboard for debugging, incident investigation, and operational health monitoring.",
+  "role": "",
+  "owner": "",
+  "created": "2026-06-29T08:25:11.317823697Z",
+  "tabs": [
+    {
+      "tabId": "tab-overview",
+      "name": "Overview",
+      "panels": [
+        {
+          "id": "panel-o0",
+          "type": "metric",
+          "title": "Total Log Events",
+          "description": "Total number of RDS log events in the selected time range",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Total Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 8,
+            "i": 0
+          }
+        },
+        {
+          "id": "panel-o1",
+          "type": "metric",
+          "title": "Error Count",
+          "description": "Total ERROR severity events",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity = 'ERROR'",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Errors",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 8,
+            "i": 1
+          }
+        },
+        {
+          "id": "panel-o2",
+          "type": "metric",
+          "title": "Warning Count",
+          "description": "Total WARNING severity events",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity = 'WARNING'",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Warnings",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 8,
+            "i": 2
+          }
+        },
+        {
+          "id": "panel-o3",
+          "type": "metric",
+          "title": "RDS Instances Reporting",
+          "description": "Unique RDS instances actively logging",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COUNT(DISTINCT rds_identifier) as y_axis_1 FROM \"rds_logs\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Instances",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 8,
+            "i": 3
+          }
+        },
+        {
+          "id": "panel-o4",
+          "type": "area",
+          "title": "Log Volume Over Time",
+          "description": "Total log events over time — spot traffic spikes and quiet periods",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "legend_height": {
+              "unit": "px"
+            },
+            "base_map": null,
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": null,
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
+            },
+            "show_gridlines": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 8,
+            "w": 192,
+            "h": 15,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "panel-o5",
+          "type": "area-stacked",
+          "title": "Severity Trend Over Time",
+          "description": "Log volume broken down by severity — quickly see when errors/warnings spike",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "legend_height": {
+              "unit": "px"
+            },
+            "base_map": null,
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": null,
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": [
+                {
+                  "type": "value",
+                  "value": "INFO",
+                  "color": "#75b259"
+                },
+                {
+                  "type": "value",
+                  "value": "ERROR",
+                  "color": "#e61010"
+                }
+              ]
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
+            },
+            "show_gridlines": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as x_axis_1, severity as breakdown_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Severity",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 23,
+            "w": 192,
+            "h": 15,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "panel-o6",
+          "type": "stacked",
+          "title": "Log Volume by RDS Instance",
+          "description": "Activity per RDS identifier — identify which instance is generating the most logs",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "legend_height": {
+              "unit": "px"
+            },
+            "base_map": null,
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": null,
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
+            },
+            "show_gridlines": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as x_axis_1, rds_identifier as breakdown_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "RDS Instance",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 38,
+            "w": 192,
+            "h": 15,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        }
+      ]
+    },
+    {
+      "tabId": "tab-breakdown",
+      "name": "Activity Breakdown",
+      "panels": [
+        {
+          "id": "panel-b0",
+          "type": "donut",
+          "title": "Events by Severity",
+          "description": "Proportion of log events per severity level",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "legend_height": {
+              "unit": "px"
+            },
+            "base_map": null,
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": null,
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": [
+                {
+                  "type": "value",
+                  "value": "ERROR",
+                  "color": "#b25959"
+                }
+              ]
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
+            },
+            "show_gridlines": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT severity as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Severity",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Count",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 64,
+            "h": 15,
+            "i": 0
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "panel-b1",
+          "type": "donut",
+          "title": "Events by Log Type",
+          "description": "Proportion of events per RDS log type (error, slow query, general, audit)",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT rds_log_type as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Log Type",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Count",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 64,
+            "y": 0,
+            "w": 64,
+            "h": 15,
+            "i": 1
+          }
+        },
+        {
+          "id": "panel-b2",
+          "type": "donut",
+          "title": "Events by Engine",
+          "description": "Log distribution across MySQL, PostgreSQL, Aurora, etc.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT rds_engine as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Engine",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Count",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 0,
+            "w": 64,
+            "h": 15,
+            "i": 2
+          }
+        },
+        {
+          "id": "panel-b3",
+          "type": "h-bar",
+          "title": "Log Events per RDS Instance",
+          "description": "Total log volume per instance — identify chatty or struggling instances",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT rds_identifier as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "RDS Instance",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 15,
+            "w": 96,
+            "h": 18,
+            "i": 3
+          }
+        },
+        {
+          "id": "panel-b4",
+          "type": "h-bar",
+          "title": "Log Events per Source",
+          "description": "Top sources generating logs — drill into specific components",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT source as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Source",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 15,
+            "w": 96,
+            "h": 18,
+            "i": 4
+          }
+        },
+        {
+          "id": "panel-b5",
+          "type": "stacked",
+          "title": "Log Type Trend by Instance",
+          "description": "Which log types each instance is generating over time — spot unusual patterns",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as x_axis_1, rds_log_type as breakdown_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Events",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Log Type",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 33,
+            "w": 192,
+            "h": 15,
+            "i": 5
+          }
+        }
+      ]
+    },
+    {
+      "tabId": "tab-errors",
+      "name": "Error Investigation",
+      "panels": [
+        {
+          "id": "panel-e0",
+          "type": "bar",
+          "title": "Errors & Warnings by RDS Instance",
+          "description": "Which instance is generating the most errors/warnings — first stop in triage",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT rds_identifier as x_axis_1, severity as breakdown_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity IN ('ERROR', 'WARNING', 'CRITICAL', 'FATAL') GROUP BY x_axis_1, breakdown_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "RDS Instance",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Count",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Severity",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 96,
+            "h": 15,
+            "i": 0
+          }
+        },
+        {
+          "id": "panel-e1",
+          "type": "bar",
+          "title": "Errors by Log Type",
+          "description": "Which log type (slow query, error log, general) produces the most errors",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT rds_log_type as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity IN ('ERROR', 'WARNING', 'CRITICAL', 'FATAL') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Log Type",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Count",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 96,
+            "h": 15,
+            "i": 1
+          }
+        },
+        {
+          "id": "panel-e2",
+          "type": "line",
+          "title": "Error Rate Over Time",
+          "description": "ERROR and CRITICAL events over time — identify when the incident started",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "decimals": 0,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": {
+              "rotate": 0
+            },
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "legend_width": {
+              "unit": "px"
+            },
+            "legend_height": {
+              "unit": "px"
+            },
+            "base_map": null,
+            "map_type": {
+              "type": "world"
+            },
+            "map_view": null,
+            "map_symbol_style": {
+              "size": "by Value",
+              "size_by_value": {
+                "min": 1,
+                "max": 100
+              },
+              "size_fixed": 2
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "connect_nulls": true,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last",
+              "colorBySeries": []
+            },
+            "trellis": {
+              "layout": null,
+              "num_of_columns": 1,
+              "group_by_y_axis": false
+            },
+            "show_gridlines": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) as x_axis_1, severity as breakdown_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity IN ('ERROR', 'CRITICAL', 'FATAL') GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Errors",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "treatAsNonTimestamp": false,
+                    "showFieldAsJson": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Severity",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 15,
+            "w": 192,
+            "h": 15,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": " // To know more about ECharts , \n// visit: https://echarts.apache.org/examples/en/index.html \n// Example: https://echarts.apache.org/examples/en/editor.html?c=line-simple \n// Define your ECharts 'option' here. \n// 'data' variable is available for use and contains the response data from the search result and it is an array.\noption = {  \n \n};\n  "
+        },
+        {
+          "id": "panel-e3",
+          "type": "bar",
+          "title": "Top Error Sources",
+          "description": "Source components generating the most errors",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT source as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity IN ('ERROR', 'CRITICAL', 'FATAL') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Source",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Errors",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 30,
+            "w": 96,
+            "h": 15,
+            "i": 3
+          }
+        },
+        {
+          "id": "panel-e4",
+          "type": "bar",
+          "title": "Top Error Log Groups",
+          "description": "CloudWatch log groups with the most errors",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT loggroup as x_axis_1, COUNT(_timestamp) as y_axis_1 FROM \"rds_logs\" WHERE severity IN ('ERROR', 'CRITICAL', 'FATAL') GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Log Group",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Errors",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 30,
+            "w": 96,
+            "h": 15,
+            "i": 4
+          }
+        },
+        {
+          "id": "panel-e5",
+          "type": "table",
+          "title": "Recent Error & Warning Logs",
+          "description": "Latest ERROR/WARNING messages — read the actual log lines to diagnose issues",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "base_map": null,
+            "map_view": null,
+            "table_dynamic_columns": true
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT _timestamp, rds_identifier, rds_engine, severity, rds_log_type, source, message FROM \"rds_logs\" WHERE severity IN ('ERROR', 'WARNING', 'CRITICAL', 'FATAL') ORDER BY _timestamp DESC LIMIT 100",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "rds_logs",
+                "stream_type": "logs",
+                "x": [],
+                "y": [],
+                "z": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": ""
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 45,
+            "w": 192,
+            "h": 20,
+            "i": 5
+          }
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [
+      {
+        "type": "query",
+        "name": "rds_identifier",
+        "label": "RDS Instance",
+        "query_data": null,
+        "value": null,
+        "options": null
+      },
+      {
+        "type": "query",
+        "name": "severity",
+        "label": "Severity",
+        "query_data": null,
+        "value": null,
+        "options": null
+      },
+      {
+        "type": "query",
+        "name": "rds_engine",
+        "label": "Engine",
+        "query_data": null,
+        "value": null,
+        "options": null
+      }
+    ],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "15m",
+    "startTime": 1782722447132000,
+    "endTime": 1782723347132000
+  }
+}
