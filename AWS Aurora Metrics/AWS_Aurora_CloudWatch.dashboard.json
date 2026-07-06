@@ -1,0 +1,916 @@
+{
+    "version": 8,
+    "dashboardId": "7475911724546142208",
+    "title": "Aurora (CloudWatch)",
+    "description": "CloudWatch AWS/RDS metrics for Aurora clusters via cloudwatch-exporter. Cluster variable (shared|prod).",
+    "role": "",
+    "owner": "",
+    "created": "2026-06-25T14:04:10.660Z",
+    "tabs": [
+        {
+            "tabId": "aurora",
+            "name": "Aurora",
+            "panels": [
+                {
+                    "id": "panel_1",
+                    "type": "line",
+                    "title": "Aurora — CPU (%)",
+                    "description": "CPUUtilization per instance.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "unit": "percent",
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_cpuutilization_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_cpuutilization_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 0,
+                        "y": 0,
+                        "w": 96,
+                        "h": 18,
+                        "i": 1
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_2",
+                    "type": "line",
+                    "title": "Aurora — Connections",
+                    "description": "DatabaseConnections per instance.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_database_connections_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_database_connections_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 96,
+                        "y": 0,
+                        "w": 96,
+                        "h": 18,
+                        "i": 2
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_3",
+                    "type": "line",
+                    "title": "Aurora — Freeable memory",
+                    "description": "FreeableMemory (bytes).",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "unit": "bytes",
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "min(aws_rds_freeable_memory_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_freeable_memory_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 0,
+                        "y": 18,
+                        "w": 96,
+                        "h": 17,
+                        "i": 3
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_4",
+                    "type": "line",
+                    "title": "Aurora — Replica lag (ms)",
+                    "description": "AuroraReplicaLag.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_aurora_replica_lag_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_aurora_replica_lag_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 96,
+                        "y": 18,
+                        "w": 96,
+                        "h": 17,
+                        "i": 4
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_5",
+                    "type": "line",
+                    "title": "Aurora — Read latency (s)",
+                    "description": "ReadLatency.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "unit": "seconds",
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_read_latency_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_read_latency_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 0,
+                        "y": 35,
+                        "w": 96,
+                        "h": 17,
+                        "i": 5
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_6",
+                    "type": "line",
+                    "title": "Aurora — Write latency (s)",
+                    "description": "WriteLatency.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "unit": "seconds",
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_write_latency_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_write_latency_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 96,
+                        "y": 35,
+                        "w": 96,
+                        "h": 17,
+                        "i": 6
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_7",
+                    "type": "line",
+                    "title": "Aurora — Commit latency (s)",
+                    "description": "CommitLatency.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "unit": "seconds",
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "max(aws_rds_commit_latency_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_commit_latency_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 0,
+                        "y": 52,
+                        "w": 96,
+                        "h": 18,
+                        "i": 7
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                },
+                {
+                    "id": "panel_8",
+                    "type": "line",
+                    "title": "Aurora — Deadlocks",
+                    "description": "Deadlocks/s.",
+                    "config": {
+                        "show_legends": true,
+                        "legends_position": null,
+                        "decimals": 2,
+                        "line_thickness": 1.5,
+                        "step_value": "0",
+                        "top_results_others": false,
+                        "axis_border_show": false,
+                        "label_option": {
+                            "rotate": 0
+                        },
+                        "show_symbol": false,
+                        "line_interpolation": "smooth",
+                        "legend_width": {
+                            "unit": "px"
+                        },
+                        "legend_height": {
+                            "unit": "px"
+                        },
+                        "base_map": {
+                            "type": "osm"
+                        },
+                        "map_type": {
+                            "type": "world"
+                        },
+                        "map_view": {
+                            "zoom": 1,
+                            "lat": 0,
+                            "lng": 0
+                        },
+                        "map_symbol_style": {
+                            "size": "by Value",
+                            "size_by_value": {
+                                "min": 1,
+                                "max": 100
+                            },
+                            "size_fixed": 2
+                        },
+                        "drilldown": [],
+                        "mark_line": [],
+                        "override_config": [],
+                        "connect_nulls": false,
+                        "no_value_replacement": "",
+                        "wrap_table_cells": false,
+                        "table_transpose": false,
+                        "table_dynamic_columns": false,
+                        "mappings": [],
+                        "color": {
+                            "mode": "palette-classic-by-series",
+                            "fixedColor": [
+                                "#53ca53"
+                            ],
+                            "seriesBy": "last",
+                            "colorBySeries": []
+                        },
+                        "trellis": {
+                            "layout": null,
+                            "num_of_columns": 1,
+                            "group_by_y_axis": false
+                        },
+                        "show_gridlines": true
+                    },
+                    "queryType": "promql",
+                    "queries": [
+                        {
+                            "query": "sum(aws_rds_deadlocks_average{k8s_cluster=~\"$k8s_cluster\"}) by (dbinstance_identifier)",
+                            "vrlFunctionQuery": "",
+                            "customQuery": true,
+                            "fields": {
+                                "stream": "aws_rds_deadlocks_average",
+                                "stream_type": "metrics",
+                                "x": [],
+                                "y": [],
+                                "z": [],
+                                "breakdown": [],
+                                "filter": {
+                                    "filterType": "group",
+                                    "logicalOperator": "AND",
+                                    "conditions": []
+                                }
+                            },
+                            "config": {
+                                "promql_legend": "{dbinstance_identifier}",
+                                "layer_type": "scatter",
+                                "weight_fixed": 1,
+                                "limit": 0,
+                                "min": 0,
+                                "max": 100,
+                                "time_shift": []
+                            }
+                        }
+                    ],
+                    "layout": {
+                        "x": 96,
+                        "y": 52,
+                        "w": 96,
+                        "h": 18,
+                        "i": 8
+                    },
+                    "htmlContent": "",
+                    "markdownContent": "",
+                    "customChartContent": ""
+                }
+            ]
+        }
+    ],
+    "variables": {
+        "list": [
+            {
+                "type": "query_values",
+                "name": "k8s_cluster",
+                "label": "Cluster",
+                "query_data": {
+                    "stream_type": "metrics",
+                    "stream": "aws_rds_cpuutilization_average",
+                    "field": "k8s_cluster",
+                    "max_record_size": 10,
+                    "filter": []
+                },
+                "value": "",
+                "options": [],
+                "multiSelect": false,
+                "hideOnDashboard": false,
+                "selectAllValueForMultiSelect": "",
+                "customMultiSelectValue": [],
+                "escapeSingleQuotes": false
+            }
+        ],
+        "showDynamicFilters": true
+    },
+    "defaultDatetimeDuration": {
+        "type": "relative",
+        "relativeTimePeriod": "6h",
+        "startTime": 0,
+        "endTime": 0
+    }
+}
