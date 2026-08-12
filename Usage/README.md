@@ -5,11 +5,9 @@ Once you set `ZO_USAGE_REPORTING_ENABLED=true` for your OpenObserve installation
 
 Raw data is available in `_meta` org.
 
-## Usage / Overall
+## Usage
 
 ![Usage report](./screenshots/usage_overall.png)
 
-## Usage / org
 
-![Usage report](./screenshots/usage_org.png)
 
