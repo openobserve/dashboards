@@ -99,4 +99,3 @@ Import `Kafka Monitoring Dashboard.dashboard.json` from the OpenObserve Dashboar
 - [Apache Kafka 4.0 monitoring](https://kafka.apache.org/40/operations/monitoring/)
 - [Strimzi Kafka dashboard](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/metrics/grafana-dashboards/strimzi-kafka.json)
 - [Strimzi Kafka Exporter dashboard](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/metrics/grafana-dashboards/strimzi-kafka-exporter.json)
-- [Kafka Exporter dashboard 7589](https://grafana.com/grafana/dashboards/7589-kafka-exporter-overview/)
