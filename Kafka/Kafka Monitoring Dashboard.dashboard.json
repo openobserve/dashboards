@@ -1,0 +1,5327 @@
+{
+  "dashboardId": "7420728200000000001",
+  "title": "Apache Kafka Operations",
+  "description": "Production operations dashboard for Apache Kafka 4.x KRaft clusters, covering availability, durability, request performance, consumers, control-plane health, and broker resources.",
+  "owner": "",
+  "role": "",
+  "created": "2026-09-08T09:30:00.000Z",
+  "version": 8,
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "1h"
+  },
+  "variables": {
+    "list": [
+      {
+        "type": "query_values",
+        "name": "topic",
+        "label": "Topic",
+        "query_data": {
+          "stream_type": "metrics",
+          "stream": "kafka_topic_partitions",
+          "field": "topic",
+          "max_record_size": 100
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "all"
+      },
+      {
+        "type": "query_values",
+        "name": "consumergroup",
+        "label": "Consumer group",
+        "query_data": {
+          "stream_type": "metrics",
+          "stream": "kafka_consumergroup_lag_sum",
+          "field": "consumergroup",
+          "max_record_size": 100
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "all"
+      }
+    ],
+    "showDynamicFilters": true
+  },
+  "tabs": [
+    {
+      "tabId": "overview",
+      "name": "Operations Overview",
+      "panels": [
+        {
+          "id": "kafka-001",
+          "type": "metric",
+          "title": "Brokers Online",
+          "description": "Brokers visible to Kafka Exporter. Compare this with the expected cluster size.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_brokers",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_brokers",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Brokers",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-002",
+          "type": "metric",
+          "title": "Topics",
+          "description": "Number of selected non-internal topics.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "count(kafka_topic_partitions{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partitions",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Topics",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-003",
+          "type": "metric",
+          "title": "Partitions",
+          "description": "Total partitions across selected topics.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_topic_partitions{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partitions",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-004",
+          "type": "metric",
+          "title": "Active Controllers",
+          "description": "Exactly one active KRaft controller is expected.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_controller_kafkacontroller_activecontrollercount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_activecontrollercount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Controllers",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-005",
+          "type": "metric",
+          "title": "Offline Partitions",
+          "description": "Partitions without an active leader. Any non-zero value is critical.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_controller_kafkacontroller_offlinepartitionscount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_offlinepartitionscount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Offline",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 48,
+            "h": 9,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-006",
+          "type": "metric",
+          "title": "Under-Replicated",
+          "description": "Partitions with fewer in-sync replicas than configured replicas.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_under_replicated_partition",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "URP",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 9,
+            "w": 48,
+            "h": 9,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-007",
+          "type": "metric",
+          "title": "Under Min ISR",
+          "description": "Partitions already below min.insync.replicas and at risk of rejecting acks=all writes.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_server_replicamanager_underminisrpartitioncount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_underminisrpartitioncount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 48,
+            "h": 9,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-008",
+          "type": "metric",
+          "title": "Consumer Lag",
+          "description": "Total committed-offset lag for selected groups and topics.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Messages",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 9,
+            "w": 48,
+            "h": 9,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-009",
+          "type": "area",
+          "title": "Cluster Throughput",
+          "description": "Aggregate client ingress and egress. Traffic has no universal healthy minimum.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(kafka_server_brokertopicmetrics_messagesin_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_brokertopicmetrics_messagesin_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Messages in/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(kafka_server_brokertopicmetrics_bytesin_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_brokertopicmetrics_bytesin_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Bytes in/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(kafka_server_brokertopicmetrics_bytesout_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_brokertopicmetrics_bytesout_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Bytes out/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-010",
+          "type": "area-stacked",
+          "title": "Request Mix",
+          "description": "Top Kafka APIs by request rate. Use this to correlate workload shifts with latency and errors.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(12, sum by (request) (rate(kafka_network_requestmetrics_requests_total[5m])))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_requests_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{request}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-011",
+          "type": "line",
+          "title": "Data-Safety Signals",
+          "description": "Offline, under-min-ISR, and under-replicated partitions over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_controller_kafkacontroller_offlinepartitionscount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_offlinepartitionscount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Offline partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(kafka_server_replicamanager_underminisrpartitioncount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_underminisrpartitioncount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Under min ISR",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_under_replicated_partition",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Under-replicated",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-012",
+          "type": "h-bar",
+          "title": "Leader Distribution",
+          "description": "Current partition leaders by broker. Large skew can concentrate load and tail latency.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "count by (leader) (kafka_topic_partition_leader{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_leader",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Broker {leader}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "replication",
+      "name": "Replication & Durability",
+      "panels": [
+        {
+          "id": "kafka-013",
+          "type": "metric",
+          "title": "Under-Replicated",
+          "description": "Canonical partition total from Kafka Exporter.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_under_replicated_partition",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "URP",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-014",
+          "type": "metric",
+          "title": "At Min ISR",
+          "description": "Partitions one replica failure away from write unavailability.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_server_replicamanager_atminisrpartitioncount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_atminisrpartitioncount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-015",
+          "type": "metric",
+          "title": "Under Min ISR",
+          "description": "Partitions currently below their durability requirement.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_server_replicamanager_underminisrpartitioncount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_underminisrpartitioncount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 15
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-016",
+          "type": "metric",
+          "title": "Offline Replicas",
+          "description": "Replica assignments unavailable on brokers.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_server_replicamanager_offlinereplicacount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_offlinereplicacount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Replicas",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 16
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-017",
+          "type": "metric",
+          "title": "Reassigning",
+          "description": "Leader partitions currently being reassigned.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_server_replicamanager_reassigningpartitions)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_reassigningpartitions",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 17
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-018",
+          "type": "metric",
+          "title": "Preferred Imbalance",
+          "description": "Partitions not led by their preferred replica.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "count(kafka_topic_partition_leader_is_preferred{topic=~\"$topic\"}) - sum(kafka_topic_partition_leader_is_preferred{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_leader_is_preferred",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Partitions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 18
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-019",
+          "type": "line",
+          "title": "ISR Churn",
+          "description": "ISR shrinks indicate replica loss; expansions indicate recovery. Repeated churn suggests flapping.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 3,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(kafka_server_replicamanager_isrshrinks_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_isrshrinks_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Shrinks/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(kafka_server_replicamanager_isrexpands_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_isrexpands_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Expands/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(kafka_server_replicamanager_failedisrupdates_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_failedisrupdates_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Failed updates/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 19
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-020",
+          "type": "h-bar",
+          "title": "Under-Replicated Topics",
+          "description": "Top selected topics with replication risk.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(20, sum by (topic) (kafka_topic_partition_under_replicated_partition{topic=~\"$topic\"}))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_under_replicated_partition",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{topic}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 20
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-021",
+          "type": "bar",
+          "title": "Leaders by Broker",
+          "description": "Leader assignment balance across brokers.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_replicamanager_leadercount",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_leadercount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 21
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-022",
+          "type": "bar",
+          "title": "Replica Assignments by Broker",
+          "description": "Broker-local partition assignment count. Values should remain broadly even.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_replicamanager_partitioncount",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_partitioncount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 22
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-023",
+          "type": "line",
+          "title": "Offline Replicas by Broker",
+          "description": "Locate brokers hosting unavailable replica assignments.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_replicamanager_offlinereplicacount",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_replicamanager_offlinereplicacount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 58,
+            "w": 96,
+            "h": 18,
+            "i": 23
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-024",
+          "type": "line",
+          "title": "Configured vs In-Sync Replicas",
+          "description": "A widening gap indicates incomplete replica recovery.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_topic_partition_replicas{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_replicas",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Configured replicas",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(kafka_topic_partition_in_sync_replica{topic=~\"$topic\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_topic_partition_in_sync_replica",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "In-sync replicas",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 58,
+            "w": 96,
+            "h": 18,
+            "i": 24
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "requests",
+      "name": "Requests & Saturation",
+      "panels": [
+        {
+          "id": "kafka-025",
+          "type": "metric",
+          "title": "Request Rate",
+          "description": "All Kafka network requests per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(kafka_network_requestmetrics_requests_total[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_requests_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Requests/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 25
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-026",
+          "type": "metric",
+          "title": "Error Rate",
+          "description": "Kafka response errors excluding error=NONE.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 3,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(kafka_network_requestmetrics_errors_total{error!=\"NONE\"}[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_errors_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Errors/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 26
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-027",
+          "type": "metric",
+          "title": "Request Queue",
+          "description": "Largest broker request queue. Sustained growth indicates saturation.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_network_requestchannel_requestqueuesize)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestchannel_requestqueuesize",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Requests",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 27
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-028",
+          "type": "metric",
+          "title": "Network Utilization",
+          "description": "Worst broker network-processor utilization. Kafka recommends at least 30% idle capacity.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * (1 - min(kafka_network_socketserver_networkprocessoravgidlepercent))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_socketserver_networkprocessoravgidlepercent",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Percent",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 28
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-029",
+          "type": "area-stacked",
+          "title": "API Request Rate",
+          "description": "Top APIs by request rate.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(15, sum by (request) (rate(kafka_network_requestmetrics_requests_total[5m])))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_requests_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{request}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 29
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-030",
+          "type": "line",
+          "title": "API Error Ratio",
+          "description": "Error responses as a percentage of requests by API. Classify expected transient codes before paging.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * sum by (request) (rate(kafka_network_requestmetrics_errors_total{error!=\"NONE\"}[5m])) / clamp_min(sum by (request) (rate(kafka_network_requestmetrics_requests_total[5m])), 1)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_errors_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{request}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 30
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-031",
+          "type": "line",
+          "title": "P99 Request Latency",
+          "description": "Worst broker p99 total time for the key client and replication APIs.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max by (request) (kafka_network_requestmetrics_totaltimems{quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_totaltimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{request}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 31
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-032",
+          "type": "line",
+          "title": "Produce P99 Latency Breakdown",
+          "description": "Separates queueing, local processing, follower wait, response queue, and send time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_network_requestmetrics_requestqueuetimems{request=\"Produce\",quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_requestqueuetimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Request queue",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "max(kafka_network_requestmetrics_localtimems{request=\"Produce\",quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_localtimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Local",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "max(kafka_network_requestmetrics_remotetimems{request=\"Produce\",quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_remotetimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Follower wait",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "max(kafka_network_requestmetrics_responsequeuetimems{request=\"Produce\",quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_responsequeuetimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Response queue",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "max(kafka_network_requestmetrics_responsesendtimems{request=\"Produce\",quantile=\"0.99\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestmetrics_responsesendtimems",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Response send",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 32
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-033",
+          "type": "line",
+          "title": "Broker Queues",
+          "description": "Request and response queue depth by broker.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_network_requestchannel_requestqueuesize",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestchannel_requestqueuesize",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Request {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "kafka_network_requestchannel_responsequeuesize",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_requestchannel_responsequeuesize",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Response {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 49,
+            "w": 96,
+            "h": 18,
+            "i": 33
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-034",
+          "type": "line",
+          "title": "Network Processor Idle Capacity",
+          "description": "Idle fraction by broker. Sustained values below 30% indicate saturation.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * kafka_network_socketserver_networkprocessoravgidlepercent",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_network_socketserver_networkprocessoravgidlepercent",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 49,
+            "w": 96,
+            "h": 18,
+            "i": 34
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "consumers",
+      "name": "Consumer Health",
+      "panels": [
+        {
+          "id": "kafka-035",
+          "type": "metric",
+          "title": "Total Lag",
+          "description": "Total selected consumer backlog in offsets.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Messages",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 35
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-036",
+          "type": "metric",
+          "title": "Consumer Groups",
+          "description": "Selected groups currently reported by Kafka Exporter.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "count(kafka_consumergroup_members{consumergroup=~\"$consumergroup\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_members",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Groups",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 36
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-037",
+          "type": "metric",
+          "title": "Groups Without Members",
+          "description": "Reported groups with zero active members. Validate whether each group is expected to run continuously.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_consumergroup_members{consumergroup=~\"$consumergroup\"} == bool 0)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_members",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Groups",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 37
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-038",
+          "type": "metric",
+          "title": "Largest Backlog",
+          "description": "Worst selected group/topic backlog.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Messages",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 38
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-039",
+          "type": "h-bar",
+          "title": "Top Consumer Backlogs",
+          "description": "Largest group/topic backlogs. Offset lag should be interpreted against each workload SLO.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(20, sum by (consumergroup, topic) (kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"}))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{consumergroup} / {topic}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 22,
+            "i": 39
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-040",
+          "type": "area",
+          "title": "Lag by Topic",
+          "description": "Aggregate selected consumer lag by topic.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(12, sum by (topic) (kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"}))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{topic}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 22,
+            "i": 40
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-041",
+          "type": "line",
+          "title": "Lag Growth",
+          "description": "Positive values indicate backlog growth; negative values indicate recovery.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(20, deriv(kafka_consumergroup_lag_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"}[15m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{consumergroup} / {topic}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 31,
+            "w": 96,
+            "h": 20,
+            "i": 41
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-042",
+          "type": "line",
+          "title": "Consumption Rate",
+          "description": "Committed-offset progress by group and topic. Resets can briefly produce discontinuities.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(20, clamp_min(sum by (consumergroup, topic) (delta(kafka_consumergroup_current_offset_sum{topic=~\"$topic\",consumergroup=~\"$consumergroup\"}[5m])) / 300, 0))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_current_offset_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{consumergroup} / {topic}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 31,
+            "w": 96,
+            "h": 20,
+            "i": 42
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-043",
+          "type": "table",
+          "title": "Hot or Stalled Partitions",
+          "description": "Top partition-level lags, bounded to 50 rows for safe drilldown.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "topk(50, kafka_consumergroup_lag{topic=~\"$topic\",consumergroup=~\"$consumergroup\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_lag",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{consumergroup} / {topic} / p{partition}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 51,
+            "w": 128,
+            "h": 24,
+            "i": 43
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-044",
+          "type": "line",
+          "title": "Group Members",
+          "description": "Active consumer members by group.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_consumergroup_members{consumergroup=~\"$consumergroup\"}",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_consumergroup_members",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{consumergroup}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 51,
+            "w": 64,
+            "h": 24,
+            "i": 44
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "kraft",
+      "name": "KRaft Control Plane",
+      "panels": [
+        {
+          "id": "kafka-045",
+          "type": "metric",
+          "title": "Active Controller",
+          "description": "Exactly one controller should be active.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_controller_kafkacontroller_activecontrollercount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_activecontrollercount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Controllers",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 45
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-046",
+          "type": "metric",
+          "title": "Active Brokers",
+          "description": "Active brokers as observed by the controller quorum.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_controller_kafkacontroller_activebrokercount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_activebrokercount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Brokers",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 46
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-047",
+          "type": "metric",
+          "title": "Fenced Brokers",
+          "description": "Fenced brokers cannot serve normal broker traffic.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_controller_kafkacontroller_fencedbrokercount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_fencedbrokercount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Brokers",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 47
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-048",
+          "type": "metric",
+          "title": "Metadata Errors",
+          "description": "Controller metadata processing errors observed in the last hour.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(increase(kafka_controller_kafkacontroller_metadataerrorcount[1h]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_metadataerrorcount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Errors",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 48
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-049",
+          "type": "metric",
+          "title": "Quorum Voters",
+          "description": "Configured KRaft voters reported by quorum nodes.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_server_raft_metrics_number_of_voters)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_number_of_voters",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Voters",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 49
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-050",
+          "type": "metric",
+          "title": "Unknown Voters",
+          "description": "Unknown voter connections should remain zero.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(kafka_server_raft_metrics_number_unknown_voter_connections)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_number_unknown_voter_connections",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Connections",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 50
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-051",
+          "type": "line",
+          "title": "Quorum Leader Agreement",
+          "description": "Current leader ID reported by every quorum node. -1 or disagreement indicates control-plane instability.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_raft_metrics_current_leader",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_current_leader",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 51
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-052",
+          "type": "line",
+          "title": "KRaft Commit Latency",
+          "description": "Maximum metadata quorum commit latency by node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_raft_metrics_commit_latency_max",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_commit_latency_max",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 52
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-053",
+          "type": "line",
+          "title": "Metadata Log Progress",
+          "description": "High watermark and log-end offset by quorum member.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_raft_metrics_high_watermark",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_high_watermark",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "High watermark {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "kafka_server_raft_metrics_log_end_offset",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_log_end_offset",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Log end {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 53
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-054",
+          "type": "line",
+          "title": "Metadata Application Lag",
+          "description": "Controller and broker delay applying committed metadata records.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_controller_kafkacontroller_lastappliedrecordlagms",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_controller_kafkacontroller_lastappliedrecordlagms",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Controller {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "kafka_server_broker_metadata_metrics_last_applied_record_lag_ms",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_broker_metadata_metrics_last_applied_record_lag_ms",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Broker {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 54
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-055",
+          "type": "area",
+          "title": "Metadata Record Activity",
+          "description": "KRaft metadata records appended and fetched per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "kafka_server_raft_metrics_append_records_rate",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_append_records_rate",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Append {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "kafka_server_raft_metrics_fetch_records_rate",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_server_raft_metrics_fetch_records_rate",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Fetch {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 58,
+            "w": 192,
+            "h": 18,
+            "i": 55
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "resources",
+      "name": "Broker Resources",
+      "panels": [
+        {
+          "id": "kafka-056",
+          "type": "metric",
+          "title": "Offline Log Dirs",
+          "description": "Offline Kafka log directories. Any non-zero value is critical.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(kafka_log_logmanager_offlinelogdirectorycount)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "kafka_log_logmanager_offlinelogdirectorycount",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Directories",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 56
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-057",
+          "type": "metric",
+          "title": "Resident Memory",
+          "description": "Total resident memory across broker JVM processes.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(process_resident_memory_bytes{job=\"kafka-brokers\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_resident_memory_bytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Bytes",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 57
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-058",
+          "type": "metric",
+          "title": "CPU Cores",
+          "description": "CPU cores currently consumed by broker JVM processes.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(process_cpu_seconds_total{job=\"kafka-brokers\"}[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_cpu_seconds_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Cores",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 58
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-059",
+          "type": "metric",
+          "title": "Max FD Utilization",
+          "description": "Highest broker file-descriptor usage relative to its process limit.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * max(process_open_fds{job=\"kafka-brokers\"} / process_max_fds{job=\"kafka-brokers\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_open_fds",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Percent",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 59
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-060",
+          "type": "metric",
+          "title": "GC Duty",
+          "description": "Fraction of wall time spent in garbage collection across broker JVMs.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * sum(rate(jvm_gc_collection_seconds_sum{job=\"kafka-brokers\"}[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "jvm_gc_collection_seconds_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Percent",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 60
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-061",
+          "type": "metric",
+          "title": "Open File Descriptors",
+          "description": "Total open file descriptors across broker JVM processes.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(process_open_fds{job=\"kafka-brokers\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_open_fds",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Descriptors",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 9,
+            "i": 61
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-062",
+          "type": "line",
+          "title": "CPU by Broker",
+          "description": "Broker JVM CPU consumption in cores.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 3,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (instance) (rate(process_cpu_seconds_total{job=\"kafka-brokers\"}[5m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_cpu_seconds_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 62
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-063",
+          "type": "line",
+          "title": "Resident Memory by Broker",
+          "description": "Broker JVM resident memory.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "process_resident_memory_bytes{job=\"kafka-brokers\"}",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_resident_memory_bytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 18,
+            "w": 96,
+            "h": 20,
+            "i": 63
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-064",
+          "type": "area",
+          "title": "GC Collection Rate",
+          "description": "Garbage-collection events per second by broker and collector.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 3,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(jvm_gc_collection_seconds_count{job=\"kafka-brokers\"}[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "jvm_gc_collection_seconds_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance} / {gc}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 64
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-065",
+          "type": "line",
+          "title": "File Descriptor Utilization",
+          "description": "Process file-descriptor pressure by broker. Investigate sustained values above 80%.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * process_open_fds{job=\"kafka-brokers\"} / process_max_fds{job=\"kafka-brokers\"}",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_open_fds",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 38,
+            "w": 96,
+            "h": 20,
+            "i": 65
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-066",
+          "type": "line",
+          "title": "JVM Garbage Collection",
+          "description": "Time spent in garbage collection by broker and collector.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "seconds",
+            "decimals": 3,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(jvm_gc_collection_seconds_sum{job=\"kafka-brokers\"}[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "jvm_gc_collection_seconds_sum",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance} / {gc}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 58,
+            "w": 96,
+            "h": 18,
+            "i": 66
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "kafka-067",
+          "type": "line",
+          "title": "Virtual Memory by Broker",
+          "description": "Broker JVM virtual memory footprint; use resident memory for physical pressure.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "process_virtual_memory_bytes{job=\"kafka-brokers\"}",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_virtual_memory_bytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "{instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 58,
+            "w": 96,
+            "h": 18,
+            "i": 67
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ]
+}
