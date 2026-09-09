@@ -1,0 +1,4152 @@
+{
+  "dashboardId": "nginx_operations_dashboard",
+  "title": "Nginx Operations",
+  "description": "Production operations dashboard for Nginx OSS using access logs and nginx-prometheus-exporter stub_status metrics.",
+  "owner": "",
+  "role": "",
+  "created": "2026-09-08T12:30:00.000Z",
+  "version": 8,
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "1h"
+  },
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "tabs": [
+    {
+      "tabId": "overview",
+      "name": "Operations Overview",
+      "panels": [
+        {
+          "id": "nginx-001",
+          "type": "metric",
+          "title": "Nginx Available",
+          "description": "Last successful Nginx stub-status scrape. A value of 0 means the exporter could not reach Nginx.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_up",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_up",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-002",
+          "type": "metric",
+          "title": "Request Rate",
+          "description": "HTTP requests per second from Nginx stub_status.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(nginx_http_requests_total[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_http_requests_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-003",
+          "type": "metric",
+          "title": "Active Connections",
+          "description": "Current active client connections handled by Nginx.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_active",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_active",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-004",
+          "type": "metric",
+          "title": "5xx Requests",
+          "description": "Access-log requests returning a server error in the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(*) AS value FROM \"nginx_access\" WHERE status >= 500",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-005",
+          "type": "line",
+          "title": "Request Volume",
+          "description": "Access-log request volume over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-006",
+          "type": "area-stacked",
+          "title": "HTTP Status Codes",
+          "description": "Response volume by HTTP status code. Watch for sustained 4xx or 5xx growth.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, count(*) AS y_axis_1, cast(status AS varchar) AS breakdown_1 FROM \"nginx_access\" GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Series",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-007",
+          "type": "line",
+          "title": "Connection States",
+          "description": "Reading, writing, and waiting Nginx connections.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_reading",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_reading",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Reading",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "nginx_connections_writing",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_writing",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Writing",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "nginx_connections_waiting",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_waiting",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Waiting",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-008",
+          "type": "line",
+          "title": "Response Bytes",
+          "description": "Response bytes written per second from access logs.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, sum(bytes_sent) / 60 AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Bytes/s",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-009",
+          "type": "h-bar",
+          "title": "Top Requested URLs",
+          "description": "Most frequently requested URLs, limited to 20 results.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 49,
+            "w": 96,
+            "h": 22,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-010",
+          "type": "table",
+          "title": "Recent Server Errors",
+          "description": "Most recent access-log server errors for rapid triage.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT _timestamp, cast(status AS integer) AS status, method, path, client_ip, request_time, upstream_time FROM \"nginx_access\" WHERE status >= 500 ORDER BY _timestamp DESC LIMIT 50",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "_timestamp",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status",
+                    "alias": "status",
+                    "column": "status",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Method",
+                    "alias": "method",
+                    "column": "method",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "URL",
+                    "alias": "path",
+                    "column": "path",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Client IP",
+                    "alias": "client_ip",
+                    "column": "client_ip",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Request Time (s)",
+                    "alias": "request_time",
+                    "column": "request_time",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Upstream Time (s)",
+                    "alias": "upstream_time",
+                    "column": "upstream_time",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 49,
+            "w": 96,
+            "h": 22,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "traffic",
+      "name": "Traffic & Status",
+      "panels": [
+        {
+          "id": "nginx-011",
+          "type": "metric",
+          "title": "Requests",
+          "description": "Total access-log requests in the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(*) AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-012",
+          "type": "metric",
+          "title": "Client Errors",
+          "description": "Access-log requests returning 4xx responses.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(*) AS value FROM \"nginx_access\" WHERE status >= 400 AND status < 500",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-013",
+          "type": "metric",
+          "title": "Server Errors",
+          "description": "Access-log requests returning 5xx responses.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(*) AS value FROM \"nginx_access\" WHERE status >= 500",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-014",
+          "type": "metric",
+          "title": "Bytes Sent",
+          "description": "Total response payload bytes sent in the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT sum(bytes_sent) AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Bytes",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-015",
+          "type": "area-stacked",
+          "title": "Status Class Volume",
+          "description": "2xx, 3xx, 4xx, and 5xx response volume over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, count(*) AS y_axis_1, concat(cast(cast(floor(status / 100) AS integer) AS varchar), 'xx') AS breakdown_1 FROM \"nginx_access\" GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Series",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 15
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-016",
+          "type": "h-bar",
+          "title": "Status Code Breakdown",
+          "description": "Response counts by exact HTTP status code.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT cast(status AS varchar) AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Status Code",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 16
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-017",
+          "type": "h-bar",
+          "title": "URLs Causing 4xx",
+          "description": "Top client-error URLs. Validate expected redirects and stale links before alerting.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" WHERE status >= 400 AND status < 500 GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 17
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-018",
+          "type": "h-bar",
+          "title": "URLs Causing 5xx",
+          "description": "Top server-error URLs for incident routing.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" WHERE status >= 500 GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 18
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-019",
+          "type": "table",
+          "title": "Request Status by URL",
+          "description": "Bounded URL and response-code breakdown for drilldown.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path, cast(status AS integer) AS status, count(*) AS requests, sum(bytes_sent) AS bytes_sent FROM \"nginx_access\" GROUP BY path, status ORDER BY requests DESC LIMIT 50",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "path",
+                    "column": "path",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status",
+                    "alias": "status",
+                    "column": "status",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Requests",
+                    "alias": "requests",
+                    "column": "requests",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Bytes Sent",
+                    "alias": "bytes_sent",
+                    "column": "bytes_sent",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 49,
+            "w": 192,
+            "h": 22,
+            "i": 19
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "performance",
+      "name": "Request Performance",
+      "panels": [
+        {
+          "id": "nginx-020",
+          "type": "metric",
+          "title": "Avg Request Time",
+          "description": "Average Nginx end-to-end request time from access logs.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT avg(request_time) * 1000 AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Avg Request (ms)",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 20
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-021",
+          "type": "metric",
+          "title": "P95 Request Time",
+          "description": "95th percentile end-to-end request time. Use this rather than the average for SLOs.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT approx_percentile_cont(request_time, 0.95) * 1000 AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "P95 Request (ms)",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 21
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-022",
+          "type": "metric",
+          "title": "P95 Upstream Time",
+          "description": "95th percentile upstream response time. Zero values represent direct Nginx responses.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT approx_percentile_cont(upstream_time, 0.95) * 1000 AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "P95 Upstream (ms)",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 22
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-023",
+          "type": "metric",
+          "title": "Slow Requests",
+          "description": "Requests taking at least one second end to end.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(*) AS value FROM \"nginx_access\" WHERE request_time >= 1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 23
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-024",
+          "type": "line",
+          "title": "Request Latency",
+          "description": "Average and P95 end-to-end request latency over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, avg(request_time) * 1000 AS y_axis_1, approx_percentile_cont(request_time, 0.95) * 1000 AS y_axis_2 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Avg Request (ms)",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "P95 Request (ms)",
+                    "alias": "y_axis_2",
+                    "column": "y_axis_2",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 24
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-025",
+          "type": "line",
+          "title": "Nginx vs Upstream Latency",
+          "description": "Separates total Nginx request time from upstream response time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, avg(request_time) * 1000 AS y_axis_1, avg(upstream_time) * 1000 AS y_axis_2 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Avg Request (ms)",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Avg Upstream (ms)",
+                    "alias": "y_axis_2",
+                    "column": "y_axis_2",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 25
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-026",
+          "type": "h-bar",
+          "title": "Slowest URLs",
+          "description": "URLs ranked by P95 request time, bounded to 20 results.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path AS x_axis_1, approx_percentile_cont(request_time, 0.95) * 1000 AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "P95 Request (ms)",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 26
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-027",
+          "type": "table",
+          "title": "Slow Request Samples",
+          "description": "Latest slow request samples with client, URL, status, and upstream timing.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ms",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT _timestamp, client_ip, method, path, cast(status AS integer) AS status, request_time * 1000 AS request_ms, upstream_time * 1000 AS upstream_ms FROM \"nginx_access\" WHERE request_time >= 1 ORDER BY _timestamp DESC LIMIT 50",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "_timestamp",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Client IP",
+                    "alias": "client_ip",
+                    "column": "client_ip",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Method",
+                    "alias": "method",
+                    "column": "method",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "URL",
+                    "alias": "path",
+                    "column": "path",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status",
+                    "alias": "status",
+                    "column": "status",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Request Time (ms)",
+                    "alias": "request_ms",
+                    "column": "request_ms",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Upstream Time (ms)",
+                    "alias": "upstream_ms",
+                    "column": "upstream_ms",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 27
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "clients",
+      "name": "Clients & URLs",
+      "panels": [
+        {
+          "id": "nginx-028",
+          "type": "metric",
+          "title": "Unique Clients",
+          "description": "Distinct client IPs observed in access logs for the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(DISTINCT client_ip) AS value FROM \"nginx_access\" WHERE client_ip != ''",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Clients",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 28
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-029",
+          "type": "metric",
+          "title": "Unique URLs",
+          "description": "Distinct requested URLs in the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(DISTINCT path) AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 29
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-030",
+          "type": "metric",
+          "title": "Error Clients",
+          "description": "Distinct client IPs receiving 4xx or 5xx responses.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT count(DISTINCT client_ip) AS value FROM \"nginx_access\" WHERE status >= 400 AND client_ip != ''",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Clients",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 30
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-031",
+          "type": "metric",
+          "title": "Largest Response",
+          "description": "Largest single response body sent in the selected time range.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT max(bytes_sent) AS value FROM \"nginx_access\"",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Bytes",
+                    "alias": "value",
+                    "column": "value",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 31
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-032",
+          "type": "h-bar",
+          "title": "Top Client IPs",
+          "description": "Most active clients, limited to 20 results to prevent cardinality overload.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT client_ip AS x_axis_1, count(*) AS y_axis_1 FROM \"nginx_access\" WHERE client_ip != '' GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Client IP",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Requests",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 32
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-033",
+          "type": "h-bar",
+          "title": "Top URLs by Response Bytes",
+          "description": "URLs transferring the most response data.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT path AS x_axis_1, sum(bytes_sent) AS y_axis_1 FROM \"nginx_access\" GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "URL",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Bytes",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 33
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-034",
+          "type": "line",
+          "title": "Active Clients Over Time",
+          "description": "Distinct clients per minute. Sudden changes can indicate traffic shifts or abusive clients.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp, '1 minute') AS x_axis_1, count(DISTINCT client_ip) AS y_axis_1 FROM \"nginx_access\" WHERE client_ip != '' GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Clients",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 34
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-035",
+          "type": "table",
+          "title": "Client Error Sources",
+          "description": "Clients and URLs producing the most non-success responses.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT client_ip, path, cast(status AS integer) AS status, count(*) AS requests FROM \"nginx_access\" WHERE status >= 400 GROUP BY client_ip, path, status ORDER BY requests DESC LIMIT 50",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Client IP",
+                    "alias": "client_ip",
+                    "column": "client_ip",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "URL",
+                    "alias": "path",
+                    "column": "path",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status",
+                    "alias": "status",
+                    "column": "status",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Requests",
+                    "alias": "requests",
+                    "column": "requests",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 35
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-036",
+          "type": "table",
+          "title": "Latest Requests",
+          "description": "Latest access-log records for direct request inspection.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT _timestamp, client_ip, method, path, cast(status AS integer) AS status, bytes_sent, request_time, upstream_time FROM \"nginx_access\" ORDER BY _timestamp DESC LIMIT 100",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_access",
+                "stream_type": "logs",
+                "x": [
+                  {
+                    "label": "Timestamp",
+                    "alias": "_timestamp",
+                    "column": "_timestamp",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Client IP",
+                    "alias": "client_ip",
+                    "column": "client_ip",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Method",
+                    "alias": "method",
+                    "column": "method",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "URL",
+                    "alias": "path",
+                    "column": "path",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Status",
+                    "alias": "status",
+                    "column": "status",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Bytes Sent",
+                    "alias": "bytes_sent",
+                    "column": "bytes_sent",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Request Time (s)",
+                    "alias": "request_time",
+                    "column": "request_time",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  },
+                  {
+                    "label": "Upstream Time (s)",
+                    "alias": "upstream_time",
+                    "column": "upstream_time",
+                    "color": null,
+                    "aggregationFunction": null,
+                    "isDerived": false
+                  }
+                ],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 49,
+            "w": 192,
+            "h": 22,
+            "i": 36
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "connections",
+      "name": "Connections & Health",
+      "panels": [
+        {
+          "id": "nginx-037",
+          "type": "metric",
+          "title": "Nginx Up",
+          "description": "Nginx exporter scrape health. Alert when this is 0.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_up",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_up",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 37
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-038",
+          "type": "metric",
+          "title": "Active",
+          "description": "Current active client connections.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_active",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_active",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 38
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-039",
+          "type": "metric",
+          "title": "Waiting",
+          "description": "Idle keepalive client connections.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_waiting",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_waiting",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 39
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-040",
+          "type": "metric",
+          "title": "Accepted Conn/s",
+          "description": "Accepted client connections per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            },
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(nginx_connections_accepted[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_accepted",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 40
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-041",
+          "type": "line",
+          "title": "Active Connections",
+          "description": "Current active Nginx connections over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_active",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_active",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 41
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-042",
+          "type": "area-stacked",
+          "title": "Connection State Breakdown",
+          "description": "Reading, writing, and waiting connection counts over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "nginx_connections_reading",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_reading",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Reading",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "nginx_connections_writing",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_writing",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Writing",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "nginx_connections_waiting",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_waiting",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Waiting",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 42
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-043",
+          "type": "line",
+          "title": "Connection Handling Rate",
+          "description": "Accepted and handled connection rates should normally track closely.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(nginx_connections_accepted[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_accepted",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Accepted",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "rate(nginx_connections_handled[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_connections_handled",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Handled",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 43
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-044",
+          "type": "line",
+          "title": "Request Rate",
+          "description": "Nginx stub_status request rate over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(nginx_http_requests_total[5m])",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "nginx_http_requests_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 44
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-045",
+          "type": "line",
+          "title": "Exporter Process CPU",
+          "description": "CPU consumed by nginx-prometheus-exporter. This does not represent Nginx worker CPU.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "rate(process_cpu_seconds_total{job=\"nginx\"}[5m]) * 100",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_cpu_seconds_total",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 49,
+            "w": 96,
+            "h": 20,
+            "i": 45
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "nginx-046",
+          "type": "line",
+          "title": "Exporter File Descriptors",
+          "description": "Open file descriptors used by nginx-prometheus-exporter.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "table_pagination": true,
+            "table_pagination_rows_per_page": 10,
+            "table_filtering": true,
+            "promql_table_mode": "all",
+            "sparkline": null,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "process_open_fds{job=\"nginx\"}",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "process_open_fds",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 49,
+            "w": 96,
+            "h": 20,
+            "i": 46
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ]
+}
