@@ -1,0 +1,2068 @@
+{
+  "version": 8,
+  "dashboardId": "",
+  "title": "CockroachDB Standalone Operations",
+  "description": "SQL performance, connections, storage, and process health for a standalone CockroachDB node.",
+  "role": "",
+  "owner": "",
+  "created": "2026-09-09T08:56:44.407Z",
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "30m"
+  },
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "tabs": [
+    {
+      "tabId": "standalone-overview",
+      "name": "Operations Overview",
+      "panels": [
+        {
+          "id": "standalone-001",
+          "type": "metric",
+          "title": "Node Available",
+          "description": "Prometheus scrape health for the standalone CockroachDB node.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "min(up{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "up",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-002",
+          "type": "metric",
+          "title": "SQL Queries / Second",
+          "description": "SQL query throughput on the node.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_query_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_query_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "QPS",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-003",
+          "type": "metric",
+          "title": "P95 SQL Latency",
+          "description": "P95 SQL execution latency derived from the native nanosecond histogram.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "milliseconds",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum by (le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-standalone\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P95",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-004",
+          "type": "metric",
+          "title": "Storage Utilization",
+          "description": "Used capacity as a percentage of used plus available capacity.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * sum(capacity_used{job=\"cockroachdb-standalone\"}) / (sum(capacity_used{job=\"cockroachdb-standalone\"}) + sum(capacity_available{job=\"cockroachdb-standalone\"}))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Used",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-005",
+          "type": "line",
+          "title": "SQL Query Throughput",
+          "description": "SQL queries completed per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_query_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_query_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "QPS",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-006",
+          "type": "line",
+          "title": "SQL Execution Latency Percentiles",
+          "description": "P50, P95, and P99 execution latency in milliseconds.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "milliseconds",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.50, sum by (le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-standalone\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P50",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "histogram_quantile(0.95, sum by (le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-standalone\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P95",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "histogram_quantile(0.99, sum by (le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-standalone\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P99",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-007",
+          "type": "line",
+          "title": "Active SQL Work",
+          "description": "Open SQL connections, transactions, and active statements.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sql_conns{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_conns",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Connections",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(sql_txns_open{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_txns_open",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Open transactions",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(sql_statements_active{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_statements_active",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Active statements",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-008",
+          "type": "line",
+          "title": "Node CPU Utilization",
+          "description": "Normalized CockroachDB process CPU usage.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * avg(sys_cpu_combined_percent_normalized{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_cpu_combined_percent_normalized",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "CPU",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 64,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-009",
+          "type": "line",
+          "title": "Node Memory RSS",
+          "description": "Resident memory used by the CockroachDB process.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sys_rss{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_rss",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "RSS",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "standalone-sql",
+      "name": "SQL Performance",
+      "panels": [
+        {
+          "id": "standalone-010",
+          "type": "metric",
+          "title": "Active Connections",
+          "description": "Current SQL client connections.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sql_conns{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_conns",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-011",
+          "type": "metric",
+          "title": "Open Transactions",
+          "description": "Transactions currently open.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sql_txns_open{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_txns_open",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-012",
+          "type": "metric",
+          "title": "SQL Failures / Second",
+          "description": "Failed SQL statements per second.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_failure_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_failure_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Failures/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-013",
+          "type": "metric",
+          "title": "Full Scans / Second",
+          "description": "SQL full table or index scans per second.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_full_scan_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_full_scan_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Full scans/s",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-014",
+          "type": "line",
+          "title": "Statement Throughput by Operation",
+          "description": "Completed SQL operations per second by statement type.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_select_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_select_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "SELECT",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_insert_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_insert_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "INSERT",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_update_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_update_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "UPDATE",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_delete_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_delete_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "DELETE",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-015",
+          "type": "line",
+          "title": "Transaction Outcomes",
+          "description": "Committed, aborted, and rolled-back transactions per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_txn_commit_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_txn_commit_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Commits",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_txn_abort_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_txn_abort_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Aborts",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_txn_rollback_count{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_txn_rollback_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Rollbacks",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 15
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-016",
+          "type": "area",
+          "title": "SQL Network Throughput",
+          "description": "SQL client traffic entering and leaving the node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "Bps",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_bytesin{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_bytesin",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Inbound",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_bytesout{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_bytesout",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Outbound",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 16
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-017",
+          "type": "line",
+          "title": "Connection Activity",
+          "description": "New and failed SQL connections per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_new_conns{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_new_conns",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "New connections",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(sql_conn_failures{job=\"cockroachdb-standalone\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_conn_failures",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Connection failures",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 17
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "standalone-resources",
+      "name": "Node Resources",
+      "panels": [
+        {
+          "id": "standalone-018",
+          "type": "metric",
+          "title": "Node Uptime",
+          "description": "CockroachDB process uptime.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "seconds",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(sys_uptime{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_uptime",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 18
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-019",
+          "type": "metric",
+          "title": "Memory RSS",
+          "description": "Current resident process memory.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sys_rss{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_rss",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 19
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-020",
+          "type": "metric",
+          "title": "Open File Descriptors",
+          "description": "File descriptors currently open.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sys_fd_open{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_fd_open",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 20
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-021",
+          "type": "metric",
+          "title": "Storage Used",
+          "description": "Store capacity currently used.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(capacity_used{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 21
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-022",
+          "type": "line",
+          "title": "CPU Utilization",
+          "description": "Normalized process CPU utilization over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * avg(sys_cpu_combined_percent_normalized{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_cpu_combined_percent_normalized",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "CPU",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 22
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-023",
+          "type": "line",
+          "title": "Process Memory",
+          "description": "Resident and Go heap memory.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(sys_rss{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_rss",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "RSS",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(sys_go_allocbytes{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_go_allocbytes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Go memory allocated",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 23
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-024",
+          "type": "line",
+          "title": "Storage Capacity",
+          "description": "Used, available, and reserved store capacity.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(capacity_used{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Used",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(capacity_available{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_available",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Available",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(capacity_reserved{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_reserved",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Reserved",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 24
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "standalone-025",
+          "type": "line",
+          "title": "File Descriptor Utilization",
+          "description": "Open file descriptors as a percentage of the soft limit.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * sum(sys_fd_open{job=\"cockroachdb-standalone\"}) / sum(sys_fd_softlimit{job=\"cockroachdb-standalone\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_fd_open",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "FD utilization",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 25
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ]
+}

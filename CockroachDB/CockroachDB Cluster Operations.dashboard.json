@@ -1,0 +1,1903 @@
+{
+  "version": 8,
+  "dashboardId": "",
+  "title": "CockroachDB Cluster Operations",
+  "description": "Cluster-wide SQL performance, node liveness, range replication, leaseholders, and storage capacity for CockroachDB.",
+  "role": "",
+  "owner": "",
+  "created": "2026-09-09T08:56:44.416Z",
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "30m"
+  },
+  "variables": {
+    "list": [],
+    "showDynamicFilters": true
+  },
+  "tabs": [
+    {
+      "tabId": "cluster-overview",
+      "name": "Cluster Overview",
+      "panels": [
+        {
+          "id": "cluster-101",
+          "type": "metric",
+          "title": "Scrape Targets Healthy",
+          "description": "CockroachDB nodes currently reachable by Prometheus.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(up{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "up",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 101
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-102",
+          "type": "metric",
+          "title": "Live Nodes",
+          "description": "Live nodes reported by CockroachDB liveness.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max(liveness_livenodes{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "liveness_livenodes",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 102
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-103",
+          "type": "metric",
+          "title": "Cluster SQL QPS",
+          "description": "SQL query throughput across all nodes.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(sql_query_count{job=\"cockroachdb-cluster\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_query_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "QPS",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 103
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-104",
+          "type": "metric",
+          "title": "P95 SQL Latency",
+          "description": "Cluster-wide P95 SQL execution latency.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "milliseconds",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum by (le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-cluster\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "P95",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 104
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-105",
+          "type": "line",
+          "title": "SQL Queries by Node",
+          "description": "Per-node SQL query throughput.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (node_id, instance) (rate(sql_query_count{job=\"cockroachdb-cluster\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_query_count",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 105
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-106",
+          "type": "line",
+          "title": "SQL Latency by Node",
+          "description": "Per-node P95 SQL execution latency.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "milliseconds",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum by (node_id, instance, le) (rate(sql_exec_latency_bucket{job=\"cockroachdb-cluster\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_exec_latency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 106
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-107",
+          "type": "line",
+          "title": "CPU Utilization by Node",
+          "description": "Normalized CockroachDB process CPU by node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * avg by (node_id, instance) (sys_cpu_combined_percent_normalized{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_cpu_combined_percent_normalized",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 107
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-108",
+          "type": "line",
+          "title": "Memory RSS by Node",
+          "description": "Resident CockroachDB process memory by node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max by (node_id, instance) (sys_rss{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_rss",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 29,
+            "w": 96,
+            "h": 20,
+            "i": 108
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "cluster-replication",
+      "name": "Replication & Liveness",
+      "panels": [
+        {
+          "id": "cluster-109",
+          "type": "metric",
+          "title": "Unavailable Ranges",
+          "description": "Ranges unavailable for reads or writes. This should remain zero.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(ranges_unavailable{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_unavailable",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 109
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-110",
+          "type": "metric",
+          "title": "Under-Replicated Ranges",
+          "description": "Ranges below their configured replication factor.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(ranges_underreplicated{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_underreplicated",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 110
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-111",
+          "type": "metric",
+          "title": "Over-Replicated Ranges",
+          "description": "Ranges above their configured replication factor.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(ranges_overreplicated{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_overreplicated",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 111
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-112",
+          "type": "metric",
+          "title": "Non-Live Nodes",
+          "description": "Configured scrape targets minus CockroachDB live nodes.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "clamp_min(count(up{job=\"cockroachdb-cluster\"}) - max(liveness_livenodes{job=\"cockroachdb-cluster\"}), 0)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "up",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 112
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-113",
+          "type": "line",
+          "title": "Range Replication Health",
+          "description": "Unavailable, under-replicated, over-replicated, and uninitialized ranges.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(ranges_unavailable{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_unavailable",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Unavailable",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(ranges_underreplicated{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_underreplicated",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Under-replicated",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(ranges_overreplicated{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "ranges_overreplicated",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Over-replicated",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(replicas_uninitialized{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "replicas_uninitialized",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Uninitialized replicas",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 113
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-114",
+          "type": "bar",
+          "title": "Leaseholder Distribution",
+          "description": "Range leaseholders by node. Large skew can concentrate SQL traffic.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max by (node_id, instance) (replicas_leaseholders{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "replicas_leaseholders",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 114
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-115",
+          "type": "line",
+          "title": "Heartbeat Failures by Node",
+          "description": "Node-liveness heartbeat failures per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (node_id, instance) (rate(liveness_heartbeatfailures{job=\"cockroachdb-cluster\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "liveness_heartbeatfailures",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 115
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-116",
+          "type": "line",
+          "title": "Heartbeat P95 Latency",
+          "description": "P95 node-liveness heartbeat latency in milliseconds.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "milliseconds",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "histogram_quantile(0.95, sum by (node_id, instance, le) (rate(liveness_heartbeatlatency_bucket{job=\"cockroachdb-cluster\"}[1m]))) / 1e6",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "liveness_heartbeatlatency_bucket",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 64,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 116
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-117",
+          "type": "line",
+          "title": "Lease Transfer Outcomes",
+          "description": "Successful and failed lease transfers per second.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "ops",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(rate(leases_transfers_success{job=\"cockroachdb-cluster\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "leases_transfers_success",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Successful",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            },
+            {
+              "query": "sum(rate(leases_transfers_error{job=\"cockroachdb-cluster\"}[1m]))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "leases_transfers_error",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Failed",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 117
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "cluster-nodes-storage",
+      "name": "Nodes & Storage",
+      "panels": [
+        {
+          "id": "cluster-118",
+          "type": "metric",
+          "title": "Storage Used",
+          "description": "Total capacity used across cluster stores.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(capacity_used{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 118
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-119",
+          "type": "metric",
+          "title": "Storage Available",
+          "description": "Total available capacity across cluster stores.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(capacity_available{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_available",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 48,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 119
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-120",
+          "type": "metric",
+          "title": "Storage Utilization",
+          "description": "Cluster used capacity as a percentage of used plus available.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * sum(capacity_used{job=\"cockroachdb-cluster\"}) / (sum(capacity_used{job=\"cockroachdb-cluster\"}) + sum(capacity_available{job=\"cockroachdb-cluster\"}))",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Used",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 120
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-121",
+          "type": "metric",
+          "title": "Reserved Capacity",
+          "description": "Capacity reserved across cluster stores.",
+          "config": {
+            "show_legends": false,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "sparkline": {
+              "enabled": true,
+              "type": "line",
+              "layout": "bottom",
+              "lineWidth": 1,
+              "fillOpacity": 12
+            }
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum(capacity_reserved{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_reserved",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Value",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 144,
+            "y": 0,
+            "w": 48,
+            "h": 9,
+            "i": 121
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-122",
+          "type": "bar",
+          "title": "Storage Used by Node",
+          "description": "Current used capacity by node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (node_id, instance) (capacity_used{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_used",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 122
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-123",
+          "type": "bar",
+          "title": "Storage Available by Node",
+          "description": "Current available capacity by node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (node_id, instance) (capacity_available{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "capacity_available",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 9,
+            "w": 96,
+            "h": 20,
+            "i": 123
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-124",
+          "type": "line",
+          "title": "SQL Connections by Node",
+          "description": "Current SQL client connections per node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "short",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "sum by (node_id, instance) (sql_conns{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sql_conns",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 124
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-125",
+          "type": "line",
+          "title": "CPU Utilization by Node",
+          "description": "Normalized process CPU utilization per node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "percent",
+            "decimals": 2,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "100 * avg by (node_id, instance) (sys_cpu_combined_percent_normalized{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_cpu_combined_percent_normalized",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 64,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 125
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        },
+        {
+          "id": "cluster-126",
+          "type": "line",
+          "title": "Memory RSS by Node",
+          "description": "Resident process memory per node.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "bottom",
+            "legends_type": "table",
+            "unit": "bytes",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "axis_border_show": false,
+            "show_gridlines": true,
+            "show_symbol": false,
+            "line_interpolation": "smooth",
+            "connect_nulls": false,
+            "no_value_replacement": "N/A",
+            "top_results": 20,
+            "top_results_others": false,
+            "color": {
+              "mode": "palette-classic-by-series",
+              "fixedColor": [],
+              "seriesBy": "last"
+            },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": []
+          },
+          "queryType": "promql",
+          "queries": [
+            {
+              "query": "max by (node_id, instance) (sys_rss{job=\"cockroachdb-cluster\"})",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "sys_rss",
+                "stream_type": "metrics",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "Node {node_id} | {instance}",
+                "layer_type": "scatter",
+                "weight_fixed": 1
+              }
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 29,
+            "w": 64,
+            "h": 20,
+            "i": 126
+          },
+          "htmlContent": "",
+          "markdownContent": ""
+        }
+      ]
+    }
+  ]
+}
