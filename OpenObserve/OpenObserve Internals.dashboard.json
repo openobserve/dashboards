@@ -645,7 +645,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "topk(10, irate(zo_compact_used_time{namespace=\"$namespace\"}[1m]))",
+              "query": "topk(10, sum(irate(zo_compact_used_time{namespace=\"$namespace\"}[1m])) by (organization, stream_type))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -698,7 +698,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "topk(10, irate(zo_compact_merged_files{namespace=\"$namespace\"}[1m]))",
+              "query": "topk(10, sum(irate(zo_compact_merged_files{namespace=\"$namespace\"}[1m])) by (organization, stream_type))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -751,7 +751,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "topk(10, sum(zo_compact_pending_jobs{namespace=\"$namespace\"})by (organization,stream_type))",
+              "query": "topk(10, max(zo_compact_pending_jobs{namespace=\"$namespace\"})by (organization,stream_type))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
@@ -805,7 +805,7 @@
           "queryType": "promql",
           "queries": [
             {
-              "query": "topk(10, irate(zo_compact_merged_bytes{namespace=\"$namespace\"}[1m]))",
+              "query": "topk(10, sum(irate(zo_compact_merged_bytes{namespace=\"$namespace\"}[1m])) by (organization, stream_type))",
               "vrlFunctionQuery": null,
               "customQuery": true,
               "fields": {
