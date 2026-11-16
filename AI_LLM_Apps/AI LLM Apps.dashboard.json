@@ -1,0 +1,1115 @@
+{
+  "version": 8,
+  "dashboardId": "ai_llm_apps_overview",
+  "title": "AI - LLM apps overview",
+  "description": "Calls, cost, tokens, errors and latency of LLM applications, per model, service, tool and agent, from the gen_ai columns OpenObserve writes at trace ingest.",
+  "role": "",
+  "owner": "",
+  "created": "2026-11-16T00:00:00.000Z",
+  "tabs": [
+    {
+      "tabId": "overview",
+      "name": "Overview",
+      "panels": [
+        {
+          "id": "Panel_ID01",
+          "type": "metric",
+          "title": "LLM calls",
+          "description": "Model call spans (chat, text_completion, generate_content, embeddings) with a model name.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COUNT(*) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Calls",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 38,
+            "h": 8,
+            "i": 1
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID02",
+          "type": "metric",
+          "title": "Total cost",
+          "description": "Sum of gen_ai_usage_cost (USD) on model call spans. Unpriced models add nothing.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "currency-dollar"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COALESCE(SUM(gen_ai_usage_cost), 0) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Cost",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 38,
+            "y": 0,
+            "w": 38,
+            "h": 8,
+            "i": 2
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID03",
+          "type": "metric",
+          "title": "Total tokens",
+          "description": "Sum of gen_ai_usage_total_tokens on model call spans. Agent and workflow spans are left out so tokens are not counted twice.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT COALESCE(SUM(gen_ai_usage_total_tokens), 0) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Tokens",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 76,
+            "y": 0,
+            "w": 38,
+            "h": 8,
+            "i": 3
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID04",
+          "type": "metric",
+          "title": "LLM error rate",
+          "description": "Share of model call spans with span_status ERROR. Same model call rule and Model filter as the other overview panels.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "percent"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT 100.0 * SUM(CASE WHEN span_status = 'ERROR' THEN 1 ELSE 0 END) / COUNT(*) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [
+                  {
+                    "label": "Error rate",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 114,
+            "y": 0,
+            "w": 39,
+            "h": 8,
+            "i": 4
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID05",
+          "type": "metric",
+          "title": "p95 LLM latency",
+          "description": "95th percentile duration of model call spans.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "seconds"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT approx_percentile_cont(duration, 0.95) / 1000000.0 AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model)",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [
+                  {
+                    "label": "p95",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 153,
+            "y": 0,
+            "w": 39,
+            "h": 8,
+            "i": 5
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID06",
+          "type": "stacked",
+          "title": "Cost over time by model",
+          "description": "USD per time bucket, split by model.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "currency-dollar"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS x_axis_1, gen_ai_response_model AS breakdown_1, COALESCE(SUM(gen_ai_usage_cost), 0) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Cost",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [
+                  {
+                    "label": "Model",
+                    "alias": "breakdown_1",
+                    "column": "breakdown_1",
+                    "color": null
+                  }
+                ],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 8,
+            "w": 96,
+            "h": 15,
+            "i": 6
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID07",
+          "type": "area-stacked",
+          "title": "Input vs output tokens",
+          "description": "Input and output tokens per time bucket on model call spans.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS x_axis_1, COALESCE(SUM(gen_ai_usage_input_tokens), 0) AS y_axis_1, COALESCE(SUM(gen_ai_usage_output_tokens), 0) AS y_axis_2 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Input tokens",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  },
+                  {
+                    "label": "Output tokens",
+                    "alias": "y_axis_2",
+                    "column": "y_axis_2",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 8,
+            "w": 96,
+            "h": 15,
+            "i": 7
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID08",
+          "type": "line",
+          "title": "Calls and errors",
+          "description": "Model call spans and the ones with span_status ERROR.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 0,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": []
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS x_axis_1, COUNT(*) AS y_axis_1, SUM(CASE WHEN span_status = 'ERROR' THEN 1 ELSE 0 END) AS y_axis_2 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Calls",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  },
+                  {
+                    "label": "Errors",
+                    "alias": "y_axis_2",
+                    "column": "y_axis_2",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 23,
+            "w": 96,
+            "h": 15,
+            "i": 8
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID09",
+          "type": "line",
+          "title": "LLM latency p50 / p95 / p99",
+          "description": "Percentiles of model call duration.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "seconds"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS x_axis_1, approx_percentile_cont(duration, 0.50) / 1000000.0 AS y_axis_1, approx_percentile_cont(duration, 0.95) / 1000000.0 AS y_axis_2, approx_percentile_cont(duration, 0.99) / 1000000.0 AS y_axis_3 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY x_axis_1 ORDER BY x_axis_1",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Time",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "p50",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  },
+                  {
+                    "label": "p95",
+                    "alias": "y_axis_2",
+                    "column": "y_axis_2",
+                    "color": null
+                  },
+                  {
+                    "label": "p99",
+                    "alias": "y_axis_3",
+                    "column": "y_axis_3",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 96,
+            "y": 23,
+            "w": 96,
+            "h": 15,
+            "i": 9
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        }
+      ]
+    },
+    {
+      "tabId": "breakdown",
+      "name": "Models, services, tools",
+      "panels": [
+        {
+          "id": "Panel_ID10",
+          "type": "table",
+          "title": "Model leaderboard",
+          "description": "Calls, error rate, p95 latency (s) and average tokens per model.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "table_dynamic_columns": true,
+            "wrap_table_cells": false,
+            "table_pagination": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_response_model AS model, COUNT(*) AS calls, ROUND(100.0 * SUM(CASE WHEN span_status = 'ERROR' THEN 1 ELSE 0 END) / COUNT(*), 2) AS error_pct, approx_percentile_cont(duration, 0.95) / 1000000.0 AS p95_s, AVG(gen_ai_usage_input_tokens) AS avg_in_tokens, AVG(gen_ai_usage_output_tokens) AS avg_out_tokens FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY gen_ai_response_model ORDER BY calls DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 0,
+            "w": 120,
+            "h": 16,
+            "i": 10
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID15",
+          "type": "table",
+          "title": "Cost per model (USD)",
+          "description": "Total cost and average cost per call of each model, in USD with 6 decimals so cheap calls do not round to 0. Unpriced models show 0.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 6,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "table_dynamic_columns": true,
+            "wrap_table_cells": false,
+            "table_pagination": false,
+            "unit": "currency-dollar"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_response_model AS model, COALESCE(SUM(gen_ai_usage_cost), 0) AS cost_usd, COALESCE(SUM(gen_ai_usage_cost), 0) / COUNT(*) AS cost_per_call FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY gen_ai_response_model ORDER BY cost_usd DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 120,
+            "y": 0,
+            "w": 72,
+            "h": 16,
+            "i": 15
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID11",
+          "type": "h-bar",
+          "title": "Cost by service (USD)",
+          "description": "USD of model calls per application service.",
+          "config": {
+            "show_legends": true,
+            "legends_position": null,
+            "decimals": 4,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "unit": "currency-dollar"
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT service_name AS x_axis_1, COALESCE(SUM(gen_ai_usage_cost), 0) AS y_axis_1 FROM \"default\" WHERE gen_ai_response_model IS NOT NULL AND (gen_ai_operation_name IS NULL OR gen_ai_operation_name IN ('chat', 'text_completion', 'generate_content', 'embeddings')) AND service_name IN ($service) AND gen_ai_response_model IN ($model) GROUP BY service_name ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [
+                  {
+                    "label": "Service",
+                    "alias": "x_axis_1",
+                    "column": "x_axis_1",
+                    "color": null
+                  }
+                ],
+                "y": [
+                  {
+                    "label": "Cost (USD)",
+                    "alias": "y_axis_1",
+                    "column": "y_axis_1",
+                    "color": null
+                  }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 16,
+            "w": 64,
+            "h": 18,
+            "i": 11
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID12",
+          "type": "table",
+          "title": "Tool calls",
+          "description": "execute_tool spans per tool: volume, errors and p95 latency (ms).",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "table_dynamic_columns": true,
+            "wrap_table_cells": false,
+            "table_pagination": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT gen_ai_tool_name AS tool, COUNT(*) AS calls, SUM(CASE WHEN span_status = 'ERROR' THEN 1 ELSE 0 END) AS errors, approx_percentile_cont(duration, 0.95) / 1000.0 AS p95_ms FROM \"default\" WHERE gen_ai_operation_name = 'execute_tool' AND gen_ai_tool_name IS NOT NULL AND service_name IN ($service) GROUP BY gen_ai_tool_name ORDER BY calls DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 64,
+            "y": 16,
+            "w": 64,
+            "h": 18,
+            "i": 12
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID13",
+          "type": "table",
+          "title": "Agent runs",
+          "description": "invoke_agent and invoke_workflow spans per span name (agent or workflow): runs, errors and p95 latency (s).",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "table_dynamic_columns": true,
+            "wrap_table_cells": false,
+            "table_pagination": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT operation_name AS agent, COUNT(*) AS runs, SUM(CASE WHEN span_status = 'ERROR' THEN 1 ELSE 0 END) AS errors, approx_percentile_cont(duration, 0.95) / 1000000.0 AS p95_s FROM \"default\" WHERE gen_ai_operation_name IN ('invoke_agent', 'invoke_workflow') AND service_name IN ($service) GROUP BY operation_name ORDER BY runs DESC LIMIT 20",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 128,
+            "y": 16,
+            "w": 64,
+            "h": 18,
+            "i": 13
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_ID14",
+          "type": "table",
+          "title": "Recent failed spans",
+          "description": "Latest ERROR spans of the selected services that carry a gen_ai operation (model, tool, agent or workflow spans), with their trace id.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "decimals": 2,
+            "base_map": null,
+            "map_view": null,
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "drilldown": [],
+            "mark_line": [],
+            "table_dynamic_columns": true,
+            "wrap_table_cells": false,
+            "table_pagination": false
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT _timestamp, service_name, operation_name, gen_ai_operation_name, gen_ai_response_model, status_message, trace_id FROM \"default\" WHERE span_status = 'ERROR' AND gen_ai_operation_name IS NOT NULL AND service_name IN ($service) ORDER BY _timestamp DESC LIMIT 50",
+              "vrlFunctionQuery": "",
+              "customQuery": true,
+              "fields": {
+                "stream": "default",
+                "stream_type": "traces",
+                "x": [],
+                "y": [],
+                "z": [],
+                "breakdown": [],
+                "filter": {
+                  "filterType": "group",
+                  "logicalOperator": "AND",
+                  "conditions": []
+                }
+              },
+              "config": {
+                "promql_legend": "",
+                "layer_type": "scatter",
+                "weight_fixed": 1,
+                "limit": 0,
+                "min": 0,
+                "max": 100,
+                "time_shift": [],
+                "query_label": ""
+              },
+              "joins": []
+            }
+          ],
+          "layout": {
+            "x": 0,
+            "y": 34,
+            "w": 192,
+            "h": 18,
+            "i": 14
+          },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "list": [
+      {
+        "type": "query_values",
+        "name": "service",
+        "label": "Service",
+        "query_data": {
+          "stream_type": "traces",
+          "stream": "default",
+          "field": "service_name",
+          "max_record_size": 100,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "all",
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
+      },
+      {
+        "type": "query_values",
+        "name": "model",
+        "label": "Model",
+        "query_data": {
+          "stream_type": "traces",
+          "stream": "default",
+          "field": "gen_ai_response_model",
+          "max_record_size": 100,
+          "filter": []
+        },
+        "value": "",
+        "options": [],
+        "multiSelect": true,
+        "hideOnDashboard": false,
+        "selectAllValueForMultiSelect": "all",
+        "customMultiSelectValue": [],
+        "escapeSingleQuotes": false
+      }
+    ],
+    "showDynamicFilters": true
+  },
+  "defaultDatetimeDuration": {
+    "type": "relative",
+    "relativeTimePeriod": "1h",
+    "startTime": 0,
+    "endTime": 0
+  }
+}
