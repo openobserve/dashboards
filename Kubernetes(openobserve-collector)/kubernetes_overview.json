@@ -2,7 +2,7 @@
   "version": 8,
   "dashboardId": "7435756711840870400",
   "title": "Kubernetes Clusters Overview",
-  "description": "",
+  "description": "Clusters, nodes, pods and workloads in one view",
   "role": "",
   "owner": "introspectionroot@openobserve.ai",
   "created": "2026-03-06T18:42:28.755Z",

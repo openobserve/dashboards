@@ -2,7 +2,7 @@
   "version": 5,
   "dashboardId": "7316131899154369241",
   "title": "ArgoCD Monitoring",
-  "description": "",
+  "description": "App health and sync status at a glance",
   "role": "",
   "owner": "",
   "created": "2025-04-10T16:16:59.869Z",

@@ -2,7 +2,7 @@
   "version": 5,
   "dashboardId": "7390241601617928192",
   "title": "PostgreSQL",
-  "description": "",
+  "description": "Connections, cache, transactions and table health",
   "role": "",
   "owner": "",
   "created": "2025-11-01T04:21:41.673Z",
