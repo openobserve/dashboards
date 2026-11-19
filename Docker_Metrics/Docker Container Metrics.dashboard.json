@@ -2,7 +2,7 @@
   "version": 5,
   "dashboardId": "7312567317466974556",
   "title": "Docker Container Metrics",
-  "description": "",
+  "description": "CPU, memory, network and disk per container",
   "role": "",
   "owner": "",
   "created": "2025-04-01T05:01:07.176Z",
