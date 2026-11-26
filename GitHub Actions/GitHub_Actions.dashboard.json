@@ -1,0 +1,361 @@
+{
+  "version": 5,
+  "dashboardId": "8726453019147382500",
+  "title": "GitHub Actions CI/CD",
+  "description": "Monitor GitHub Actions workflow runs, reliability, duration, failures, and runner queue time.",
+  "role": "",
+  "owner": "",
+  "created": "2026-11-16T00:00:00.000Z",
+  "tabs": [
+    {
+      "tabId": "default",
+      "name": "Overview",
+      "panels": [
+        {
+          "id": "Panel_IDGA001",
+          "type": "area",
+          "title": "Workflow Runs Over Time",
+          "description": "Completed workflow runs grouped over time.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#53ca53"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS \"x_axis_1\", count(*) AS \"y_axis_1\" FROM \"github_actions_workflow_run\" GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_run",
+                "stream_type": "logs",
+                "x": [{ "label": "Time", "alias": "x_axis_1", "column": "_timestamp", "color": null, "aggregationFunction": "histogram", "sortBy": "ASC", "isDerived": false, "havingConditions": [] }],
+                "y": [{ "label": "Workflow Runs", "alias": "y_axis_1", "column": "run_id", "color": "#5960b2", "aggregationFunction": "count", "isDerived": false, "havingConditions": [] }],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 0, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 0, "y": 0, "w": 24, "h": 10, "i": 0, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_IDGA002",
+          "type": "area",
+          "title": "Successful and Failed Runs",
+          "description": "Run conclusions over time. Cancelled and timed-out runs are counted as failures.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#53ca53", "#c23531"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS \"x_axis_1\", sum(CASE WHEN conclusion = 'success' THEN 1 ELSE 0 END) AS \"y_axis_1\", sum(CASE WHEN conclusion IN ('failure', 'timed_out', 'cancelled', 'action_required') THEN 1 ELSE 0 END) AS \"y_axis_2\" FROM \"github_actions_workflow_run\" GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_run",
+                "stream_type": "logs",
+                "x": [{ "label": "Time", "alias": "x_axis_1", "column": "_timestamp", "color": null, "aggregationFunction": "histogram", "sortBy": "ASC", "isDerived": false, "havingConditions": [] }],
+                "y": [
+                  { "label": "Success", "alias": "y_axis_1", "column": "conclusion", "color": "#53ca53", "aggregationFunction": "sum", "isDerived": false, "havingConditions": [] },
+                  { "label": "Failure", "alias": "y_axis_2", "column": "conclusion", "color": "#c23531", "aggregationFunction": "sum", "isDerived": false, "havingConditions": [] }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 0, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 24, "y": 0, "w": 24, "h": 10, "i": 1, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_IDGA003",
+          "type": "line",
+          "title": "Workflow Duration (Average and P95)",
+          "description": "Run duration in seconds, calculated from start and completion timestamps during ingestion.",
+          "config": {
+            "show_legends": true,
+            "legends_position": "right",
+            "unit": "seconds",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#5960b2", "#c23531"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT histogram(_timestamp) AS \"x_axis_1\", avg(run_duration_seconds) AS \"y_axis_1\", approx_percentile_cont(run_duration_seconds, 0.95) AS \"y_axis_2\" FROM \"github_actions_workflow_run\" GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_run",
+                "stream_type": "logs",
+                "x": [{ "label": "Time", "alias": "x_axis_1", "column": "_timestamp", "color": null, "aggregationFunction": "histogram", "sortBy": "ASC", "isDerived": false, "havingConditions": [] }],
+                "y": [
+                  { "label": "Average duration (s)", "alias": "y_axis_1", "column": "run_duration_seconds", "color": "#5960b2", "aggregationFunction": "avg", "isDerived": false, "havingConditions": [] },
+                  { "label": "P95 duration (s)", "alias": "y_axis_2", "column": "run_duration_seconds", "color": "#c23531", "aggregationFunction": "p95", "isDerived": false, "havingConditions": [] }
+                ],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 0, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 0, "y": 10, "w": 24, "h": 10, "i": 2, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_IDGA004",
+          "type": "h-bar",
+          "title": "Failed Jobs by Workflow and Step",
+          "description": "Requires enriched job events with workflow_name, job_name, step_name, and conclusion fields. GitHub workflow_job webhook payloads alone do not include per-step results.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "unit": "numbers",
+            "decimals": 0,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#c23531"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT workflow_name || ' / ' || job_name || ' / ' || coalesce(step_name, 'step unavailable') AS \"x_axis_1\", count(*) AS \"y_axis_1\" FROM \"github_actions_workflow_job\" WHERE conclusion = 'failure' GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_job",
+                "stream_type": "logs",
+                "x": [{ "label": "Workflow / Job / Step", "alias": "x_axis_1", "column": "workflow_name", "color": null, "isDerived": false, "havingConditions": [] }],
+                "y": [{ "label": "Failed Jobs", "alias": "y_axis_1", "column": "conclusion", "color": "#c23531", "aggregationFunction": "count", "sortBy": "DESC", "isDerived": false, "havingConditions": [] }],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 15, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 24, "y": 10, "w": 24, "h": 10, "i": 3, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_IDGA005",
+          "type": "h-bar",
+          "title": "Runner Queue Wait (P95 by Workflow)",
+          "description": "Queue wait in seconds, derived from job queued_at to started_at timestamps.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "unit": "seconds",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#5960b2"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT workflow_name AS \"x_axis_1\", approx_percentile_cont(queue_duration_seconds, 0.95) AS \"y_axis_1\" FROM \"github_actions_workflow_job\" WHERE queue_duration_seconds IS NOT NULL GROUP BY x_axis_1 ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_job",
+                "stream_type": "logs",
+                "x": [{ "label": "Workflow", "alias": "x_axis_1", "column": "workflow_name", "color": null, "isDerived": false, "havingConditions": [] }],
+                "y": [{ "label": "P95 queue wait (s)", "alias": "y_axis_1", "column": "queue_duration_seconds", "color": "#5960b2", "aggregationFunction": "p95", "sortBy": "DESC", "isDerived": false, "havingConditions": [] }],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 15, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 0, "y": 20, "w": 24, "h": 10, "i": 4, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        },
+        {
+          "id": "Panel_IDGA006",
+          "type": "h-bar",
+          "title": "Flakiest Workflows (Failure Rate)",
+          "description": "Workflows with at least five completed runs in the selected time range, ranked by failure percentage.",
+          "config": {
+            "show_legends": false,
+            "legends_position": null,
+            "unit": "percent",
+            "decimals": 1,
+            "line_thickness": 1.5,
+            "step_value": "0",
+            "top_results_others": false,
+            "axis_border_show": false,
+            "label_option": { "rotate": 0 },
+            "show_symbol": true,
+            "line_interpolation": "smooth",
+            "legend_width": { "unit": "px" },
+            "base_map": { "type": "osm" },
+            "map_type": { "type": "world" },
+            "map_view": { "zoom": 1, "lat": 0, "lng": 0 },
+            "map_symbol_style": { "size": "by Value", "size_by_value": { "min": 1, "max": 100 }, "size_fixed": 2 },
+            "drilldown": [],
+            "mark_line": [],
+            "override_config": [],
+            "connect_nulls": false,
+            "no_value_replacement": "",
+            "wrap_table_cells": false,
+            "table_transpose": false,
+            "table_dynamic_columns": false,
+            "color": { "mode": "palette-classic-by-series", "fixedColor": ["#c23531"], "seriesBy": "last" },
+            "trellis": { "layout": null, "num_of_columns": 1 }
+          },
+          "queryType": "sql",
+          "queries": [
+            {
+              "query": "SELECT workflow_name AS \"x_axis_1\", 100.0 * sum(CASE WHEN conclusion IN ('failure', 'timed_out', 'action_required') THEN 1 ELSE 0 END) / count(*) AS \"y_axis_1\" FROM \"github_actions_workflow_run\" WHERE conclusion IS NOT NULL GROUP BY workflow_name HAVING count(*) >= 5 ORDER BY y_axis_1 DESC LIMIT 15",
+              "vrlFunctionQuery": "",
+              "customQuery": false,
+              "fields": {
+                "stream": "github_actions_workflow_run",
+                "stream_type": "logs",
+                "x": [{ "label": "Workflow", "alias": "x_axis_1", "column": "workflow_name", "color": null, "isDerived": false, "havingConditions": [] }],
+                "y": [{ "label": "Failure rate (%)", "alias": "y_axis_1", "column": "conclusion", "color": "#c23531", "aggregationFunction": "count", "sortBy": "DESC", "isDerived": true, "havingConditions": [] }],
+                "z": [],
+                "breakdown": [],
+                "filter": { "filterType": "group", "logicalOperator": "AND", "conditions": [] }
+              },
+              "config": { "promql_legend": "", "layer_type": "scatter", "weight_fixed": 1, "limit": 15, "min": 0, "max": 100, "time_shift": [] }
+            }
+          ],
+          "layout": { "x": 24, "y": 20, "w": 24, "h": 10, "i": 5, "moved": false },
+          "htmlContent": "",
+          "markdownContent": "",
+          "customChartContent": ""
+        }
+      ]
+    }
+  ],
+  "variables": { "list": [], "showDynamicFilters": true },
+  "defaultDatetimeDuration": { "type": "relative", "relativeTimePeriod": "7d" }
+}
